@@ -112,7 +112,7 @@ switch (toUpper _mode) do {
       };
 
       if (!local _grp) exitWith {["ERROR: Group must be local"] call ares_fnc_ShowZeusMessage};
-      _grp setVariable ["tac_headless_blacklist", true, true];
+      _grp setVariable ["acex_headless_blacklist", true, true];
 
       private _units = units _grp;
       private _wps = waypoints _grp;
