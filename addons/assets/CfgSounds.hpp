@@ -5,39 +5,39 @@ class CfgSounds {
         sound[] = {QUOTE(PATHTOF(sounds\akbar.ogg)), db+0, 1.0};
         titles[] = {};
     };
-    class fp_iedbuzz
-    {
-        name = "fp_iedbuzz";
-        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz.ogg)), db+0, 1.0};
-        titles[] = {};
-    };
     class fp_iedbuzz1
     {
         name = "fp_iedbuzz1";
-        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz1.ogg)), db+0, 1.0};
+        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz.ogg)), db+0, 1.0};
         titles[] = {};
     };
     class fp_iedbuzz2
     {
         name = "fp_iedbuzz2";
-        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz2.ogg)), db+0, 1.0};
+        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz1.ogg)), db+0, 1.0};
         titles[] = {};
     };
     class fp_iedbuzz3
     {
         name = "fp_iedbuzz3";
-        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz3.ogg)), db+0, 1.0};
+        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz2.ogg)), db+0, 1.0};
         titles[] = {};
     };
     class fp_iedbuzz4
     {
         name = "fp_iedbuzz4";
-        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz4.ogg)), db+0, 1.0};
+        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz3.ogg)), db+0, 1.0};
         titles[] = {};
     };
     class fp_iedbuzz5
     {
         name = "fp_iedbuzz5";
+        sound[] = {QUOTE(PATHTOF(sounds\iedbuzz4.ogg)), db+0, 1.0};
+        titles[] = {};
+    };
+    class fp_iedbuzz6
+    {
+        name = "fp_iedbuzz6";
         sound[] = {QUOTE(PATHTOF(sounds\iedbuzz5.ogg)), db+0, 1.0};
         titles[] = {};
     };

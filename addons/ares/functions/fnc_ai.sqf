@@ -1,14 +1,22 @@
 /*
-    Description:
-        Handles FP group AI
+* Author: Cuel
+* AI stuff for zeus
+*
+* Arguments:
+* Object(s), single or array
+*
+* Public: Yes
 */
+#include "script_component.hpp"
 
-params ["_mode", "_grp"];
+params [["_mode", ""], ["_grp", objNull]];
 if (_grp isEqualType objNull) then {_grp = [_grp] call CBA_fnc_getGroup};
-if (!(_grp isEqualType grpNull) || {{alive _x} count units _grp == 0} || {{isPlayer _x} count units _grp > 0}) exitWith {};
+if (!(_grp isEqualType grpNull) ||
+    {count units _grp == 0} ||
+    {{isPlayer _x} count units _grp > 0}
+) exitWith {};
 
 switch (toUpper _mode) do {
-
   case "PATROL": {
       private _radius = ["50", "100", "150", "200", "250", "300", "400", "500"];
       private _args = ["Patrol settings", [
@@ -19,15 +27,14 @@ switch (toUpper _mode) do {
 
       _radius = parseNumber (_radius select (_args select 0));
       private _cond = ["", "this spawn CBA_fnc_searchNearby"] select (_args select 1);
-      private _cbaArgs = [_grp,  _grp, _radius, 8, "MOVE", "AWARE", "YELLOW", "NORMAL", "STAG COLUMN", _cond, [3,6,9]];
+      private _cbaArgs = [_grp,  _grp, _radius, 6, "MOVE", "AWARE", "YELLOW", "LIMITED", "STAG COLUMN", _cond, [3,6,9]];
       _cbaArgs remoteExecCall ["CBA_fnc_taskPatrol", leader _grp];
   };
 
   case "DEFEND": {
       if (local _grp) then {
-        _grp setVariable ["acex_headless_blacklist", true, true];
+        (leader _grp) setVariable ["acex_headless_blacklist", true, true];
       };
-
       private _radius = ["50", "100", "150", "200", "250", "300", "400", "500"];
       private _treshold = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
       private _args = ["Defend settings", [
@@ -42,17 +49,12 @@ switch (toUpper _mode) do {
   };
 
   case "GARRISON": {
-    if (!local _grp) exitWith {
-      ["ERROR: Group must be local"] call ares_fnc_ShowZeusMessage;
-    };
-    _grp setVariable ["acex_headless_blacklist", true, true];
-
     private _radius = ["Closest building","50", "100", "150", "200", "250", "300", "400", "500"];
     private _args = ["Garrison settings", [
       ["Radius (m)", _radius, 2],
-      ["Put on roof", ["Yes", "No"], 0],
-      ["Fill buildings evenly", ["Yes", "No"], 1],
-      ["Lock units in place", ["Yes", "No"], 1]
+      ["Allow roof", ["Yes", "No"], 0],
+      ["Fill buildings in radius evenly", ["Yes", "No"], 1],
+      ["Lock units in place", ["Yes", "No"], 0]
     ]] call Ares_fnc_ShowChooseDialog;
     if (count _args == 0) exitWith {};
 
@@ -61,48 +63,7 @@ switch (toUpper _mode) do {
     private _putOnRoof = [true, false] select (_args select 1);
     private _fillEvenly = [true, false] select (_args select 2);
     private _lockUnits = [true, false] select (_args select 3);
-    private _unUsed = [getPosATL (leader _grp), units _grp, _radius, _putOnRoof, _fillEvenly] call Ares_fnc_ZenOccupyHouse;
-
-    if (count _unUsed > 0) then {
-      _grp2 = createGroup (side (_unUsed select 0));
-      {
-        [_x] joinSilent _grp2;
-      }foreach _unUsed;
-
-      // doesn't matter if this group gets transferred to HC, it's only waypoints
-      [_grp2, getPosATL (leader _grp), _radius, 6+(round (random 4)), "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] spawn CBA_fnc_searchNearby", [3+(random 4),10,10+(random 5)]] call CBA_fnc_taskPatrol;
-    };
-
-    if (_lockUnits) then {
-      {
-        _x disableAI "MOVE";
-        _x addEventHandler ["Hit", {
-          params ["_unit"];
-          if (!alive _unit) exitWith {};
-          _unit setVariable ["fp_enabled", true];
-          _unit enableAI "MOVE";
-          // ai seems unable to move unless doing this
-          _unit doMove [(getPosATL _unit select 0)+1, (getPosATL _unit select 1) +1, getPosATL _unit select 2];
-        }];
-      }forEach units _grp;
-
-      [{
-        params ["_units", "_id"];
-        if ({!alive _x || {_x getVariable ["fp_enabled", false]}} count _units == count _units) exitWith {
-          [_id] call CBA_fnc_removePerFrameHandler;
-        };
-
-        {
-          if (alive _x && {!(_x getVariable ["fp_enabled", false])} && {simulationEnabled _x}) then {
-            if (_x distance (_x findNearestEnemy (getPosATL _x)) < 60 || {[_x, 30] call CBA_fnc_nearPlayer}) then {
-              _x setVariable ["fp_enabled", true];
-              _x enableAI "MOVE";
-              _x doMove [(getPosATL _x select 0)+1, (getPosATL _x select 1) +1, getPosATL _x select 2];
-            };
-          };
-        } forEach units _grp;
-      }, 3.23, units _grp] call CBA_fnc_addPerFrameHandler;
-    };
+    [QGVAR(garrison), [_grp, _radius, _putOnRoof, _fillEvenly, _lockUnits], _grp] call CBA_fnc_targetEvent;
   };
 
   case "FORCE_WP": {
@@ -124,11 +85,11 @@ switch (toUpper _mode) do {
       _wp1 = _wps select _wp1;
 
       _grp setVariable ["fp_orig_mode", [combatMode _grp, behaviour (leader _grp)]];
-      {_x disableAI "TARGET"; _x disableAI "AUTOTARGET"} forEach _units;
       _grp setCombatMode "BLUE";
       _grp setBehaviour "CARELESS";
       _grp setSpeedMode "FULL";
       _grp enableAttack false;
+      {_x disableAI "TARGET"; _x disableAI "AUTOTARGET"; _x disableAI "AUTOCOMBAT"; _x setUnitPos "UP";} forEach _units;
 
       _wp1 setWaypointStatements ["true", format [
           "
@@ -139,7 +100,7 @@ switch (toUpper _mode) do {
               _grp enableAttack true;
               _grp setCombatMode (((group this) getVariable ['fp_orig_mode', ['YELLOW']]) select 0);
               _grp setBehaviour (((group this) getVariable ['fp_orig_mode', ['AWARE']]) select 1);
-              {_x enableAI 'TARGET'; _x enableAI 'AUTOTARGET';  _x forceSpeed -1} forEach units _grp;
+              {_x enableAI 'TARGET'; _x enableAI 'AUTOTARGET'; _x enableAI 'AUTOCOMBAT'; _x forceSpeed -1; _x setunitPos 'AUTO';} forEach units _grp;
               _grp setSpeedMode 'NORMAL';
           ",
           waypointStatements _wp1
@@ -161,6 +122,8 @@ switch (toUpper _mode) do {
                   _x forceSpeed -1;
                   _x enableAI "TARGET";
                   _x enableAI "AUTOTARGET";
+                  _x enableAI "AUTOCOMBAT";
+                  _x setUnitPos "AUTO";
                   _x doMove (getPosATL _x);
               } forEach units _grp;
               _grp enableAttack true;
@@ -169,10 +132,10 @@ switch (toUpper _mode) do {
               _grp setSpeedMode 'NORMAL';
           };
 
-          {
+          /*{
               _x forceSpeed (_x getSpeed "FAST");
               _x doMove _wpPos;
-          }forEach _units;
+          }forEach _units;*/
       }, 3, [_grp,  _wp1, waypointPosition _wp1]] call CBA_fnc_addPerFrameHandler;
 
       _grp setVariable ["fp_forcewp_id", _pfhId];

@@ -1,4 +1,4 @@
-#define COMPONENT ares
+#define COMPONENT common
 #include "\z\fpa\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL

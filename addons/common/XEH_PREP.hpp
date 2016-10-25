@@ -1,0 +1,2 @@
+PREP(addToCurators);
+PREP(cameraAtPosition);
