@@ -8,7 +8,7 @@ private _unitPlaya = !_rc && {hasInterface} && {_unit == ace_player};
 if (!_unitPlaya || {(getPosATL _unit) distance2D [0,0] < 400}) exitWith {};
 
 private _keepChecking = true;
-private _killerPlayer = _unit call FUNC(common,isPlayer);
+private _killerPlayer = _killer call EFUNC(common,isPlayer);
 private _msg = [format ["%1 died at %2", profileName, _unit call FUNC(posFormat)]];
 private _lvl = 1;
 
