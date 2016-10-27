@@ -6,5 +6,6 @@ ADDON = false;
 
 ADDON = true;
 
-GVAR(grenades) = [];
 GVAR(disabled) = false;
+GVAR(grenades) = [];
+GVAR(playerDamageTimeout) = [objNull, 0];

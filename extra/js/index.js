@@ -28,6 +28,10 @@ function setupRpc (db) {
 
 // Writes log to DB
 function writeLog (id, level, time, text) {
+  if (!id) {
+    return console.error('Missing ID for mission')
+  }
+
   // format text
   text = text.replace(/\[\"/g, '[')
   text = text.replace(/\"\]|\,\"\]/g, ']')

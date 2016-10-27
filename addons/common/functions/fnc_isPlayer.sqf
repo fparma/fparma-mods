@@ -1,6 +1,6 @@
 /*
 * Author: ACE team
-* Returns true if given object is a player and not zeus controlled
+* Returns true if given object is a player and not zeus controlled and not HC
 *
 * Arguments:
 * 1 - Object
@@ -9,4 +9,9 @@
 */
 
 params [["_unit", objNull, [objNull]]];
-isPlayer _unit && {isNull (_unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull])}
+
+private _ret = isPlayer _unit &&
+    {!(_unit isKindOf "HeadlessClient_F")} &&
+    {isNull (_unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull])};
+
+_ret

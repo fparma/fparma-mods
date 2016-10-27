@@ -12,6 +12,7 @@
 #define TWO_DEC(nr) (parseNumber ([nr, -1, 2] call CBA_fnc_formatNumber))
 params ["_pos"];
 (_pos call CBA_fnc_getPos) params ["_pX", "_pY", "_pZ"];
+if (_pZ > -0.6 && _pZ < 0.6) then {_pZ = 0};
 
 ([
     TWO_DEC(_pX),
