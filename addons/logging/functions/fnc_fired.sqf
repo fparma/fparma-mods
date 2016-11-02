@@ -15,22 +15,24 @@ if (count (GVAR(grenades) select {!(isNull (_x select 0))}) == 0) then {
 // let any other EHs delete the nade first
 [{
     params ["_proj"];
-    if (isNull _proj) exitWith {};
-    private _id = GVAR(grenades) pushBack [_proj, getPosATL _proj];
+    private _gPos = getPosATL _proj;
+    if (isNull _proj || {_gPos distance2D [0,0] < 400}) exitWith {};
+    private _id = GVAR(grenades) pushBack [_proj, _gPos];
+
     [{
         params ["_id", "_pfhId"];
         private _ele = GVAR(grenades) select _id;
         _ele params ["_proj", ["_pos", [0, 0]], "_type", ["_lastNear", []]];
 
         if (alive _proj) exitWith {
-            private _near = allUnits //(call CBA_fnc_players)
+            private _near = (call CBA_fnc_players)
                 select {_x call EFUNC(common,isPlayer) && {_x distance _pos < 30}};
 
             GVAR(grenades) set [_id, [_proj, getPosATL _proj, typeOf _proj, _near]];
         };
 
         [_pfhId] call CBA_fnc_removePerFrameHandler;
-        if (_pos distance2D [0,0] < 400 || {count _lastNear == 0}) exitWith {};
+        if (count _lastNear == 0) exitWith {};
 
         private _withDist = _lastNear apply {[name _x, _x distance _pos]};
         private _sortedNear = [_withDist, 1] call CBA_fnc_sortNestedArray;

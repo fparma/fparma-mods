@@ -16,6 +16,11 @@
     _this call EFUNC(ai,garrison);
 }] call CBA_fnc_addEventHandler;
 
+//[QGVAR(forceMove), {
+//  _this call EFUNC(ai,forceMoveWp);
+//}] call CBA_fnc_addEventHandler;
+
+INFO_1("Ares loaded: %1", !isNil "Ares_fnc_RegisterCustomModule");
 if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 
 [UTIL, "Camera at position", {
@@ -54,4 +59,4 @@ if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 [AI, "Patrol area", {["PATROL", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Defend area", {["DEFEND", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Garrison", {["GARRISON", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
-[AI, "Force move WP", {["FORCE_WP", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
+//[AI, "Force move WP", {["FORCE_WP", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;

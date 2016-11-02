@@ -14,6 +14,7 @@
 #include "script_component.hpp"
 params ["_grp", "_radius", ["_putOnRoof", true], ["_fillEvenly", false], ["_lockUnits", true]];
 
+if (!local _grp) exitWith {};
 if (hasInterface || isServer) then {
     (leader _grp) setVariable ["acex_headless_blacklist", true, true];
 };
@@ -23,10 +24,10 @@ private _unUsed = [getPosATL (leader _grp), units _grp, _radius, _putOnRoof, _fi
 if (count _unUsed > 0) then {
   _grp2 = createGroup (side _grp);
   {
-    [_x] joinSilent _grp2;
+      [_x] joinSilent _grp2;
   }foreach _unUsed;
 
-  private _patrolRadius = [_radius, 40] select (_radius < 101);
+  private _patrolRadius = [40, _radius - 50] select (_radius > 101);
   private _args = [_grp2, getPosATL (leader _grp), _radius, 4, "MOVE", "SAFE", "YELLOW", "LIMITED", "COLUMN", "[this] spawn CBA_fnc_searchNearby", [3 + round random 4,10 ,10 + round random 5]];
   _args call CBA_fnc_taskPatrol;
 };
@@ -37,13 +38,13 @@ if (_lockUnits) then {
 
     _x addEventHandler ["FiredNear", {
         params ["_unit", "_firer"];
-        if (side group _unit == side group _firer) exitWith {};
+        if (!alive _unit  || {side group _unit == side group _firer}) exitWith {};
 
         private _duckDelay = _unit getVariable [QGVAR(duckDelay), 0];
-        if (time < _duckDelay) exitWith {};
+        if (CBA_missionTime < _duckDelay) exitWith {};
 
-        private _delay = 1 + round random 3;
-        _unit setVariable [QGVAR(duckDelay), time + _delay + (1 + random 4)];
+        private _delay = 1 + random 3;
+        _unit setVariable [QGVAR(duckDelay), CBA_missionTime + _delay + (1 + random 2)];
         _unit setUnitPos "MIDDLE";
         [{
             params ["_unit"];
