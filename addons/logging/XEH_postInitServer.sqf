@@ -8,7 +8,6 @@ addMissionEventHandler ["PlayerConnected",{
             (format ["%1: not running FP logs", profileName]) remoteExecCall ["systemChat", 0];
         };
     }] remoteExecCall ["BIS_fnc_call", _owner];
-(format ["%1 (%2) connected", _name, _uid]) call FUNC(log);
     [format ["%1 (%2) connected", _nick, _uid], 1] call FUNC(serverLog);
 }];
 
