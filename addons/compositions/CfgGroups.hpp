@@ -13,7 +13,7 @@ class CfgGroups
             name = "FPARMA";
             class fpa_BunkersTowers
             {
-                name = "Bunkers & Towers"
+                name = "Bunkers & Towers";
                 class fpa_Bunkersmsandbagsdshkm
                 {
                     name = "Bunker - sm (sandbags, dshkm)";

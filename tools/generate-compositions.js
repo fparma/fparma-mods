@@ -40,7 +40,7 @@ function prepareText(allFolders) {
             const {folder, files} = obj;
             const folderBase = path.basename(folder);
             text.push(`${indent(i)}class ${sanitize(folderBase)}\r\n${indent(i++)}{`);
-            text.push(`${indent(i)}name = "${folderBase}"`);
+            text.push(`${indent(i)}name = "${folderBase}";`);
             files.forEach(file => {
                 const fileBase = path.basename(file, '.hpp');
                 text.push(`${indent(i)}class ${sanitize(fileBase)}\r\n${indent(i++)}{`);
