@@ -10,11 +10,11 @@
 #include "script_component.hpp"
 
 params [["_mode", ""], ["_grp", objNull]];
-if (_grp isEqualType objNull) then {_grp = [_grp] call CBA_fnc_getGroup};
-if (!(_grp isEqualType grpNull) ||
-    {count units _grp == 0} ||
-    {{isPlayer _x} count units _grp > 0}
-) exitWith {};
+_grp = [_grp] call CBA_fnc_getGroup;
+private _units = units _grp;
+if (_grp isEqualTo grpNull || {count _units == 0} || {{isPlayer _x} count _units > 0}) exitWith {
+    ["Invalid group"] call ares_fnc_ShowZeusMessage;
+};
 
 switch (toUpper _mode) do {
     case "PATROL": {
@@ -65,6 +65,9 @@ switch (toUpper _mode) do {
     };
 
     case "FORCE_WP": {
+        private _wps = waypoints _grp;
+        private _wp1 = currentWaypoint _grp;
+        if (_wp1 in [0, count _wps]) exitWith {["ERROR: Group needs a waypoint to reach"] call ares_fnc_ShowZeusMessage};
         [QGVAR(forceMove), [_grp], _grp] call CBA_fnc_targetEvent;
         ["Group will try to reach their waypoint no matter what"] call ares_fnc_ShowZeusMessage;
     };

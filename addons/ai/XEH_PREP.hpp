@@ -1,3 +1,3 @@
 PREP(zenOccupy);
 PREP(garrison);
-//PREP(forceMoveWp);
+PREP(forceMoveWp);
