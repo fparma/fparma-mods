@@ -48,7 +48,7 @@ class CfgVehicles {
         function = QFUNC(zeusGodmode);
     };
 
-    class GVAR(moduleToggleZeusInvisible): GVAR(moduleBase) {
+    class GVAR(moduleArsenalUnit): GVAR(moduleBase) {
         category = GVAR(Utilities);
         displayName = "Arsenal on unit";
         function = QFUNC(unitArsenal);
