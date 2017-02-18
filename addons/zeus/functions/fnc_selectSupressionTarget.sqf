@@ -16,8 +16,6 @@ if !(_activated && local _logic) exitWith {};
 
 private _pos = getPosASL _logic;
 deleteVehicle _logic;
-
-
 private _who = RETDEF(GVAR(selectedSupression),objNull);
 
 if !(alive _who) exitWith {
@@ -30,3 +28,4 @@ if (_who distance _pos > 600) exitWith {
 
 [QGVAR(supress), [_who, _pos], _who] call CBA_fnc_targetEvent;
 GVAR(selectedSupression) = objNull;
+["Units will try to supress", false] call FUNC(curatorMessage);

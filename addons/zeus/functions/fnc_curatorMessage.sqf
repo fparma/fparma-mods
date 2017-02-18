@@ -3,7 +3,7 @@
 * Show curator feedback
 *
 * Arguments:
-* 0: Message  <sintrg>
+* 0: Message  <string>
 *
 * Public: No
 */

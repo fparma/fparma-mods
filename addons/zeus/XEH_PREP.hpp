@@ -8,4 +8,5 @@ PREP(supressionEH);
 
 PREP(fullHeal);
 PREP(zeusGodmode);
-PREP(unitArsenal);
+PREP(customModule);
+PREP(registerCustomModule);

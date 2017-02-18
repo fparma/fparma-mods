@@ -1,3 +1,5 @@
+#define ACE_MEDICAL "ace_zeus_Medical"
+
 class CfgVehicles {
     class Module_F;
 
@@ -27,30 +29,91 @@ class CfgVehicles {
         icon = "\a3\Modules_F_Curator\Data\iconTracers_ca.paa";
     };
 
-    // Utilities modules
+    // ACE Medical modules
     class GVAR(moduleHealUnit): GVAR(moduleBase) {
-        category = GVAR(Utilities);
-        displayName = "Heal - unit";
+        curatorCanAttach = 1;
+        category = ACE_MEDICAL;
+        displayName = "Full heal - unit";
         function = QFUNC(fullHeal);
-        icon = QPATHTOF(data/icon_medkit.paa);
+        icon = QPATHTOF(data\icon_medkit.paa);
     };
 
     class GVAR(moduleHealGroup): GVAR(moduleBase) {
-        category = GVAR(Utilities);
-        displayName = "Heal - group";
+        curatorCanAttach = 1;
+        category = ACE_MEDICAL;
+        displayName = "Full heal - group";
         function = QFUNC(fullHeal);
-        icon = QPATHTOF(data/icon_medkit.paa);
+        icon = QPATHTOF(data\icon_medkit.paa);
     };
 
-    class GVAR(moduleToggleZeusInvisible): GVAR(moduleBase) {
-        category = GVAR(Utilities);
+    // Utilities modules
+    class GVAR(moduleToggleGodmode): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Utilities);
         displayName = "Toggle zeus godmode";
         function = QFUNC(zeusGodmode);
+        icon = "\a3\Missions_F_Beta\data\img\iconMPTypeDefense_ca.paa";
     };
 
-    class GVAR(moduleArsenalUnit): GVAR(moduleBase) {
-        category = GVAR(Utilities);
-        displayName = "Arsenal on unit";
-        function = QFUNC(unitArsenal);
+    // Custom modules
+    class GVAR(moduleCustom01): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom02): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom03): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom04): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom05): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom06): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom07): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom08): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom09): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
+    };
+    class GVAR(moduleCustom10): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Custom);
+        displayName = "";
+        function = QFUNC(customModule);
     };
 };
