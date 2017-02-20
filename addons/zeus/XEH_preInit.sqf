@@ -7,4 +7,4 @@ ADDON = false;
 ADDON = true;
 
 GVAR(selectedSupression) = objNull;
-GVAR(registeredModules) = [];
+GVAR(registeredCustomModules) = [];

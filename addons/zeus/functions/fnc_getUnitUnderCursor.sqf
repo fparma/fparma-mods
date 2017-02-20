@@ -8,10 +8,12 @@
 * Public: No
 */
 #include "script_component.hpp"
+params [["_onlyReturn", false, [true]]];
 
 private _cursorData = missionNamespace getVariable ["bis_fnc_curatorObjectPlaced_mouseOver", ["", objNull]];
-_cursorData params ["_type", "_target"];
+if (_onlyReturn) exitWith {_cursorData};
 
+_cursorData params ["_type", "_target"];
 if (_type == "GROUP") then {
     _type = "OBJECT";
     _target = leader _target;

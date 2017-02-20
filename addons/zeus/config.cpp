@@ -3,21 +3,18 @@
 class CfgPatches {
     class ADDON {
         units[] = {
-            QGVAR(moduleSupressionUnit),
-            QGVAR(moduleSupressionTarget),
             QGVAR(moduleHealUnit),
             QGVAR(moduleHealGroup),
+            QGVAR(moduleSupressionUnit),
+            QGVAR(moduleSupressionTarget),
+            QGVAR(moduleForceWP),
             QGVAR(moduleToggleGodmode),
-            QGVAR(moduleCustom01),
-            QGVAR(moduleCustom02),
-            QGVAR(moduleCustom03),
-            QGVAR(moduleCustom04),
-            QGVAR(moduleCustom05),
-            QGVAR(moduleCustom06),
-            QGVAR(moduleCustom07),
-            QGVAR(moduleCustom08),
-            QGVAR(moduleCustom09),
-            QGVAR(moduleCustom10)
+            QGVAR(moduleSmoke),
+            QGVAR(moduleSwapNV),
+            QGVAR(moduleDisableWeapons),
+            QGVAR(moduleUnitCode),
+            QGVAR(moduleCode),
+            QGVAR(moduleCustom)
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
@@ -30,3 +27,5 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgFactionClasses.hpp"
 #include "CfgVehicles.hpp"
+
+#include "ui\dynamicDialog.hpp"

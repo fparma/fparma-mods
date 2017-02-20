@@ -15,7 +15,7 @@
 params ["_logic", "_units", "_activated"];
 if !(_activated && local _logic) exitWith {};
 
-private _unit = call FUNC(getUnitUnderCursor);
+private _unit = [] call FUNC(getUnitUnderCursor);
 deleteVehicle _logic;
 
 if !(alive _unit) exitWith {

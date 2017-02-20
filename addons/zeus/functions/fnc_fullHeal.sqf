@@ -14,7 +14,7 @@
 params ["_logic", "_units", "_activated"];
 if !(_activated && local _logic) exitWith {};
 
-private _unit = call FUNC(getUnitUnderCursor);
+private _unit = [] call FUNC(getUnitUnderCursor);
 private _logicType = typeOf _logic;
 
 deleteVehicle _logic;
@@ -23,8 +23,8 @@ if !(alive _unit) exitWith {
 };
 
 private _units = switch (toLower _logicType) do {
-    case "fpa_zeus_modulehealunit": {[_unit]};
-    case "fpa_zeus_modulehealgroup": {units group _unit};
+    case QGVAR(modulehealunit): {[_unit]};
+    case QGVAR(modulehealgroup): {units group _unit};
     default {WARNING("Unknown logic"); []};
 };
 

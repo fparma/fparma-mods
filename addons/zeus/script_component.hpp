@@ -7,3 +7,5 @@
 // #define ENABLE_PERFORMANCE_COUNTERS
 
 #include "\z\fpa\addons\main\script_macros.hpp"
+
+#define RSC_DYNAMIC_DIALOG_ID 8800701

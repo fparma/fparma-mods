@@ -11,18 +11,18 @@
 */
 
 #include "script_component.hpp"
+#include "\A3\ui_f_curator\ui\defineResinclDesign.inc"
+
 params ["_logic", "_units", "_activated"];
 if !(_activated && local _logic) exitWith {};
 
-private _type = typeof _logic;
 private _pos = getPosASL _logic;
-private _unit = call FUNC(getUnitUnderCursor);
+private _unit = [] call FUNC(getUnitUnderCursor);
 deleteVehicle _logic;
 
-// Get the index based on the module's type... not so clean
-private _cnt = count _type;
-private _typeNumber = parseNumber (_type select [_cnt - 2, _cnt - 1]);
-private _idx = _typeNumber -1;
+private _idx = RETDEF(GVAR(selectedCustomIdx),-1);
+if (_idx isEqualTo -1) exitWith {};
 
-GVAR(registeredModules) param [_idx, ["", {}]] params ["", "_code"];
+TRACE_1("Running index",_idx);
+GVAR(registeredCustomModules) param [_idx, ["", {}]] params ["", "_code"];
 [_pos, _unit] call _code;

@@ -3,6 +3,7 @@
 class CfgVehicles {
     class Module_F;
 
+    // Baseclass
     class GVAR(moduleBase): Module_F {
         author = "FPARMA";
         category = "FP";
@@ -11,22 +12,6 @@ class CfgVehicles {
         isTriggerActivated = 0;
         scope = 1;
         scopeCurator = 2;
-    };
-
-    // AI Modules
-    class GVAR(moduleSupressionUnit): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(AI);
-        displayName = "SUPRESSION - select unit";
-        function = QFUNC(selectSuppressionUnit);
-    };
-
-    class GVAR(moduleSupressionTarget): GVAR(moduleBase) {
-        category = QGVAR(AI);
-        displayName = "SUPRESSION - target area";
-        function = QFUNC(selectSupressionTarget);
-        portrait = "\a3\Modules_F_Curator\Data\portraitTracers_ca.paa";
-        icon = "\a3\Modules_F_Curator\Data\iconTracers_ca.paa";
     };
 
     // ACE Medical modules
@@ -46,6 +31,30 @@ class CfgVehicles {
         icon = QPATHTOF(data\icon_medkit.paa);
     };
 
+    // AI Modules
+    class GVAR(moduleSupressionUnit): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(AI);
+        displayName = "SUPRESSION - select unit";
+        function = QFUNC(selectSuppressionUnit);
+    };
+
+    class GVAR(moduleSupressionTarget): GVAR(moduleBase) {
+        category = QGVAR(AI);
+        displayName = "SUPRESSION - target area";
+        function = QFUNC(selectSupressionTarget);
+        portrait = "\a3\Modules_F_Curator\Data\portraitTracers_ca.paa";
+        icon = "\a3\Modules_F_Curator\Data\iconTracers_ca.paa";
+    };
+
+    class GVAR(moduleForceWP): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(AI);
+        displayName = "Group - force move WP";
+        function = QFUNC(forceMoveWP);
+        icon = QPATHTOF(data\icon_run.paa);
+    };
+
     // Utilities modules
     class GVAR(moduleToggleGodmode): GVAR(moduleBase) {
         curatorCanAttach = 1;
@@ -55,62 +64,47 @@ class CfgVehicles {
         icon = "\a3\Missions_F_Beta\data\img\iconMPTypeDefense_ca.paa";
     };
 
+    class GVAR(moduleSmoke): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Utilities);
+        displayName = "Spawn smokestack";
+        function = QFUNC(smokestack);
+        icon = "\a3\Modules_F_Curator\Data\iconSmoke_ca.paa";
+    };
+
+    class GVAR(moduleSwapNV): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Utilities);
+        displayName = "Group - remove nvg / add flashlight";
+        function = QFUNC(swapNV);
+        icon = QPATHTOF(data\icon_flashlight.paa);
+    };
+
+    class GVAR(moduleDisableWeapons): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Utilities);
+        displayName = "Players - toggle disable weapons";
+        function = QFUNC(disableWeapons);
+        icon = QPATHTOF(data\icon_holdfire.paa);
+    };
+
+    class GVAR(moduleUnitCode): GVAR(moduleBase) {
+        curatorCanAttach = 1;
+        category = QGVAR(Utilities);
+        displayName = "Execute code on unit";
+        function = QFUNC(unitCode);
+        icon = QPATHTOF(data\icon_keyboard.paa);
+    };
+
+    class GVAR(moduleCode): GVAR(moduleBase) {
+        category = QGVAR(Utilities);
+        displayName = "Execute code";
+        function = QFUNC(code);
+        icon = QPATHTOF(data\icon_keyboard.paa);
+    };
+
     // Custom modules
-    class GVAR(moduleCustom01): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom02): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom03): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom04): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom05): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom06): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom07): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom08): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom09): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(Custom);
-        displayName = "";
-        function = QFUNC(customModule);
-    };
-    class GVAR(moduleCustom10): GVAR(moduleBase) {
+    class GVAR(moduleCustom): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = QGVAR(Custom);
         displayName = "";

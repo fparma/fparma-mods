@@ -12,10 +12,10 @@
 * Public: Yes
 */
 #include "script_component.hpp"
-if (count GVAR(registeredModules) >= 10 || !params [
+if (count GVAR(registeredCustomModules) >= 10 || !params [
     ["_name", "", [""]],
     ["_code", {}, [{}]]
 ]) exitWith {false};
 
-GVAR(registeredModules) pushBack [_name, _code];
+GVAR(registeredCustomModules) pushBack [_name, _code];
 true
