@@ -1,6 +1,6 @@
+PREP(acreBugFixTest);
 PREP(addToCurators);
 PREP(cameraAtPosition);
-PREP(isPlayer);
-PREP(acreBugFixTest);
-PREP(exportCfgGroups);
 PREP(disableWeapons);
+PREP(exportCfgGroups);
+PREP(isPlayer);
