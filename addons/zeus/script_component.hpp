@@ -8,4 +8,8 @@
 
 #include "\z\fpa\addons\main\script_macros.hpp"
 
+// fixed next CBA
+#undef RETDEF
+#define RETDEF(VARIABLE,DEFAULT_VALUE) (if (isNil {VARIABLE}) then [{DEFAULT_VALUE}, {VARIABLE}])
+
 #define RSC_DYNAMIC_DIALOG_ID 8800701
