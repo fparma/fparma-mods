@@ -29,9 +29,9 @@ ace_advanced_throwing_enabled = false;
 
 GVAR(disableWeaponsId) = [player, "DefaultAction", {true}, {}] call ace_common_fnc_addActionEventHandler;
 GVAR(disableWeaponsFiredId) = player addEventHandler ["Fired", {
-      private _obj = param [6, objNull];
-      if (!isNil "ace_frag_fnc_addBlackList") then {
+    private _obj = param [6, objNull];
+    if (!isNil "ace_frag_fnc_addBlackList") then {
         [_obj] call ace_frag_fnc_addBlackList;
-      };
-      deleteVehicle _obj;
+    };
+    deleteVehicle _obj;
 }];
