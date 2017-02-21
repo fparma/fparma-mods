@@ -11,7 +11,6 @@
 params [["_doDisable", false]];
 if (!hasInterface) exitWith {};
 
-
 if (!_doDisable) exitWith {
 	if (!isNil QGVAR(previousAceThrowingState) then {
 		ace_advanced_throwing_enabled = GVAR(previousAceThrowingState);
