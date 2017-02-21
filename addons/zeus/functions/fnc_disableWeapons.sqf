@@ -1,6 +1,6 @@
 /*
 * Author: Cuel
-* Disable weapons / grenades for players including JIP 
+* Disable weapons / grenades for players including JIP
 *
 * Arguments:
 * 0: The module logic <OBJECT>
@@ -16,4 +16,4 @@ deleteVehicle _logic;
 private _doDisable = !RETDEF(GVAR(weaponsDisabled),false);
 missionNamespace setVariable [QGVAR(weaponsDisabled), _doDisable, true];
 [_doDisable] remoteExecCall [QEFUNC(common,disableWeapons)];
-[format ["Weapons %1", ["enabled", "disabled"] select _doDisable] call FUNC(curatorMessage);
+[format ["Weapons %1", ["enabled", "disabled"] select _doDisable]] call FUNC(curatorMessage);
