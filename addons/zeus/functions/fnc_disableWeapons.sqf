@@ -13,11 +13,7 @@ params ["_logic", "_units", "_activated"];
 if !(_activated && local _logic) exitWith {};
 deleteVehicle _logic;
 
-private _isAlreadyDisabled = RETDEF(GVAR(weaponsDisabled),false);
-if (_isAlreadyDisabled) then {
-    missionNamespace setVariable [QGVAR(weaponsDisabled), false, true];
-    [false] remoteExecCall [QEFUNC(common,disableWeapons)];
-} else {
-    missionNamespace setVariable [QGVAR(weaponsDisabled), true, true];
-    [true] remoteExecCall [QEFUNC(common,disableWeapons)];
-};
+private _doDisable = [false, true] select RETDEF(GVAR(weaponsDisabled),false);
+missionNamespace setVariable [QGVAR(weaponsDisabled), _doDisable, true];
+[_doDisable] remoteExecCall [QEFUNC(common,disableWeapons)];
+[format ["Weapons %1", ["enabled", "disabled"] select _doDisable] call FUNC(curatorMessage);
