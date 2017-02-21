@@ -3,3 +3,4 @@ PREP(cameraAtPosition);
 PREP(isPlayer);
 PREP(acreBugFixTest);
 PREP(exportCfgGroups);
+PREP(disableWeapons);
