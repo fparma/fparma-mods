@@ -1,9 +1,8 @@
 #define ACE_MEDICAL "ace_zeus_Medical"
+#define ACE_AI "ace_zeus_AI"
 
 class CfgVehicles {
     class Module_F;
-
-    // Baseclass
     class GVAR(moduleBase): Module_F {
         author = "FPARMA";
         category = "FP";
@@ -18,7 +17,7 @@ class CfgVehicles {
     class GVAR(moduleHealUnit): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = ACE_MEDICAL;
-        displayName = "Full heal - unit";
+        displayName = "[FP] Unit heal";
         function = QFUNC(fullHeal);
         icon = QPATHTOF(data\icon_medkit.paa);
     };
@@ -26,31 +25,16 @@ class CfgVehicles {
     class GVAR(moduleHealGroup): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = ACE_MEDICAL;
-        displayName = "Full heal - group";
+        displayName = "[FP] Group heal";
         function = QFUNC(fullHeal);
         icon = QPATHTOF(data\icon_medkit.paa);
     };
 
     // AI Modules
-    class GVAR(moduleSupressionUnit): GVAR(moduleBase) {
-        curatorCanAttach = 1;
-        category = QGVAR(AI);
-        displayName = "SUPRESSION - select unit";
-        function = QFUNC(selectSuppressionUnit);
-    };
-
-    class GVAR(moduleSupressionTarget): GVAR(moduleBase) {
-        category = QGVAR(AI);
-        displayName = "SUPRESSION - target area";
-        function = QFUNC(selectSupressionTarget);
-        portrait = "\a3\Modules_F_Curator\Data\portraitTracers_ca.paa";
-        icon = "\a3\Modules_F_Curator\Data\iconTracers_ca.paa";
-    };
-
     class GVAR(moduleForceWP): GVAR(moduleBase) {
         curatorCanAttach = 1;
-        category = QGVAR(AI);
-        displayName = "Group - force move WP";
+        category = ACE_AI;
+        displayName = "[FP] Force move waypoint";
         function = QFUNC(forceMoveWP);
         icon = QPATHTOF(data\icon_run.paa);
     };
@@ -103,7 +87,7 @@ class CfgVehicles {
         icon = QPATHTOF(data\icon_keyboard.paa);
     };
 
-    // Custom modules
+    // Dummy module to create the custom category
     class GVAR(moduleCustom): GVAR(moduleBase) {
         curatorCanAttach = 1;
         category = QGVAR(Custom);

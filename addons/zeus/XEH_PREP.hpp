@@ -4,11 +4,7 @@ PREP(curatorMessage);
 
 PREP(fullHeal);
 PREP(registerCustomModule);
-
-PREP(selectSuppressionUnit);
-PREP(selectSupressionTarget);
 PREP(forceMoveWP);
-PREP(supressionEH);
 
 PREP(disableWeapons);
 PREP(zeusGodmode);
