@@ -18,7 +18,7 @@ class CfgPatches {
         };
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"fpa_main"};
+        requiredAddons[] = {"fpa_main", "ace_zeus"};
         author[] = {"Cuel"};
         VERSION_CONFIG;
     };

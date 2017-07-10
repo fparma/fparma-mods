@@ -1,6 +1,7 @@
 /*
 * Author: Cuel
 * Forces ai group to move to their current wp, ignoring everything
+* Works best on AI that are not in combat
 *
 * Arguments:
 * 0 - Group (needs a waypoint)
@@ -65,7 +66,6 @@ private _pfhCode = {
             private _leader = leader _grp;
             {_x doFollow _leader} forEach units _grp;
         }, _grp] call CBA_fnc_execNextFrame;
-        //, 0.5] call CBA_fnc_waitAndExecute;
 
         _grp setVariable ["acex_headless_blacklist", false, true];
         _grp setVariable ["fp_forcewp_id", nil];

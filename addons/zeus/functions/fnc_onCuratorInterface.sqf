@@ -17,7 +17,7 @@ if (isNil QGVAR(categories)) then {
     if (isNull _display) exitWith {};
 
     private _ctrl = _display displayCtrl IDC_RSCDISPLAYCURATOR_CREATE_MODULES;
-    private _customCategory = getText (configFile >> "CfgFactionClasses" >> QGVAR(Custom) >> "displayName");
+    private _customCategoryName = getText (configFile >> "CfgFactionClasses" >> QGVAR(Custom) >> "displayName");
     GVAR(customCategoryIdx) = -1;
 
     // Set icon on FP modules
@@ -26,7 +26,7 @@ if (isNil QGVAR(categories)) then {
         if (_name in GVAR(categories)) then {
             _ctrl tvSetPicture [[_i], QPATHTOF(data\icon_fp.paa)];
 
-            if (_name isEqualTo _customCategory) then {
+            if (_name isEqualTo _customCategoryName) then {
                 GVAR(customCategoryIdx) = _i;
             };
         };
@@ -58,7 +58,7 @@ if (isNil QGVAR(categories)) then {
         params ["_ctrl"];
         tvCurSel _ctrl params [["_category", -1], ["_idx", -1]];
         if (GVAR(customCategoryIdx) isEqualTo _category && _idx >= 0) then {
-            TRACE_1("Selected",_idx);
+            TRACE_1("Selected custom category",_idx);
             GVAR(selectedCustomIdx) = _idx;
         };
     }];
