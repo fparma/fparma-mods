@@ -9,3 +9,9 @@ class Extended_PreInit_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_preInit));
     };
 };
+
+class Extended_DisplayLoad_EventHandlers {
+  class RscDisplayArsenal {
+    GVAR(override) = QUOTE(_this call FUNC(overrideArsenalExport));
+  };
+};
