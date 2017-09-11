@@ -6,7 +6,7 @@ if (!(_trigger isKindOf "EmptyDetector")) exitWith {false};
 if (_enable) then {
     _trigger setTriggerActivation ["ANYPLAYER", "PRESENT", true];
     private _onAct = {[true] call FUNC(disableWeapons);} call ace_common_fnc_codeToString;
-    private _onDeAct = {diag_log "on deact"; [false] call FUNC(disableWeapons);} call ace_common_fnc_codeToString;
+    private _onDeAct = {[false] call FUNC(disableWeapons);} call ace_common_fnc_codeToString;
 
     if (_displayHint) then {
         private _text = {format ['["%1", "\A3\ui_f\data\map\markers\military\warning_ca.paa", [0, 0.5, 1]] call ace_common_fnc_displayTextPicture;', _this]};
@@ -14,10 +14,9 @@ if (_enable) then {
         _onDeAct = _onDeAct + ("Left safemode zone" call _text);
     };
 
-    _trigger setTriggerStatements ["this && {player in thisList}", _onAct, _onDeAct];
+    _trigger setTriggerStatements ["player in thisList && {time > 1 && isNull (getAssignedCuratorLogic player)} ", _onAct, _onDeAct];
 } else {
     _trigger setTriggerStatements ["false", "", ""];
 };
 
 true
-

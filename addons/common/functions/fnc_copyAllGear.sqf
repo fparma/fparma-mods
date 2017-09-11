@@ -13,8 +13,9 @@
 private _var = "_unit";
 private _savedRadios = [];
 private _br = toString [13, 10];
-private _export = ['params ["_unit", "_type"];' + _br];
 private _center = missionNameSpace getVariable ["BIS_fnc_arsenal_center", player];
+private _export = [format ['%1%1 ["%2", "example.sqf"]', '/', typeof _center]];
+_export pushBack ('params ["_unit", "_type"];' + _br);
 
 private _fnc_getRadio = {
   params ["_item"];

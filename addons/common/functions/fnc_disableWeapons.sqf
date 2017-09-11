@@ -23,19 +23,16 @@
 
 params [["_disableWeapons", false]];
 
-if (!hasInterface ||
-    {!(isNull (getAssignedCuratorLogic player)) && !GVAR(isWeaponsDisabled)} ||
-    {_disableWeapons isEqualTo GVAR(isWeaponsDisabled)}
-) exitWith {false};
+if (!hasInterface || {_disableWeapons isEqualTo GVAR(isWeaponsDisabled)}) exitWith {false};
 
 GVAR(isWeaponsDisabled) = _disableWeapons;
 
 // Detonating explosives
-if (isNil QGVAR(disableDetonation)) then {
-    GVAR(disableDetonation) = !_disableWeapons;
-    [{GVAR(disableDetonation)}] call ace_explosives_fnc_addDetonateHandler;
+if (isNil QGVAR(canDetonate)) then {
+    GVAR(canDetonate) = !_disableWeapons;
+    [{GVAR(canDetonate)}] call ace_explosives_fnc_addDetonateHandler;
 };
-GVAR(disableDetonation) = !_disableWeapons;
+GVAR(canDetonate) = !_disableWeapons;
 
 if (_disableWeapons) then {
     // ace adv throw

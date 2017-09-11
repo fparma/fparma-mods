@@ -14,6 +14,8 @@
 */
 #include "script_component.hpp"
 
+if (!hasInterface) exitWith {};
+
 params [
     ["_veh", objNull, [objNull]],
     ["_text", "", [""]],
@@ -26,24 +28,11 @@ if (isNull _veh || {_text isEqualTo ""}) exitWith {
     ["Invalid parameters %1", _this] call BIS_fnc_error;
 };
 
-if (isNil QGVAR(vehicleNames)) then {GVAR(vehicleNames) = []};
-GVAR(vehicleNames) pushBackUnique [_veh, _text, _distance, _height, _color];
-
-if (isNil QGVAR(drawNamesId)) then {
-    GVAR(drawNamesId) = addMissionEventHandler ["Draw3D", {
-        GVAR(vehicleNames) = GVAR(vehicleNames) select {alive (_x select 0)};
-
-        if (GVAR(vehicleNames) isEqualTo []) exitWith {
-            removeMissionEventHandler ["Draw3D", GVAR(drawNamesId)];
-            GVAR(drawNamesId) = nil;
-        };
-
-        {
-            _x params ["_veh", "_text", "_distance", "_height", "_color"];
-            private _pos = _veh modelToWorldVisual [0,0, _height];
-            if (positionCameraToWorld [0, 0, 0] distance _veh < _distance && {objectParent ACE_player != _veh}) then {
-                drawIcon3D ["", _color, _pos, 0, 0, 0, _text, 2, 0.04, "PuristaMedium"];
-            };
-        } forEach GVAR(vehicleNames);
-    }];
+private _cur = GVAR(vehicleNames) apply {_x select 0};
+private _curIdx = _cur find _veh;
+if (_curIdx != -1) then {
+    GVAR(vehicleNames) deleteAt _curIdx;
 };
+
+GVAR(vehicleNames) pushBackUnique [_veh, _text, _distance, _height, _color];
+[] call FUNC(runVehicleDrawEH);

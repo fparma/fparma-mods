@@ -12,6 +12,11 @@ class Extended_PreInit_EventHandlers {
 
 class Extended_DisplayLoad_EventHandlers {
   class RscDisplayArsenal {
-    GVAR(override) = QUOTE(_this call FUNC(overrideArsenalExport));
+    ADDON = QUOTE(_this call FUNC(overrideArsenalExport));
   };
+
+  class RscDisplayCurator {
+    ADDON = QUOTE(_this call FUNC(onZeusInterface));
+  }
 };
+

@@ -1,5 +1,5 @@
 /*
-    Function: FP_fnc_getPlayer
+    Function: fpa_common_fnc_getPlayer
 
     API:
         Any
@@ -15,8 +15,8 @@
 
     Examples:
     (begin example)
-        _cuel = "cu" call FP_fnc_getPlayer;
-        _cuel = ["Cuel"] call FP_fnc_getPlayer;
+        _cuel = "cu" call fpa_common_fnc_getPlayer;
+        _cuel = ["Cuel"] call fpa_common_fnc_getPlayer;
     (end)
 
     Returns:

@@ -1,5 +1,5 @@
 /*
-    Function: FP_fnc_unCache
+    Function: fpa_ai_fnc_unCache
 
     API:
         Server
@@ -12,7 +12,7 @@
 
     Example:
     (begin example)
-        ["id1"] call FP_fnc_unCache;
+        ["id1"] call fpa_ai_fnc_unCache;
     (end)
 
     Author:
@@ -20,10 +20,10 @@
 */
 
 if (!isServer) exitWith {};
-if (isNil "FP_cachedGroups") exitWith {false};
+if (isNil QGVAR(cachedGroups)) exitWith {false};
 if (!params [["_id", "", [""]]]) exitWith {false};
 
-private _units = [FP_cachedGroups, _id] call CBA_fnc_hashGet;
+private _units = [GVAR(cachedGroups), _id] call CBA_fnc_hashGet;
 if (isNil "_units") exitWith {false};
 
 {
