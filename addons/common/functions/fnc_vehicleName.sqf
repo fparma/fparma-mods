@@ -24,7 +24,7 @@ params [
     ["_color", [0, 0.6, 0.8, 1]]
 ];
 
-if (isNull _veh || {_text isEqualTo ""}) exitWith {
+if (!alive _veh || {_text isEqualTo ""}) exitWith {
     ["Invalid parameters %1", _this] call BIS_fnc_error;
 };
 

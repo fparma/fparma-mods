@@ -12,6 +12,7 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgDebriefing.hpp"
 
 class RscButton;
 class RscText;

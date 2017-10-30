@@ -23,10 +23,11 @@ if (isNil QFUNC(toggleZeusAcre)) then {
     };
 
     private _units = allUnits;
-    private _text = format ["AI: %1 (%2 local). Plrs: %3",
+    private _text = format ["AI: %1 (%2 loc). Plrs: %3 (%4 spec)",
         {simulationEnabled _x && {!isPlayer _x}} count _units,
         {local _x} count _units,
-        count call CBA_fnc_players
+        count call CBA_fnc_players,
+        count call ace_spectator_fnc_players
     ];
 
     UNIT_COUNT ctrlSetText _text;

@@ -1,22 +1,21 @@
+/*
+ * Author: Cuel
+ * Simulate entering a zone where safemode is on, prevents weapons fire
+ *
+ * Arguments:
+ * 0 - Enable <bool>
+ * 1 - Display a hint <bool>
+ *
+ * Public: Yes
+ */
+
 #include "script_component.hpp"
 
-params [["_trigger", objNull, [objNull]], ["_enable", true, [true]], ["_displayHint", true]];
-if (!(_trigger isKindOf "EmptyDetector")) exitWith {false};
+if (!hasInterface) exitWith {};
+params [["_enable", false, [true]], ["_displayHint", true]];
 
-if (_enable) then {
-    _trigger setTriggerActivation ["ANYPLAYER", "PRESENT", true];
-    private _onAct = {[true] call FUNC(disableWeapons);} call ace_common_fnc_codeToString;
-    private _onDeAct = {[false] call FUNC(disableWeapons);} call ace_common_fnc_codeToString;
-
-    if (_displayHint) then {
-        private _text = {format ['["%1", "\A3\ui_f\data\map\markers\military\warning_ca.paa", [0, 0.5, 1]] call ace_common_fnc_displayTextPicture;', _this]};
-        _onAct = _onAct + ("Entered safemode zone" call _text);
-        _onDeAct = _onDeAct + ("Left safemode zone" call _text);
-    };
-
-    _trigger setTriggerStatements ["player in thisList && {time > 1 && isNull (getAssignedCuratorLogic player)} ", _onAct, _onDeAct];
-} else {
-    _trigger setTriggerStatements ["false", "", ""];
+[_enable] call FUNC(disableWeapons);
+if (_displayHint) then {
+    private _text = format ["%1 safemode zone", ["Left", "Entered"] select _enable];
+    [_text, "\A3\ui_f\data\map\markers\military\warning_ca.paa", [0, 0.5, 1]] call ace_common_fnc_displayTextPicture;
 };
-
-true

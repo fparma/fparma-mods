@@ -10,7 +10,7 @@
 #include "\A3\Ui_f\hpp\defineResinclDesign.inc"
 #define ID 909053
 
-if (GVAR(overrideArsenalExport) isEqualTo false) exitWith {};
+if (!RETDEF(GVAR(overrideArsenalExport),false)) exitWith {};
 
 [{
   params ["_display"];

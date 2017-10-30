@@ -5,7 +5,7 @@
         client
 
     Description:
-        Disables a players (not zeus) bullets, grenades, detonating explosives etc.
+        Disables a players weaponfire, grenades, detonating explosives etc.
 
     Parameters:
         _disable - True to disable weapons, false for vice versa
