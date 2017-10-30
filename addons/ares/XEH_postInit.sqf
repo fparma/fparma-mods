@@ -5,15 +5,9 @@
 [QGVAR(eject), {
     params [["_units", []]];
     {
-        if (local _x) then {
-            _x leaveVehicle (vehicle _x);
-            _x action ["Eject", vehicle _x];
-        };
-    } forEach _units;
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(garrison), {
-    _this call EFUNC(ai,garrison);
+        _x leaveVehicle (vehicle _x);
+        _x action ["Eject", vehicle _x];
+    } forEach (_units select {local _x});
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(forceMove), {
@@ -58,5 +52,4 @@ if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 
 [AI, "Patrol area", {["PATROL", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Defend area", {["DEFEND", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
-[AI, "Garrison", {["GARRISON", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Force move WP", {["FORCE_WP", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
