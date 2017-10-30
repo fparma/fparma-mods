@@ -18,13 +18,12 @@
     Author:
     Tinter/Cuel 2016-02-15
 */
+#include "script_component.hpp"
 
-if (!isServer) exitWith {};
-if (isNil QGVAR(cachedGroups)) exitWith {false};
+if (!isServer || {isNil QGVAR(cachedGroups)}) exitWith {false};
 if (!params [["_id", "", [""]]]) exitWith {false};
 
 private _units = [GVAR(cachedGroups), _id] call CBA_fnc_hashGet;
-if (isNil "_units") exitWith {false};
 
 {
   _x allowDamage true;
