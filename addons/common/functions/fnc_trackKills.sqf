@@ -1,6 +1,9 @@
 /**
 * Tracks losses for mission ending screen.
+* Arguments: None
+* Public: Yes
 */
+
 #include "script_component.hpp"
 
 if (!isServer || {RETDEF(GVAR(trackingKills),false)}) exitWith {};
