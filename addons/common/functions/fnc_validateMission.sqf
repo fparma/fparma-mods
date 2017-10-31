@@ -1,6 +1,10 @@
 /**
+* Description:
 * Validate mission settings
 * Currently checks wind, respawn type and respawn templates
+* 
+* Arguments:
+* 0 - Mission config
 */
 
 params [["_cfg", configNull]];
