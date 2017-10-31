@@ -1,9 +1,9 @@
 /*
  * Author: Cuel
- * Init JIP and respawn manager. Server only
+ * Init JIP and respawn manager. Call on all clients
  *
  * Arguments:
- * None
+ * 0 - Amount of respawns before permadeath <number>
  *
  * Public: Yes
  */
