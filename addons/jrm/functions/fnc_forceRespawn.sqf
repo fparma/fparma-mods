@@ -7,7 +7,7 @@
 *       If position, will be teleported there after exiting spectator
 *   If code, the code is assumed to handle turning spectator off (fpa_common_fnc_spectate)
 *        If nil, ace spectator will teleport the unit back to where he was when entering spectator (respawn pos)
-* 1 - _reset - Clear all previous dead units [Default: false] <bool>
+* 1 - _reset - (server only) Clear all previous dead units [Default: false] <bool>
 *
 * Public: Yes
 */
