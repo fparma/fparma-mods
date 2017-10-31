@@ -46,24 +46,6 @@ switch (toUpper _mode) do {
         [_grp, _grp, _radius, _treshold, true] remoteExecCall ["CBA_fnc_taskDefend", leader _grp];
     };
 
-    case "GARRISON": {
-        private _radius = ["Closest building","50", "100", "150", "200", "250", "300", "400", "500"];
-        private _args = ["Garrison settings", [
-            ["Radius (m)", _radius, 2],
-            ["Allow roof", ["Yes", "No"], 0],
-            ["Fill buildings in radius evenly", ["Yes", "No"], 1],
-            ["Lock units in place", ["Yes", "No"], 0]
-        ]] call Ares_fnc_ShowChooseDialog;
-        if (count _args == 0) exitWith {};
-
-        _args params ["_r"];
-        _radius = [parseNumber (_radius select _r), -1] select (_r == 0);
-        private _putOnRoof = [true, false] select (_args select 1);
-        private _fillEvenly = [true, false] select (_args select 2);
-        private _lockUnits = [true, false] select (_args select 3);
-        [QGVAR(garrison), [_grp, _radius, _putOnRoof, _fillEvenly, _lockUnits], _grp] call CBA_fnc_targetEvent;
-    };
-
     case "FORCE_WP": {
         private _wps = waypoints _grp;
         private _wp1 = currentWaypoint _grp;

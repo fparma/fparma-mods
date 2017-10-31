@@ -1,4 +1,4 @@
-#define COMPONENT compositions
+#define COMPONENT jrm
 #include "\z\fpa\addons\main\script_mod.hpp"
 
 // #define DEBUG_MODE_FULL
@@ -7,4 +7,3 @@
 // #define ENABLE_PERFORMANCE_COUNTERS
 
 #include "\z\fpa\addons\main\script_macros.hpp"
-#include "script_macros.hpp"

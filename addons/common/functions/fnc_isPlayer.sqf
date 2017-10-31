@@ -1,5 +1,5 @@
 /*
-* Author: ACE team
+* Author: ACE team edited by cuel to account for headless
 * Returns true if given object is a player and not zeus controlled and not HC
 *
 * Arguments:
