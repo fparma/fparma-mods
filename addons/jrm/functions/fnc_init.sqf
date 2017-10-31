@@ -62,9 +62,8 @@ if (hasInterface) then {
             ]] call Ares_fnc_ShowChooseDialog;
             if (count _args == 0) exitWith {};
 
-            private _plr = _players select (_args select 0);
-            private _uid = getPlayerUID _plr;
-            if (isNull _plr || _uid == "") exitWith {["ERROR: Unable to find player"] call ares_fnc_ShowZeusMessage};
+            private _plr = _players param [_args select 0, objNull];
+            if (isNull _plr) exitWith {["ERROR: Unable to find player"] call ares_fnc_ShowZeusMessage};
 
             [_pos] remoteExecCall [QFUNC(forceRespawn), _plr];
             ["Respawned %1 at %2", name _plr, mapGridPosition _pos] call ares_fnc_ShowZeusMessage;
