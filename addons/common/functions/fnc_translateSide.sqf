@@ -5,6 +5,7 @@
 *
 * Arguments:
 * 1 - Side
+* Returns: String
 *
 * Public: Yes
 */
