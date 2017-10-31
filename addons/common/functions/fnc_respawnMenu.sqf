@@ -3,6 +3,7 @@
  * Respawn menu using strategic map like the normal respawn menu but working when alive
  *
  * Arguments:
+ * By default none, it'll figure it out and show respawn points
  * args passed to strategic map, see: https://community.bistudio.com/wiki/BIS_fnc_StrategicMapOpen
  * 0 - Mission data for strategeic map, optional. Defaults to respawn points
  * 1 - Middle position when map is opened
