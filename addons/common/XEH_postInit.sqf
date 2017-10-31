@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 [QGVAR(endMission), {
-    if (RETDEF(GVAR(ending),false)) exitWith {};
+    if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;
 
     params [["_args", []]];
@@ -21,7 +21,7 @@
                         private _side = _x param [2, sideUnknown];
                         if (side group player == _side) then {
                             _ending = _x param [0, "End1"];
-                            _won = _x param [0, true];
+                            _won = _x param [1, true];
                         };
                     } forEach _x;
                 };
@@ -53,43 +53,45 @@ private _add = {
 };
 
 ["help", "", {
-    {
-        systemChat format ["%1 - %2", _x select 0, _x select 1];
-    } forEach GVAR(adminCommands);
+    [{
+        {
+            systemChat format ["%1 - %2", _x select 0, _x select 1];
+        } forEach GVAR(adminCommands);
+    }] call CBA_fnc_execNextFrame;
 }] call _add;
 
 ["tpto", "Teleports you to other player. <#fp.tpto Cuel>", {
     params [["_name", ""]];
     private _unit = _name call FUNC(getPlayer);
-    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    if (isNull _unit) exitWith {[{systemChat "Could not find unit"}] call CBA_fnc_execNextFrame};
+    [{systemChat format ["Teleported you to %1", _this]}, name _unit] call CBA_fnc_execNextFrame;
     ACE_player setPos (_unit modelToWorld [0, -2, 0]);
-    [{systemChat format ["Teleported you to %1", name _this]}, _unit] call CBA_fnc_execNextFrame;
 }] call _add;
 
 ["tpme", "Teleports other player to you. <#fp.tpme Cuel>", {
     params [["_name", ""]];
     private _unit = _name call FUNC(getPlayer);
-    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    if (isNull _unit) exitWith {[{systemChat "Could not find unit"}] call CBA_fnc_execNextFrame};
     moveOut _unit;
     _unit setVelocity [0,0,0];
     _unit setPos (ACE_player modelToWorld [0, 1, 0]);
-    [{systemChat format ["Teleported %1 to you", name _this]}, _unit] call CBA_fnc_execNextFrame;
+    [{systemChat format ["Teleported %1 to you", _this]}, name _unit] call CBA_fnc_execNextFrame;
 }] call _add;
 
 ["kill", "Kills player. <#fp.kill Cuel>", {
     params [["_name", ""]];
     private _unit = _name call FUNC(getPlayer);
-    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    if (isNull _unit) exitWith {[{systemChat "Could not find unit"}] call CBA_fnc_execNextFrame};
+    [{systemChat format ["Killed %1", _this]}, name _unit] call CBA_fnc_execNextFrame;
     _unit setDamage 1;
-    [{systemChat format ["Killed %1", name _this]}, _unit] call CBA_fnc_execNextFrame;
 }] call _add;
 
 ["kick", "Kicks player <#fp.kick Cuel>", {
     params [["_name", ""]];
     private _unit = _name call FUNC(getPlayer);
-    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    if (isNull _unit) exitWith {[{systemChat "Could not find unit"}] call CBA_fnc_execNextFrame};
+    [{systemChat format ["Kicked %1", _this]}, name _unit] call CBA_fnc_execNextFrame;
     [_unit] remoteExecCall ["fpa_serverCommandKick", 2];
-    [{systemChat format ["Kicked %1", name _this]}, _unit] call CBA_fnc_execNextFrame;
 }] call _add;
 
 ["weaponlock", "Disable/enable all player weapons. 0 enable weapons, 1 disable weapons. <#fp.weaponlock 0/1>", {

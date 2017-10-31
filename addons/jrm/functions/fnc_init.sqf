@@ -33,7 +33,7 @@ if (hasInterface) then {
 
     if (didJIP && {!isNil QGVAR(state)}) then {
         [{!isNull player}, {
-            (GVAR(state) getVariable [getPlayerUID player, []]) params [["_deaths", 0], "_timeOfDeath", 0];
+            (GVAR(state) getVariable [getPlayerUID player, []]) params [["_deaths", 0], ["_timeOfDeath", 0]];
             if (GVAR(respawns) >= 0 && {_deaths > GVAR(respawns)}) then {
                 [true] call EFUNC(common,spectate);
                 [QGVAR(jipPermaDeath), [_deaths, _timeOfDeath]] call CBA_fnc_localEvent;
@@ -41,13 +41,15 @@ if (hasInterface) then {
         }] call CBA_fnc_waitUntilAndExecute;
     };
 
-
     if (!isNil "Ares_fnc_RegisterCustomModule") then {
-        private _res = "FP Respawn";
+        private _res = "FP - Respawn";
 
         [_res, "Respawn ALL units at pos", {
-            params ["_pos", "_obj"];
+            params ["_pos"];
+            private _players = [] call ace_spectator_fnc_players;
+            if (count _players == 0) exitWith {["ERROR: No dead players"] call ares_fnc_ShowZeusMessage};
             [_pos] remoteExecCall [QFUNC(forceRespawn)];
+            ["Respawned %1 players at %2", count _players, mapGridPosition _pos] call ares_fnc_ShowZeusMessage;
         }] call Ares_fnc_RegisterCustomModule;
 
         [_res, "Respawn SINGLE unit at pos", {
@@ -71,13 +73,13 @@ if (hasInterface) then {
 
         [_res, "Respawn in vehicle cargo", {
             private _veh = param [1, objNull];
-            if (isNull _veh) exitWith {};
+            if (isNull _veh) exitWith {["ERROR: Select vehicle with cargo"] call ares_fnc_ShowZeusMessage};
 
             private _maxAmount =  (_veh emptyPositions "cargo");
             private _plrs = [] call ace_spectator_fnc_players;
 
             if (_maxAmount <= 0 || {_plrs isEqualTo []}) exitWith {["ERROR: No cargo slots / no dead players"] call ares_fnc_ShowZeusMessage};
-            _plrs resize _maxAmount;
+            _plrs = _plrs select [0, _maxAmount];
 
             private _code = {
                 [false] call EFUNC(common,spectate);

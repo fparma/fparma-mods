@@ -14,7 +14,8 @@ GVAR(statsNamespace) = [] call CBA_fnc_createNamespace;
 FUNC(trackKilled) = {
     params ["_args", "_type"];
     _args params ["_veh"];
-    private _side = [_veh, count (crew _veh) isEqualTo 0] call BIS_fnc_objectSide;
+    private _returnConfigSide = !(_veh isKindOf "Man") && {count (crew _veh) > 0};
+    private _side = [_veh, _returnConfigSide] call BIS_fnc_objectSide;
     if (!(_side in [blufor, opfor, independent, civilian])) exitWith {};
 
     private _sideStr = [_side] call FUNC(translateSide);
