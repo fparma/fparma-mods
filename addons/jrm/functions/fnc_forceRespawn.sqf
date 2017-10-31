@@ -2,11 +2,12 @@
 * Author: Cuel
 * Force respawn spectators
 *
-*  _positionOrCode - A marker, object, position, (_this select 0 will be the unit for code)
+* Arguments:
+*  0 - _positionOrCode - A marker, object, position, (_this select 0 will be the unit for code)
 *       If position, will be teleported there after exiting spectator
 *   If code, the code is assumed to handle turning spectator off (fpa_common_fnc_spectate)
 *        If nil, ace spectator will teleport the unit back to where he was when entering spectator (respawn pos)
-*   _reset - Clear all previous dead units [Default: false]
+* 1 - _reset - Clear all previous dead units [Default: false] <bool>
 *
 * Public: Yes
 */
