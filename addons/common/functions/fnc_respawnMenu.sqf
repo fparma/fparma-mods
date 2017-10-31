@@ -4,7 +4,12 @@
  *
  * Arguments:
  * args passed to strategic map, see: https://community.bistudio.com/wiki/BIS_fnc_StrategicMapOpen
- *
+ * 0 - Mission data for strategeic map, optional. Defaults to respawn points
+ * 1 - Middle position when map is opened
+ * 2 - orbat?
+ * 3 - markers revealed when opened
+ * 4 - custom imges
+ * 5 - custom text for map
  * Public: Yes
  */
 
