@@ -22,7 +22,7 @@ if (isNil QFUNC(toggleZeusAcre)) then {
         ACRE_CTRL ctrlSetTextColor [1,1,1,1];
     };
 
-    private _units = allUnits;
+    private _units = allUnits - [player];
     private _text = format ["AI: %1 (%2 loc). Plrs: %3 (%4 spec)",
         {simulationEnabled _x && {!isPlayer _x}} count _units,
         {local _x} count _units,
