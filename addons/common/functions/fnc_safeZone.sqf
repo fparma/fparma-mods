@@ -3,7 +3,7 @@
  * Simulate entering a zone where safemode is on, prevents weapons fire
  *
  * Arguments:
- * 0 - Enable <bool>
+ * 0 - Disable weapons <bool>
  * 1 - Display a hint <bool>
  *
  * Public: Yes
