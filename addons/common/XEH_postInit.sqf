@@ -100,8 +100,3 @@ private _add = {
     [_disableWeapons] remoteExecCall [QFUNC(disableWeapons)];
     [{systemChat format ["All player weapons %1", ["enabled", "disabled"] select _this]}, _disableWeapons] call CBA_fnc_execNextFrame;
 }] call _add;
-
-["debug", "Creates the debug display <#fp.debug>", {
-    while {dialog} do {closeDialog 0};
-    createDialog "RscDisplayDebugPublic";
-}] call _add;
