@@ -100,3 +100,10 @@ private _add = {
     [_disableWeapons] remoteExecCall [QFUNC(disableWeapons)];
     [{systemChat format ["All player weapons %1", ["enabled", "disabled"] select _this]}, _disableWeapons] call CBA_fnc_execNextFrame;
 }] call _add;
+
+["cam", "Creates camera at unit, acre spectator enabled <#fp.cam Cuel>", {
+    params [["_name", ""]];
+    private _unit = _name call FUNC(getPlayer);
+    if (isNull _unit) exitWith {[{systemChat "Could not find unit"}] call CBA_fnc_execNextFrame};
+    [getPos _unit, true] call EFUNC(common,cameraAtPosition);
+}] call _add;
