@@ -14,6 +14,7 @@ if (isNil QFUNC(toggleZeusAcre)) then {
 [{
     if (isNull (findDisplay 312)) exitWith {
         [_this select 1] call CBA_fnc_removePerFrameHandler;
+        [!alive player] call acre_api_fnc_setSpectator;
     };
 
     if (missionNamespace getVariable ["ACRE_IS_SPECTATOR", false]) then {
