@@ -109,7 +109,7 @@ _display = finddisplay 506;
 if (isnull _display) exitwith {"Unable to create 'RscDisplayStrategicMap' display." call (uinamespace getvariable "bis_fnc_error"); displaynull};
 
 //--- Life, calculations and everything
-startloadingscreen ["","RscDisplayLoadingBlack"];
+// startloadingscreen ["","RscDisplayLoadingBlack"];
 
 BIS_fnc_strategicMapOpen_player = player;
 //selectnoplayer;
@@ -624,7 +624,7 @@ if (_isNight) then {
 
 //--- Show markers
 {
-    _x setmarkeralpha 1;
+    _x setMarkerAlphaLocal 1;
 } foreach _markers;
 BIS_fnc_strategicMapOpen_markers = _markers;
 
@@ -633,31 +633,14 @@ _fade = _display displayctrl 1099;
 _fade ctrlsetfade 1;
 _fade ctrlcommit 2;
 
-//--- Create upward looking camera (increases FPS, as no scene is drawn)
-BIS_fnc_strategicMapOpen_camera = if (count allmissionobjects "Camera" == 0) then {
-    _camera = "camera" camcreate position player;
-    _camera cameraeffect ["internal","back"];
-    _camera campreparepos [position player select 0,position player select 1,(position player select 2) + 10];
-    _camera campreparetarget [position player select 0,(position player select 1) + 1,(position player select 2) + 1000];
-    _camera campreparefov 0.1;
-    _camera camcommitprepared 0;
-    _camera
-} else {
-    objnull
-};
-
 //--- Garbage collector
 _display displayaddeventhandler [
     "unload",
     "
         {
-            _x setmarkeralpha 0;
+            _x setMarkerAlphaLocal 0;
         } foreach BIS_fnc_strategicMapOpen_markers;
 
-        BIS_fnc_strategicMapOpen_camera cameraeffect ['terminate','back'];
-        camdestroy BIS_fnc_strategicMapOpen_camera;
-
-        BIS_fnc_strategicMapOpen_camera = nil;
         BIS_fnc_strategicMapOpen_player = nil;
         BIS_fnc_strategicMapOpen_mapSize = nil;
         BIS_fnc_strategicMapOpen_mapCenter = nil;
@@ -687,6 +670,4 @@ _display displayaddeventhandler [
 ];
 
 cuttext ["","black in"];
-endloadingscreen;
-
 _display
