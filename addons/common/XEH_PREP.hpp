@@ -12,6 +12,7 @@ PREP(overrideArsenalExport);
 PREP(respawnMenu);
 PREP(runVehicleDrawEH);
 PREP(safeZone);
+PREP(findSafePos);
 PREP(spectate);
 PREP(strategicMapOpen);
 PREP(trackKills);
