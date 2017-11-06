@@ -35,7 +35,7 @@ if (!isNil QGVAR(statsNamespace)) then {
             if (_kills > 0) then {
                 _str = _str + format [" %1 - %2.", _x, _kills];
             };
-        } forEach ["Men", "Car", "APC", "Tank", "Air"];
+        } forEach ["Men", "Car", "APC", "Armor", "Air"];
         _msg pushBack _str;
     } forEach [blufor, opfor, independent, civilian];
 
