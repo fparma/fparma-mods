@@ -48,7 +48,7 @@ if (_missions isEqualTo []) then {
       };
     };
 
-    private _onSelect = {player setPos ([param [9, getPos player], 10, "CAManBase"] call FUNC(safePosition))};
+    private _onSelect = {player setPos ([param [9, getPos player], 10, "CAManBase"] call FUNC(findSafePos))};
     [_pos, _onSelect, _name, "", "", "", 1, _pos]
   };
 };
