@@ -9,13 +9,14 @@
 *
 * Example:
 * Same ending for everyone
-* ["End1", true] call fpa_common_fnc_endMission;
+* ["End1", true] call fpa_common_fnc_endMissionServer;
+*
 * Different endings
 * [
 *    ["OpforDead", false, opfor],
 *    ["OpforDead", true, blufor],
 *    ["TimeLimit", false, independent]
-* ] call fpa_common_fnc_endMission;
+* ] call fpa_common_fnc_endMissionServer;
 */
 #include "script_component.hpp"
 
@@ -33,7 +34,7 @@ if (!isNil QGVAR(statsNamespace)) then {
             private _key = format ["%1_%2", _side, toLower _x];
             private _kills = GVAR(statsNamespace) getVariable [_key, 0];
             if (_kills > 0) then {
-                _str = _str + format [" %1 - %2.", _x, _kills];
+                _str = _str + format [" %1: %2.", _x, _kills];
             };
         } forEach ["Men", "Car", "APC", "Armor", "Air"];
         _msg pushBack _str;
