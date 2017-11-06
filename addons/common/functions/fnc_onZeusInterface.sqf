@@ -8,13 +8,15 @@
 #define UNIT_COUNT ((findDisplay 312) displayCtrl 777551)
 
 if (isNil QFUNC(toggleZeusAcre)) then {
-    FUNC(toggleZeusAcre) = {[!ACRE_IS_SPECTATOR] call acre_api_fnc_setSpectator;};
+    FUNC(toggleZeusAcre) = {[!ACRE_IS_SPECTATOR] call acre_api_fnc_setSpectator};
 };
+
+[player] call FUNC(lowerPlayerWeapon);
 
 [{
     if (isNull (findDisplay 312)) exitWith {
         [_this select 1] call CBA_fnc_removePerFrameHandler;
-        [!alive player] call acre_api_fnc_setSpectator;
+        [!([player] call ace_common_fnc_isAwake)] call acre_api_fnc_setSpectator;
     };
 
     if (missionNamespace getVariable ["ACRE_IS_SPECTATOR", false]) then {

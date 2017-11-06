@@ -43,5 +43,7 @@ if (!hasInterface) exitWith {};
         ["non", _anim select [count _anim - 1, 1]] select (_anim select [count _anim - 2, 2] in ["df", "db", "dl", "dr"])
     ];
 
-    player switchMove (["", _anim] select isClass (configFile >> "CfgMovesMaleSdr" >> "States" >> _anim));
+    if (isClass (configFile >> "CfgMovesMaleSdr" >> "States" >> _anim)) then {
+        player switchMove _anim;
+    };
 }] call CBA_fnc_waitUntilAndExecute;
