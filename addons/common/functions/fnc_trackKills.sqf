@@ -6,9 +6,7 @@
 
 #include "script_component.hpp"
 
-if (!isServer || {RETDEF(GVAR(trackingKills),false)}) exitWith {};
-GVAR(trackingKills) = true;
-
+if (!isServer || {!isNil QGVAR(statsNamespace)}) exitWith {};
 GVAR(statsNamespace) = [] call CBA_fnc_createNamespace;
 
 FUNC(trackKilled) = {
@@ -24,22 +22,10 @@ FUNC(trackKilled) = {
     GVAR(statsNamespace) setVariable [_key, _nr + 1];
 };
 
-["CAManBase", "killed", {
-    [_this, "men"] call FUNC(trackKilled);
-}] call CBA_fnc_addClassEventHandler;
-
-["Car", "killed", {
-    [_this, "car"] call FUNC(trackKilled);
-}, nil, ["Wheeled_APC_F"]] call CBA_fnc_addClassEventHandler;
-
-["Wheeled_APC_F", "killed", {
-    [_this, "apc"] call FUNC(trackKilled);
-}] call CBA_fnc_addClassEventHandler;
-
-["Tank", "killed", {
-    [_this, "tank"] call FUNC(trackKilled);
-}] call CBA_fnc_addClassEventHandler;
-
-["Air", "killed", {
-    [_this, "air"] call FUNC(trackKilled);
-}] call CBA_fnc_addClassEventHandler;
+addMissionEventHandler ["EntityKilled", {
+    if (_x isKindOf "CAManBase") exitWith {[_this, "men"] call FUNC(trackKilled)};
+    if (_x isKindOf "Wheeled_APC_F") exitWith {[_this, "apc"] call FUNC(trackKilled)};
+    if (_x isKindOf "Car") exitWith {[_this, "car"] call FUNC(trackKilled)};
+    if (_x isKindOf "Tank") exitWith {[_this, "armor"] call FUNC(trackKilled)};
+    if (_x isKindOf "Air") exitWith {[_this, "air"] call FUNC(trackKilled)};
+}];
