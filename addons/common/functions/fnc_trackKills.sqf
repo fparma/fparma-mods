@@ -10,9 +10,8 @@ if (!isServer || {!isNil QGVAR(statsNamespace)}) exitWith {};
 GVAR(statsNamespace) = [] call CBA_fnc_createNamespace;
 
 FUNC(trackKilled) = {
-    params ["_args", "_type"];
-    _args params ["_veh"];
-    private _returnConfigSide = !(_veh isKindOf "Man") && {count (crew _veh) > 0};
+    params ["_veh", "_type"];
+    private _returnConfigSide = count (crew _veh) isEqualTo 0;
     private _side = [_veh, _returnConfigSide] call BIS_fnc_objectSide;
     if (!(_side in [blufor, opfor, independent, civilian])) exitWith {};
 
@@ -23,9 +22,10 @@ FUNC(trackKilled) = {
 };
 
 addMissionEventHandler ["EntityKilled", {
-    if (_x isKindOf "CAManBase") exitWith {[_this, "men"] call FUNC(trackKilled)};
-    if (_x isKindOf "Wheeled_APC_F") exitWith {[_this, "apc"] call FUNC(trackKilled)};
-    if (_x isKindOf "Car") exitWith {[_this, "car"] call FUNC(trackKilled)};
-    if (_x isKindOf "Tank") exitWith {[_this, "armor"] call FUNC(trackKilled)};
-    if (_x isKindOf "Air") exitWith {[_this, "air"] call FUNC(trackKilled)};
+    params ["_veh"];
+    if (_veh isKindOf "CAManBase") exitWith {[_veh, "men"] call FUNC(trackKilled)};
+    if (_veh isKindOf "Wheeled_APC_F") exitWith {[_veh, "apc"] call FUNC(trackKilled)};
+    if (_veh isKindOf "Car") exitWith {[_veh, "car"] call FUNC(trackKilled)};
+    if (_veh isKindOf "Tank") exitWith {[_veh, "armor"] call FUNC(trackKilled)};
+    if (_veh isKindOf "Air") exitWith {[_veh, "air"] call FUNC(trackKilled)};
 }];
