@@ -1,6 +1,7 @@
 PREP(addToCurators);
 PREP(cameraAtPosition);
 PREP(copyAllGear);
+PREP(clearCargo);
 PREP(disableWeapons);
 PREP(endMissionServer);
 PREP(exportCfgGroups);
