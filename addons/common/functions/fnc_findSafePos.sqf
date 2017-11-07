@@ -6,6 +6,8 @@
 *
 * Arguments:
 * Position - any
+* Radius - max radius to begin search with
+* Classname - type of class to that should fit
 *
 * Public: Yes
 */
