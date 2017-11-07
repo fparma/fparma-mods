@@ -17,7 +17,7 @@ _pos = [_pos] call CBA_fnc_getPos;
 
 private _args = [0, _radius];
 if !(_className isEqualTo "") then {_args pushBack _className};
-TRACE_3("hm",_pos,_radius,_className);
+
 private _emptyPos = _pos findEmptyPosition _args;
 if !(_emptyPos isEqualTo []) exitWith {_emptyPos};
 [_pos, _radius + 5, _className] call FUNC(findSafePos);
