@@ -17,13 +17,11 @@
                 _won = _x param [1, true];
             } else {
                 if (_x isEqualType []) then {
-                    {
-                        private _side = _x param [2, sideUnknown];
-                        if (side group player == _side) then {
-                            _ending = _x param [0, "End1"];
-                            _won = _x param [1, true];
-                        };
-                    } forEach _x;
+                    private _side = _x param [2, sideUnknown];
+                    if (side group player == _side) then {
+                        _ending = _x param [0, "End1"];
+                        _won = _x param [1, true];
+                    };
                 };
             };
         } forEach _args;

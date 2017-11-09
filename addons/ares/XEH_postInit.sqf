@@ -51,42 +51,37 @@ if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 }] call Ares_fnc_RegisterCustomModule;
 
 [UTIL, "End Mission (COOP)", {
-    private _cfg = (getMissionConfig "CfgDebriefing") arrayIntersect ("true" configClasses (configFile >> "CfgDebriefing"));
-    private _endings = _cfg apply {
-        [configName _x, format ['(%1) "%2 - %3"', configName _x, getText (_x >> "title"), getText (_x >> "subtitle")]]
-    };
+    private _endings = [] call FUNC(getEndings);
     private _args = ["End Mission", [
-        ["Ending", _endings apply {_x select 1}],
-        ["Victory", ["Yes", "No"]],   
+        ["Ending", _endings apply {_x param [1, ""]}],
+        ["Victory", ["Yes", "No"]]
     ]] call Ares_fnc_ShowChooseDialog;
     if (count _args == 0) exitWith {};
-    
+
     _args params ["_end", "_won"];
     [(_endings select _end) param [0, ""], [true, false] select _won] remoteExecCall [QEFUNC(common,endMissionServer),2];
 }] call Ares_fnc_RegisterCustomModule;
 
 [UTIL, "End Mission (TVT)", {
-    private _cfg = (getMissionConfig "CfgDebriefing") arrayIntersect ("true" configClasses (configFile >> "CfgDebriefing"));
-    private _endings = _cfg apply {
-        [configName _x, format ['(%1) "%2 - %3"', configName _x, getText (_x >> "title"), getText (_x >> "subtitle")]]
-    };
-    
+    private _endings = [] call FUNC(getEndings);
     private _sides = [blufor, opfor, independent, civilian];
     private _dialogArgs = [];
     {
         private _sideName = [[_x] call EFUNC(common,translateSide)] call CBA_fnc_capitalize;
-        _dialogArgs pushBack [_sideName + " ending", _endings];
-        _dialogArgs pushBack [_sideName + " victory", ["Yes", "No"]];
-    } forEach _sides;;
+        _dialogArgs pushBack [_sideName + " ending", _endings apply {_x param [1, ""]}, 0];
+        _dialogArgs pushBack [_sideName + " victory", ["Yes", "No"], 0];
+    } forEach _sides;
 
     private _args = ["End Mission", _dialogArgs] call Ares_fnc_ShowChooseDialog;
     if (count _args == 0) exitWith {};
-    
+
     private _endMissionArgs = [];
-    for "_i" from 0 to (count _dialogArgs) step 2 do {
-        [_dialogArgs select (_args select _i), _dialogArgs select (_args select (_i +1))] params ["_end", "_won"];
-        _endMissionArgs pushBack [_end, _won, _sides select (_i -1)];
-    };
+    {
+        private _ending = _args deleteAt 0;
+        private _won = _args deleteAt 0;
+        _endMissionArgs pushBack [(_endings select _ending) param [0, ""], [true, false] select _won, _x];
+    } forEach _sides;
+
     [_endMissionArgs] remoteExecCall [QEFUNC(common,endMissionServer),2]
 }] call Ares_fnc_RegisterCustomModule;
 
