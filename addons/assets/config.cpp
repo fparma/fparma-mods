@@ -5,7 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"fpa_main"};
+        requiredAddons[] = {"fpa_main", "A3_Boat_F_Boat_Transport_01"};
         author[] = {"Cuel"};
         authorUrl = "";
         VERSION_CONFIG;
@@ -13,3 +13,4 @@ class CfgPatches {
 };
 
 #include "CfgSounds.hpp"
+#include "CfgVehicles.hpp"
