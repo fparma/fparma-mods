@@ -27,7 +27,7 @@
         } forEach _args;
     };
 
-    [true] call FUNC(disablePlayerWeapons);
+    [true] call FUNC(disableWeapons);
     [_ending, _won] call BIS_fnc_endMission;
 }] call CBA_fnc_addEventHandler;
 
