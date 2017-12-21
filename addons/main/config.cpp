@@ -11,3 +11,15 @@ class CfgPatches {
         VERSION_CONFIG;
     };
 };
+
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        serverInit = QUOTE(call COMPILE_FILE(XEH_preInitServer));
+    };
+};
+
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        serverInit = QUOTE(call COMPILE_FILE(XEH_postInitServer));
+    };
+};
