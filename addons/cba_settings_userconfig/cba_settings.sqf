@@ -148,9 +148,9 @@ ace_overheating_showParticleEffectsForEveryone = true;
 force ace_pylons_enabled = true;
 force ace_pylons_searchDistance = 15;
 force ace_pylons_timePerPylon = 5;
-ace_pylons_rearmNewPylons = true;
-ace_pylons_requireEngineer = false;
-ace_pylons_requireToolkit = false;
+force ace_pylons_rearmNewPylons = true;
+force ace_pylons_requireEngineer = false;
+force ace_pylons_requireToolkit = false;
 
 // ACE Rearm
 force ace_rearm_level = 1;
