@@ -13,6 +13,12 @@ if (isNil QFUNC(toggleZeusAcre)) then {
 
 [player] call FUNC(lowerPlayerWeapon);
 
+// hide zeus watermark
+[{
+    private _ctrl = (findDisplay 312) displayCtrl 15717;
+    _ctrl ctrlSetText ""; //QPATHTOEF(assets,img\logo_lg.paa);
+}] call CBA_fnc_execNextFrame;
+
 [{
     if (isNull (findDisplay 312)) exitWith {
         [_this select 1] call CBA_fnc_removePerFrameHandler;
@@ -25,6 +31,11 @@ if (isNil QFUNC(toggleZeusAcre)) then {
         ACRE_CTRL ctrlSetTextColor [1,1,1,1];
     };
 
+    // if screenshot mode
+    if (ctrlShown ((findDisplay 312) displayCtrl 15717)) exitWith {
+        UNIT_COUNT ctrlShow false;
+    };
+
     private _units = allUnits - [player];
     private _text = format ["AI: %1 (%2 loc). Plrs: %3 (%4 spec)",
         {simulationEnabled _x && {!isPlayer _x}} count _units,
@@ -33,5 +44,6 @@ if (isNil QFUNC(toggleZeusAcre)) then {
         count call ace_spectator_fnc_players
     ];
 
+    UNIT_COUNT ctrlShow true;
     UNIT_COUNT ctrlSetText _text;
 }, 0.5, []] call CBA_fnc_addPerFrameHandler;
