@@ -16,6 +16,7 @@ PREP(safeZone);
 PREP(findSafePos);
 PREP(spectate);
 PREP(strategicMapOpen);
+PREP(toggleScreenshotMode);
 PREP(trackKills);
 PREP(translateSide);
 PREP(validateMission);

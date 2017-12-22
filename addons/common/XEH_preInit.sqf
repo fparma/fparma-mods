@@ -27,4 +27,15 @@ GVAR(isWeaponsDisabled) = false;
     } // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
+[
+    FP_SETTINGS,
+    QGVAR(toggleScreenshot),
+    ['Toggle Screenshot Mode', 'Hides UI elements for taking screenshots'],
+    {
+        [] call FUNC(toggleScreenshotMode);
+        false
+    },
+    ''
+] call CBA_fnc_addKeybind;
+
 ADDON = true;
