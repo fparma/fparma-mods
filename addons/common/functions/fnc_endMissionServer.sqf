@@ -24,7 +24,7 @@ if (!isServer) exitWith {};
 
 if (!isNil QGVAR(statsNamespace)) then {
     private _msg = [];
-    private _over60min = ceil CBA_missionTime > 3600;
+    private _over60min = (ceil CBA_missionTime) > 3600;
     private _duration = [CBA_missionTime, ["M:SS","H:MM:SS"] select _over60min] call CBA_fnc_formatElapsedTime;
     _msg pushBack format ["<t font='PuristaBold' size='1'>Mission Duration %1<t><br/>", _duration];
     {
