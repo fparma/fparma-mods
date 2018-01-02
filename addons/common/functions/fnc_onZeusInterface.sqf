@@ -1,5 +1,6 @@
 /*
 * Author: PabstMirror / POTATO
+* Edits by cuel
 */
 
 #include "script_component.hpp"
@@ -11,6 +12,7 @@ if (isNil QFUNC(toggleZeusAcre)) then {
     FUNC(toggleZeusAcre) = {[!ACRE_IS_SPECTATOR] call acre_api_fnc_setSpectator};
 };
 
+// Remove "gear" animation for zeus
 [player] call FUNC(lowerPlayerWeapon);
 
 // hide zeus watermark
@@ -31,7 +33,7 @@ if (isNil QFUNC(toggleZeusAcre)) then {
         ACRE_CTRL ctrlSetTextColor [1,1,1,1];
     };
 
-    // if screenshot mode
+    // if zeus screenshot mode
     if (ctrlShown ((findDisplay 312) displayCtrl 15717)) exitWith {
         UNIT_COUNT ctrlShow false;
     };
