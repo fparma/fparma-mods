@@ -38,9 +38,9 @@ if (isNil QFUNC(toggleZeusAcre)) then {
         UNIT_COUNT ctrlShow false;
     };
 
-    private _units = allUnits - [player];
+    private _units = allUnits select {simulationEnabled _x && {_x != player}};
     private _text = format ["AI: %1 (%2 loc). Plrs: %3 (%4 spec)",
-        {simulationEnabled _x && {!isPlayer _x}} count _units,
+        {!isPlayer _x} count _units,
         {local _x} count _units,
         count call CBA_fnc_players,
         count call ace_spectator_fnc_players
