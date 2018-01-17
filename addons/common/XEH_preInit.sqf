@@ -38,6 +38,36 @@ GVAR(isWeaponsDisabled) = false;
     ''
 ] call CBA_fnc_addKeybind;
 
+[QGVAR(chatMessage)), {
+	params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];
+	if (!hasInterface || profileName isEqualTo _sender) exitWith {};
+
+	switch (toLower _type) do {
+		case "admin": {
+			[{call FUNC(isAdmin)}, format ["Admins (%1):", _sender]];
+		};
+		case "zeus": {
+			[{!isNull (getAssignedCuratorLogic player)}, format ["Zeus (%1):", _sender]];
+		};
+		case "whisper": {
+			[{profileName isEqualTo _receiver}, format ["Whisper from (%1):", _sender]];
+		};
+		default {
+			[{false}, ""];
+		};
+	} params ["_condition", "_text"];
+
+	if ([] call _condition) then {
+		GVAR(chatChannel) radioChannelAdd [ACE_player];
+		GVAR(chatChannel) radioChannelSetCallsign format [_text, _sender];
+		ACE_player customChat [GVAR(chatChannel), _msg];
+		GVAR(chatChannel) radioChannelRemove [ACE_player];
+		if (_ping) then {
+			playSound "3DEN_notificationWarning";
+		};
+	};
+}];
+
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;
