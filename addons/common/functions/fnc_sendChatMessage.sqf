@@ -24,5 +24,7 @@ GVAR(chatChannel) radioChannelSetCallsign _callsign;
 player customChat [GVAR(chatChannel), _msg];
 GVAR(chatChannel) radioChannelRemove [ACE_player];
 
-playSound "3DEN_notificationDefault";
 [QGVAR(chatMessage), [profileName, _msg, _type, _receiver]] call CBA_fnc_globalEvent;
+if (GVAR(customChatPingSound)) then {
+    playSound "3DEN_notificationDefault";
+};

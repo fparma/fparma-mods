@@ -28,6 +28,15 @@ GVAR(isWeaponsDisabled) = false;
 ] call CBA_Settings_fnc_init;
 
 [
+    QGVAR(customChatPingSound), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    "CHECKBOX", // setting type
+    ["Custom chat ping", "Play a notification sound when sending whispers or receiving custom chat"], // Pretty name of the category where the setting can be found. Can be stringtable entry.
+    FP_SETTINGS, // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
+    true, // data for this setting
+    nil // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_Settings_fnc_init;
+
+[
     FP_SETTINGS,
     QGVAR(toggleScreenshot),
     ['Toggle Screenshot Mode', 'Hides UI elements for taking screenshots'],
@@ -38,35 +47,37 @@ GVAR(isWeaponsDisabled) = false;
     ''
 ] call CBA_fnc_addKeybind;
 
-[QGVAR(chatMessage)), {
-	params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];
-	if (!hasInterface || profileName isEqualTo _sender) exitWith {};
+if (hasInterface) then {
+    [QGVAR(chatMessage), {
+        params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];
 
-	switch (toLower _type) do {
-		case "admin": {
-			[{call FUNC(isAdmin)}, format ["Admins (%1):", _sender]];
-		};
-		case "zeus": {
-			[{!isNull (getAssignedCuratorLogic player)}, format ["Zeus (%1):", _sender]];
-		};
-		case "whisper": {
-			[{profileName isEqualTo _receiver}, format ["Whisper from (%1):", _sender]];
-		};
-		default {
-			[{false}, ""];
-		};
-	} params ["_condition", "_text"];
+        private _args = switch (toLower _type) do {
+            case "admin": {
+                [{call FUNC(isAdmin)}, format ["(Admins) %1:", _sender]];
+            };
+            case "zeus": {
+                [{!(profileName isEqualTo _sender) && !isNull (getAssignedCuratorLogic player)}, format ["(Zeus) %1:", _sender]];
+            };
+            case "whisper": {
+                [{profileName isEqualTo _receiver}, format ["Whisper from %1:", _sender]];
+            };
+            default {
+                [{true}, format ["Notice (%1):", _sender]];
+            };
+        };
+        _args params ["_condition", "_text"];
 
-	if ([] call _condition) then {
-		GVAR(chatChannel) radioChannelAdd [ACE_player];
-		GVAR(chatChannel) radioChannelSetCallsign format [_text, _sender];
-		ACE_player customChat [GVAR(chatChannel), _msg];
-		GVAR(chatChannel) radioChannelRemove [ACE_player];
-		if (_ping) then {
-			playSound "3DEN_notificationWarning";
-		};
-	};
-}];
+        if ([] call _condition) then {
+            GVAR(chatChannel) radioChannelAdd [ACE_player];
+            GVAR(chatChannel) radioChannelSetCallsign _text;
+            ACE_player customChat [GVAR(chatChannel), _msg];
+            GVAR(chatChannel) radioChannelRemove [ACE_player];
+            if (GVAR(customChatPingSound) && _ping) then {
+                playSound "3DEN_notificationWarning";
+            };
+        };
+    }] call CBA_fnc_addEventHandler;
+};
 
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};

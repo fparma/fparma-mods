@@ -19,31 +19,37 @@
 #include "script_component.hpp"
 
 params [
-	["_cmd", "", [""]],
-	["_code", {}, [{}]],
-	["_description", "", [""]],
-	["_adminOnly", true],
-	["_argsForCode"]
+    ["_cmd", "", [""]],
+    ["_code", {}, [{}]],
+    ["_description", "", [""]],
+    ["_adminOnly", true],
+    "_argsForCode"
 ];
 
 if (_cmd isEqualTo "" || _code isEqualTo {}) exitWith {false};
 
 if (isNil QGVAR(chatCommands)) then {
-	GVAR(chatCommands) = [] call CBA_fnc_createNamespace;
+    GVAR(chatCommands) = [] call CBA_fnc_createNamespace;
 
-	["fp.help", {
-		{
-			(GVAR(chatCommands) getVariable [_x, []]) params ["_description", "", "_adminOnly"];
-			if (count _description > 0 && (!_adminOnly || {call FUNC(isAdmin)})) then {
-				systemChat format ["%1 - %2", _x, _description];
-			};
-		} forEach (allVariables GVAR(chatCommands));
-	}, "all"] call CBA_fnc_registerChatCommand;
+    ["fp.help", {
+        [{
+            systemChat "=== Available Commands ===";
+            {
+                (GVAR(chatCommands) getVariable [_x, []]) params ["_description", "", "_adminOnly"];
+                if (count _description > 0 && (!_adminOnly || {call FUNC(isAdmin)})) then {
+                    systemChat format ["%1 - %2", _x, _description];
+                };
+            } forEach (allVariables GVAR(chatCommands));
+            systemChat "=== End ===";
+        }] call CBA_fnc_execNextFrame;
+    }, "all"] call CBA_fnc_registerChatCommand;
 };
 
 if (_cmd find "." isEqualTo -1) then {
-	_cmd = format ["fp.%1", _cmd];
+    _cmd = format ["fp.%1", _cmd];
 };
 
 GVAR(chatCommands) setVariable [_cmd, [_description, _code, _adminOnly, _argsForCode]];
-[_cmd, {[_this, _thisArgs] call FUNC(runChatCommand)}, "all", _cmd] call CBA_fnc_registerChatCommand;
+[_cmd, {
+    [param [0, ""], _thisArgs] call FUNC(runChatCommand);
+}, "all", _cmd] call CBA_fnc_registerChatCommand;

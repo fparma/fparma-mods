@@ -16,6 +16,7 @@ PREP(runVehicleDrawEH);
 PREP(safeZone);
 PREP(findSafePos);
 PREP(registerChatCommand);
+PREP(runChatCommand);
 PREP(sendChatMessage);
 PREP(spectate);
 PREP(strategicMapOpen);
