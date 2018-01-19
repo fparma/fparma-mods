@@ -131,9 +131,9 @@ ace_nametags_playerNamesViewDistance = 12;
 
 // ACE NVG
 force ace_nightvision_disableNVGsWithSights = false;
-force ace_nightvision_fogScaling = 1;
-force ace_nightvision_effectScaling = 1;
-force ace_nightvision_aimDownSightsBlur = 1;
+force ace_nightvision_fogScaling = 0.2;
+force ace_nightvision_effectScaling = 0.3;
+force ace_nightvision_aimDownSightsBlur = 0.5;
 
 // ACE Overheating
 force ace_overheating_overheatingDispersion = true;
