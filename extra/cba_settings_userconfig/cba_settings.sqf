@@ -2,12 +2,11 @@
 force force STUI_Occlusion = false;
 
 // ACRE
-acre_sys_core_unmuteClients = true;
 force force acre_sys_core_ts3ChannelSwitch = true;
 force force acre_sys_core_interference = false;
 force force acre_sys_core_fullDuplex = true;
 force force acre_sys_core_ignoreAntennaDirection = true;
-force force acre_sys_core_terrainLoss = 0;
+force force acre_sys_core_terrainLoss = 0.2;
 force acre_sys_core_revealToAI = true;
 
 // ACE Misc
@@ -23,6 +22,8 @@ force ace_noradio_enabled = true;
 force force ace_advanced_fatigue_enabled = false;
 force force ace_microdagr_mapDataAvailable = 2;
 force force ace_gforces_enabledFor = 1;
+force force ace_cargo_enable = true;
+force ace_cargo_paradropTimeCoefficent = 2;
 
 // ACE Common
 force force ace_common_checkPBOsAction = 0;
@@ -42,7 +43,7 @@ force ace_finger_maxRange = 7;
 
 // ACE Frag
 force ace_frag_enabled = true;
-force ace_frag_spallEnabled = false;
+force ace_frag_spallEnabled = true;
 force ace_frag_reflectionsEnabled = false;
 force ace_frag_maxTrack = 8;
 force ace_frag_maxTrackPerFrame = 8;
@@ -50,7 +51,6 @@ force ace_frag_maxTrackPerFrame = 8;
 // ACE Interaction
 force ace_interaction_enableTeamManagement = true;
 force force ace_interaction_disableNegativeRating = true;
-ace_interaction_enableMagazinePassing = true;
 
 // ACE Mag repack
 force force ace_magazinerepack_timePerAmmo = 1;
@@ -69,7 +69,7 @@ force force ace_map_mapLimitZoom = false;
 force force ace_map_mapShowCursorCoordinates = true;
 force force ace_map_defaultChannel = 1;
 force ace_map_gestures_enabled = true;
-force force ace_map_gestures_maxRange = 10;
+force force ace_map_gestures_maxRange = 8;
 force force ace_map_gestures_interval = 0.05;
 
 // ACE Markers
@@ -106,11 +106,9 @@ force force ace_medical_healHitPointAfterAdvBandage = true;
 force force ace_medical_painIsOnlySuppressed = false;
 force force ace_medical_allowUnconsciousAnimationOnTreatment = true;
 force force ace_medical_moveUnitsFromGroupOnUnconscious = false;
-force force ace_medical_delayUnconCaptive = 3;
+force force ace_medical_delayUnconCaptive = 2;
 force force ace_medical_ai_enabledFor = 2;
 force force ace_medical_menu_allow = 1;
-ace_medical_menu_useMenu = 1;
-ace_medical_menu_openAfterTreatment = true;
 force force ace_medical_menu_maxRange = 5;
 
 // ACE MK6 Mortar
@@ -120,29 +118,21 @@ force ace_mk6mortar_allowCompass = true;
 force ace_mk6mortar_useAmmoHandling = true;
 
 // ACE Nametags
-ace_nametags_showPlayerNames = 1;
 ace_nametags_showNamesForAI = false;
 ace_nametags_showPlayerRanks = false;
-ace_nametags_showVehicleCrewInfo = true;
-ace_nametags_showCursorTagForVehicles = false;
-ace_nametags_showSoundWaves = 1;
-ace_nametags_tagSize = 2;
 ace_nametags_playerNamesViewDistance = 12;
 
 // ACE NVG
 force ace_nightvision_disableNVGsWithSights = false;
-force ace_nightvision_fogScaling = 1;
-force ace_nightvision_effectScaling = 1;
-force ace_nightvision_aimDownSightsBlur = 1;
+force ace_nightvision_fogScaling = 0.2;
+force ace_nightvision_effectScaling = 0.3;
+force ace_nightvision_aimDownSightsBlur = 0.5;
 
 // ACE Overheating
 force ace_overheating_overheatingDispersion = true;
 force ace_overheating_unJamOnreload = true;
 force ace_overheating_unJamFailChance = 0;
 force ace_overheating_enabled = true;
-ace_overheating_displayTextOnJam = true;
-ace_overheating_showParticleEffects = true;
-ace_overheating_showParticleEffectsForEveryone = true;
 
 // ACE Pylons
 force ace_pylons_enabled = true;
@@ -165,7 +155,6 @@ force ace_respawn_savePreDeathGear = false;
 force force ace_respawn_removeDeadBodiesDisconnected = true;
 
 // ACE Repair
-ace_repair_displayTextOnRepair = true;
 force ace_repair_engineerSetting_repair = 0;
 force ace_repair_engineerSetting_wheel = 0;
 force ace_repair_repairDamageThreshold = 0.75;
@@ -202,20 +191,19 @@ force ace_winddeflection_simulationInterval = 0.05;
 
 // ACE Adv Throwing
 ace_advanced_throwing_enabled = true;
-ace_advanced_throwing_showThrowArc = true;
-ace_advanced_throwing_showMouseControls = true;
 force ace_advanced_throwing_enablePickUp = true;
 force ace_advanced_throwing_enablePickUpAttached = true;
+
+// ACE Captives
 force ace_captives_allowHandcuffOwnSide = true;
 force ace_captives_requireSurrender = 2;
 force ace_captives_allowSurrender = true;
 force ace_captives_requireSurrenderAi = false;
-force force ace_cargo_enable = true;
-force ace_cargo_paradropTimeCoefficent = 2;
+
+// ACE Expl
 force ace_explosives_requireSpecialist = false;
 force ace_explosives_punishNonSpecialists = true;
 force ace_explosives_explodeOnDefuse = true;
-ace_gestures_showOnInteractionMenu = 2;
 
 // ACE Zeus
 force force ace_zeus_zeusAscension = false;

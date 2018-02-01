@@ -23,9 +23,13 @@ if (isNil QGVAR(screenshotState)) then {
     missionNamespace setVariable ["STHud_UIMode", 0];
     missionNamespace setVariable ["ace_nametags_showplayernames", 0];
     showHUD (shownHUD apply {false});
+
+    hintSilent "";
+    showChat false;
 } else {
     missionNamespace setVariable ["STHud_UIMode", GVAR(screenshotState) deleteAt 0];
     missionNamespace setVariable ["ace_nametags_showplayernames", GVAR(screenshotState) deleteAt 0];
     showHUD (GVAR(screenshotState) param [0, []]);
+    showChat true;
     GVAR(screenshotState) = nil;
 };

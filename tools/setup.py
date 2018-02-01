@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 #######################
-#  FPA3 Setup Script  #
+#  FPA Setup Script  #
 #######################
 
 import os
@@ -14,26 +14,29 @@ import winreg
 ######## GLOBALS #########
 MAINDIR = "z"
 PROJECTDIR = "fpa"
+CBA = "P:\\x\\cba"
 ##########################
 
 def main():
     FULLDIR = "{}\\{}".format(MAINDIR,PROJECTDIR)
     print("""
   ######################################
-  # FPA3 Development Environment Setup #
+  # FPA Development Environment Setup #
   ######################################
 
-  This script will create your FPA3 dev environment for you.
+  This script will create your FPA dev environment for you.
 
   Before you run this, you should already have:
-    - A properly setup ACE3 Development Environment
+    - The Arma 3 Tools installed properly via Steam
+    - A properly set up P-drive
 
   If you have not done those things yet, please abort this script in the next step and do so first.
 
-  This script will create two hard links on your system, both pointing to your FPA3 project folder:
-    [Arma 3 installation directory]\\{} => FPA3 project folder
-    P:\\{}                              => FPA3 project folder
-    """.format(FULLDIR,FULLDIR))
+  This script will create two hard links on your system, both pointing to your FPA project folder:
+    [Arma 3 installation directory]\\{} => FPA project folder
+    P:\\{}                              => FPA project folder
+
+  It will also copy the required CBA includes to {}, if you do not have the CBA source code already.""".format(FULLDIR,FULLDIR,CBA))
     print("\n")
 
     try:
@@ -45,8 +48,8 @@ def main():
         print("Failed to determine Arma 3 Path.")
         return 1
 
-    if not os.path.exists("P:\\z\\ace"):
-        print("No ACE3 Development Environment detected.")
+    if not os.path.exists("P:\\"):
+        print("No P-drive detected.")
         return 2
 
     scriptpath = os.path.realpath(__file__)
@@ -76,18 +79,30 @@ def main():
         if not os.path.exists(os.path.join(armapath, MAINDIR)):
             os.mkdir(os.path.join(armapath, MAINDIR))
 
-        if platform.win32_ver()[0] == "7":
-            subprocess.call(["cmd", "/c", "mklink", "/D", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
-            subprocess.call(["cmd", "/c", "mklink", "/D", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
-        else:
-            subprocess.call(["cmd", "/c", "mklink", "/D", "/J", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
-            subprocess.call(["cmd", "/c", "mklink", "/D", "/J", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
+        subprocess.call(["cmd", "/c", "mklink", "/J", "P:\\{}\\{}".format(MAINDIR,PROJECTDIR), projectpath])
+        subprocess.call(["cmd", "/c", "mklink", "/J", os.path.join(armapath, MAINDIR, PROJECTDIR), projectpath])
     except:
         raise
         print("Something went wrong during the link creation. Please finish the setup manually.")
         return 6
 
     print("# Links created successfully.")
+
+
+    print("\n# Copying required CBA includes ...")
+
+    if os.path.exists(CBA):
+        print("{} already exists, skipping.".format(CBA))
+        return -1
+
+    try:
+        shutil.copytree(os.path.join(projectpath, "tools", "cba"), CBA)
+    except:
+        raise
+        print("Something went wrong while copying CBA includes. Please copy tools\\cba to {} manually.".format(CBA))
+        return 7
+
+    print("# CBA includes copied successfully to {}.".format(CBA))
 
     return 0
 
