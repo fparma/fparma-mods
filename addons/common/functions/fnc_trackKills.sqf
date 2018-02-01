@@ -11,10 +11,17 @@ GVAR(statsNamespace) = [] call CBA_fnc_createNamespace;
 
 FUNC(trackKilled) = {
     params ["_veh", "_type"];
-    private _returnConfigSide = count (crew _veh) isEqualTo 0;
-    private _side = [_veh, _returnConfigSide] call BIS_fnc_objectSide;
-    if (!(_side in [blufor, opfor, independent, civilian])) exitWith {};
 
+    if (_type isEqualTo "men" && {["uav_ai", typeOf _veh] call BIS_fnc_inString}) exitWith {};
+
+    private _crew = crew _veh;
+    private _side = if (_crew isEqualTo []) then {
+        [_veh, false] call BIS_fnc_objectSide;
+    } else {
+        [_crew param [0, _veh], true] call BIS_fnc_objectSide;
+    };
+
+    if (!(_side in [blufor, opfor, independent, civilian])) exitWith {};
     private _sideStr = [_side] call FUNC(translateSide);
     private _key = format ["%1_%2", _sideStr, _type];
     private _nr = GVAR(statsNamespace) getVariable [_key, 0];
@@ -23,6 +30,7 @@ FUNC(trackKilled) = {
 
 addMissionEventHandler ["EntityKilled", {
     params ["_veh"];
+    if (unitIsUAV _veh) exitWith {[_veh, "uav"] call FUNC(trackKilled)};
     if (_veh isKindOf "CAManBase") exitWith {[_veh, "men"] call FUNC(trackKilled)};
     if (_veh isKindOf "Wheeled_APC_F") exitWith {[_veh, "apc"] call FUNC(trackKilled)};
     if (_veh isKindOf "Car") exitWith {[_veh, "car"] call FUNC(trackKilled)};

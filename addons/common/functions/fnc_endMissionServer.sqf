@@ -27,6 +27,8 @@ if (!isNil QGVAR(statsNamespace)) then {
     private _over60min = (ceil CBA_missionTime) > 3600;
     private _duration = [CBA_missionTime, ["M:SS","H:MM:SS"] select _over60min] call CBA_fnc_formatElapsedTime;
     _msg pushBack format ["<t font='PuristaBold' size='1'>Mission Duration %1<t><br/>", _duration];
+    private _foundSomething = false;
+
     {
         private _side = [_x] call FUNC(translateSide);
         private _str = format ["%1 casualties:", _side call CBA_fnc_capitalize];
@@ -34,14 +36,17 @@ if (!isNil QGVAR(statsNamespace)) then {
             private _key = format ["%1_%2", _side, toLower _x];
             private _kills = GVAR(statsNamespace) getVariable [_key, 0];
             if (_kills > 0) then {
+                _foundSomething = true;
                 _str = _str + format [" %1: %2.", _x, _kills];
             };
-        } forEach ["Men", "Car", "APC", "Armor", "Air"];
+        } forEach ["Men", "Car", "APC", "Armor", "Air", "UAV"];
         _msg pushBack _str;
     } forEach [blufor, opfor, independent, civilian];
 
-    GVAR(stats)  = _msg joinString '<br/>';
-    publicVariable QGVAR(stats);
+    if (_foundSomething) then {
+        GVAR(stats)  = _msg joinString '<br/>';
+        publicVariable QGVAR(stats);
+    };
 };
 
 [QGVAR(endMission), _this] call CBA_fnc_globalEvent;
