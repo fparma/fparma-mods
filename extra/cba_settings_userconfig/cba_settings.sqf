@@ -6,7 +6,7 @@ force force acre_sys_core_ts3ChannelSwitch = true;
 force force acre_sys_core_interference = false;
 force force acre_sys_core_fullDuplex = true;
 force force acre_sys_core_ignoreAntennaDirection = true;
-force force acre_sys_core_terrainLoss = 0;
+force force acre_sys_core_terrainLoss = 0.2;
 force acre_sys_core_revealToAI = true;
 
 // ACE Misc
@@ -43,7 +43,7 @@ force ace_finger_maxRange = 7;
 
 // ACE Frag
 force ace_frag_enabled = true;
-force ace_frag_spallEnabled = false;
+force ace_frag_spallEnabled = true;
 force ace_frag_reflectionsEnabled = false;
 force ace_frag_maxTrack = 8;
 force ace_frag_maxTrackPerFrame = 8;
@@ -69,7 +69,7 @@ force force ace_map_mapLimitZoom = false;
 force force ace_map_mapShowCursorCoordinates = true;
 force force ace_map_defaultChannel = 1;
 force ace_map_gestures_enabled = true;
-force force ace_map_gestures_maxRange = 10;
+force force ace_map_gestures_maxRange = 8;
 force force ace_map_gestures_interval = 0.05;
 
 // ACE Markers
@@ -106,11 +106,9 @@ force force ace_medical_healHitPointAfterAdvBandage = true;
 force force ace_medical_painIsOnlySuppressed = false;
 force force ace_medical_allowUnconsciousAnimationOnTreatment = true;
 force force ace_medical_moveUnitsFromGroupOnUnconscious = false;
-force force ace_medical_delayUnconCaptive = 3;
+force force ace_medical_delayUnconCaptive = 2;
 force force ace_medical_ai_enabledFor = 2;
 force force ace_medical_menu_allow = 1;
-ace_medical_menu_useMenu = 1;
-ace_medical_menu_openAfterTreatment = true;
 force force ace_medical_menu_maxRange = 5;
 
 // ACE MK6 Mortar
@@ -135,8 +133,6 @@ force ace_overheating_overheatingDispersion = true;
 force ace_overheating_unJamOnreload = true;
 force ace_overheating_unJamFailChance = 0;
 force ace_overheating_enabled = true;
-ace_overheating_showParticleEffects = true;
-ace_overheating_showParticleEffectsForEveryone = true;
 
 // ACE Pylons
 force ace_pylons_enabled = true;
