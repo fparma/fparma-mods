@@ -1,15 +1,15 @@
 class CfgAILevelPresets {
   class AILevelLow {
     displayName = "FPA";
-    precisionAI = 0.13;
-    skillAI = 0.95;
+    precisionAI = 0.15;
+    skillAI = 0.8;
   };
 };
 
 class CfgDifficultyPresets {
   defaultPreset = "Custom";
   class Custom {
-    description = "BI sucks";
+    description = "FPARMA Custom AI";
     levelAI = "AILevelLow";
     class Options {
       autoReport = 0;

@@ -11,5 +11,7 @@ class CfgPatches {
   };
 };
 
+#include "CfgEventHandlers.hpp"
 #include "CfgDifficulty.hpp"
 #include "CfgAISkill.hpp"
+#include "CfgSurfaces.hpp"
