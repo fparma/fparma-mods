@@ -43,7 +43,7 @@ force ace_finger_maxRange = 7;
 
 // ACE Frag
 force ace_frag_enabled = true;
-force ace_frag_spallEnabled = true;
+force ace_frag_spallEnabled = false;
 force ace_frag_reflectionsEnabled = false;
 force ace_frag_maxTrack = 8;
 force ace_frag_maxTrackPerFrame = 8;
