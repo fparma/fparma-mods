@@ -1,3 +1,4 @@
+
 /*
     Function: fpa_common_fnc_disableWeapons
 
@@ -21,40 +22,43 @@
 
 #include "script_component.hpp"
 
-params [["_disableWeapons", false]];
+params [["_disableWeapons", false], ["_reason", ""]];
+if (!hasInterface) exitWith {};
 
-if (!hasInterface || {_disableWeapons isEqualTo GVAR(isWeaponsDisabled)}) exitWith {false};
+// Init
+if (isNil QGVAR(weaponsDisabled)) then {
+	GVAR(weaponsDisabled) = _disableWeapons;
+	GVAR(prevAdvThrowEnabled) = ace_advanced_throwing_enabled;
 
-GVAR(isWeaponsDisabled) = _disableWeapons;
+	// "can" detonate
+	[{!GVAR(weaponsDisabled)}] call ace_explosives_fnc_addDetonateHandler;	
+	[player, "DefaultAction", {GVAR(weaponsDisabled)}, {}] call ace_common_fnc_addActionEventHandler;
 
-// Detonating explosives
-if (isNil QGVAR(canDetonate)) then {
-    GVAR(canDetonate) = !_disableWeapons;
-    [{GVAR(canDetonate)}] call ace_explosives_fnc_addDetonateHandler;
-};
-GVAR(canDetonate) = !_disableWeapons;
-
-if (_disableWeapons) then {
-    // ace adv throw
-    GVAR(advThrowEnabled) = ace_advanced_throwing_enabled;
-    ace_advanced_throwing_enabled = false;
-
-    // Thrown grenades etc
-    GVAR(firedId) = ["ace_firedPlayer", {
+	["ace_firedPlayer", {
+	  if (!GVAR(weaponsDisabled)) exitWith {};
       private _obj = param [6, objNull];
       if (!isNil "ace_frag_fnc_addBlackList") then {
         [_obj] call ace_frag_fnc_addBlackList;
       };
       deleteVehicle _obj;
     }] call CBA_fnc_addEventHandler;
-
-    // Disable default action mouse1 (firing)
-    GVAR(actionEventId) = [player, "DefaultAction", {true}, {}] call ace_common_fnc_addActionEventHandler;
-
-} else {
-    ace_advanced_throwing_enabled = GVAR(advThrowEnabled);
-    ["ace_firedPlayer", GVAR(firedId)] call CBA_fnc_removeEventHandler;
-    [player, "DefaultAction", GVAR(actionEventId)] call ACE_common_fnc_removeActionEventHandler;
 };
 
-true
+_reason = toLower _reason;
+private _reasons = player getVariable [QGVAR(disableWeaponsReasons), []];
+if (_disableWeapons) then {
+	_reasons pushBackUnique _reason;
+} else {
+	_reasons deleteAt (_reasons find _reason);
+};
+player setVariable [QGVAR(disableWeaponsReasons), _reasons];
+
+if (_disableWeapons) then {
+    ace_advanced_throwing_enabled = false;
+	GVAR(weaponsDisabled) = false;
+} else {
+	if (_reasons isEqualTo []) then {
+		ace_advanced_throwing_enabled = GVAR(prevAdvThrowEnabled);	
+		GVAR(weaponsDisabled) = true;
+	};
+};
