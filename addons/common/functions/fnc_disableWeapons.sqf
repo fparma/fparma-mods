@@ -55,10 +55,10 @@ player setVariable [QGVAR(disableWeaponsReasons), _reasons];
 
 if (_disableWeapons) then {
     ace_advanced_throwing_enabled = false;
-	GVAR(weaponsDisabled) = false;
+	GVAR(weaponsDisabled) = true;
 } else {
 	if (_reasons isEqualTo []) then {
 		ace_advanced_throwing_enabled = GVAR(prevAdvThrowEnabled);	
-		GVAR(weaponsDisabled) = true;
+		GVAR(weaponsDisabled) = false;
 	};
 };
