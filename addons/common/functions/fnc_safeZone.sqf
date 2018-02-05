@@ -14,7 +14,7 @@
 if (!hasInterface) exitWith {};
 params [["_enable", false, [true]], ["_displayHint", true]];
 
-[_enable] call FUNC(disableWeapons);
+[_enable, "safezone"] call FUNC(disableWeapons);
 if (_displayHint) then {
     private _text = format ["%1 safemode zone", ["Left", "Entered"] select _enable];
     [_text, "\A3\ui_f\data\map\markers\military\warning_ca.paa", [0, 0.5, 1]] call ace_common_fnc_displayTextPicture;
