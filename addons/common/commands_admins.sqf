@@ -59,7 +59,7 @@
 ["weaponlock", {
     params [["_str", ""]];
     private _disableWeapons = [false, true] select (_str isEqualTo "1");
-    [_disableWeapons] remoteExecCall [QFUNC(disableWeapons)];
+    [_disableWeapons, "adminlock"] remoteExecCall [QFUNC(disableWeapons), 0, QGVAR(adminDisabled)];
 
     [QGVAR(chatMessage), [profileName, format ["%1 weapons", ["enabled", "disabled"] select _disableWeapons], "", "", true]] call CBA_fnc_globalEvent;
 }, "Disable/enable all player weapons. 0 enable weapons, 1 disable weapons. <#fp.weaponlock 0/1>"] call FUNC(registerChatCommand);
