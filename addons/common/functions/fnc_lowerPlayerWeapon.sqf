@@ -23,17 +23,9 @@ if (!hasInterface) exitWith {};
 
     // stance is broken for some animations.
     private _stance = stance _unit;
-    if (_anim find "ppne" == 4) then {
-    _stance = "PRONE";
-    };
-
-    if (_anim find "pknl" == 4) then {
-    _stance = "CROUCH";
-    };
-
-    if (_anim find "perc" == 4) then {
-    _stance = "STAND";
-    };
+    if (_anim find "ppne" == 4) then {_stance = "PRONE"};
+    if (_anim find "pknl" == 4) then {_stance = "CROUCH"};
+    if (_anim find "perc" == 4) then {_stance = "STAND"};
 
     _anim = format ["AmovP%1M%2S%3W%4D%5",
         ["erc", "knl", "pne"] select (["STAND", "CROUCH", "PRONE"] find _stance) max 0,
@@ -44,6 +36,7 @@ if (!hasInterface) exitWith {};
     ];
 
     if (isClass (configFile >> "CfgMovesMaleSdr" >> "States" >> _anim)) then {
+        // does not require mp sync
         player switchMove _anim;
     };
 }] call CBA_fnc_waitUntilAndExecute;

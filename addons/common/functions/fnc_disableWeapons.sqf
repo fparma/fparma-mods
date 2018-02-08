@@ -22,21 +22,21 @@
 */
 
 #include "script_component.hpp"
+#define CAN_FIRE (ace_player getVariable [QGVAR(disableWeaponsReasons), []]) isEqualTo []
 
 params [["_disableWeapons", false], ["_reason", ""]];
 if (!hasInterface) exitWith {};
 
 // Init
 if (isNil QGVAR(weaponsDisabled)) then {
-    GVAR(weaponsDisabledReasons) = [];
 	GVAR(weaponsDisabled) = _disableWeapons;
 	GVAR(origAdvThrow) = ace_advanced_throwing_enabled;
 
 	// "can" detonate
-	[{!GVAR(weaponsDisabled)}] call ace_explosives_fnc_addDetonateHandler;
+	[{CAN_FIRE}] call ace_explosives_fnc_addDetonateHandler;
 
     ["ace_firedPlayer", {
-      if (!GVAR(weaponsDisabled)) exitWith {};
+      if (CAN_FIRE) exitWith {};
       private _obj = param [6, objNull];
       if (!isNil "ace_frag_fnc_addBlackList") then {
         [_obj] call ace_frag_fnc_addBlackList;
@@ -44,27 +44,25 @@ if (isNil QGVAR(weaponsDisabled)) then {
       deleteVehicle _obj;
     }] call CBA_fnc_addEventHandler;
 
-    GVAR(weaponsEvtId) = [player, "DefaultAction", {GVAR(weaponsDisabled)}, {}] call ace_common_fnc_addActionEventHandler;
+    GVAR(weaponsEvtId) = [ace_player, "DefaultAction", {CAN_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
     ["unit", {
         params ["_new", "_old"];
         [_old, "DefaultAction", GVAR(weaponsEvtId)] call ace_common_fnc_removeActionEventHandler;
-        GVAR(weaponsEvtId) = [_new, "DefaultAction", {GVAR(weaponsDisabled)}, {}] call ace_common_fnc_addActionEventHandler;
+        GVAR(weaponsEvtId) = [_new, "DefaultAction", {CAN_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
     }] call CBA_fnc_addPlayerEventHandler;
 };
 
 _reason = toLower _reason;
-private _reasons = player getVariable [QGVAR(disableWeaponsReasons), []];
+private _reasons = ace_player getVariable [QGVAR(disableWeaponsReasons), []];
 
 if (_disableWeapons) then {
     _reasons pushBackUnique _reason;
     ace_advanced_throwing_enabled = false;
-    GVAR(weaponsDisabled) = true;
 } else {
     _reasons deleteAt (_reasons find _reason);
     if (_reasons isEqualTo []) then {
         ace_advanced_throwing_enabled = GVAR(origAdvThrow);
-        GVAR(weaponsDisabled) = false;
     };
 };
 
-player setVariable [QGVAR(disableWeaponsReasons), _reasons];
+ace_player setVariable [QGVAR(disableWeaponsReasons), _reasons];
