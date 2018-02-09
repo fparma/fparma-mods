@@ -61,6 +61,9 @@ if (hasInterface) then {
             case "whisper": {
                 [{profileName isEqualTo _receiver}, format ["Whisper from %1:", _sender]];
             };
+            case "server": {
+                [{call FUNC(isAdmin) || !isNull (getAssignedCuratorLogic player)}, format ["Notice (%1):", _sender]];
+            };
             default {
                 [{true}, format ["Notice (%1):", _sender]];
             };
