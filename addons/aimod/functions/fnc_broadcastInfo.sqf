@@ -15,8 +15,7 @@ if (_sendTimeout isEqualTo 0) exitWith {
 };
 
 // send it
-TRACE_1("send knowledge", _grp);
-private _nearGrps = allGroups select {side _x isEqualTo side _grp && {count units _x >= 2} && {leader _x distance leader _grp < 300}};
+private _nearGrps = allGroups select {side _x isEqualTo side _grp && {count units _x >= 2} && {leader _x distance _leader < 300}};
 if (_nearGrps isEqualTo []) then {
     // try again in 15s
     TRACE_1("no nearby units", _grp);
