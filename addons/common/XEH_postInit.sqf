@@ -28,12 +28,12 @@ if (isServer) then {
 
 	[{
         GVAR(performanceChecks) = [
-            [{diag_fps < 20}, {format ["fpw is low: %1.", round diag_fps]}],
+            [{diag_fps < 12}, {format ["fpw is low: %1.", round diag_fps]}],
             [{
                 count (allUnits select {simulationEnabled _x && !isPlayer _x}) > 120
             }, {"a lot of active AI (>120)"}],
-            [{count allGroups > 125}, {"a lot of groups (>125)"}],
-            [{count allDead > 50}, {"a lot of corpses (>50)"}]
+            [{count allGroups > 75}, {"a lot of groups (>75)"}],
+            [{count allDead > 40}, {"a lot of corpses (>40)"}]
         ];
 
         GVAR(performancePfh) = [{
