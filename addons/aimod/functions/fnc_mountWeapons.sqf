@@ -29,16 +29,13 @@ private _hasGunnerSeat = {!(allTurrets [_this, false] isEqualTo []) && {!alive (
 if (_emptyVehicles isEqualTo [] && {_notEmptyVehicles isEqualTo []}) exitWith {};
 TRACE_3("considering weapons", count _canMount, _emptyVehicles, _notEmptyVehicles);
 
-private _didMount = false;
 private _mount = {
     params ["_veh"];
     {
         if (random 1 < 0.8) exitWith {
+            TRACE_2("Order mount", typeof _x, typeof _veh);
             _x assignAsGunner _veh;
             [_x] orderGetIn true;
-            _canMount deleteAt _forEachIndex;
-            _didMount = true;
-            TRACE_2("Order mount", typeof _x, typeof _veh);
             _x
         };
         objNull
