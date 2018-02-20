@@ -2,7 +2,7 @@ class CfgAILevelPresets {
   class AILevelLow {
     displayName = "FPA";
     precisionAI = 0.4;
-    skillAI = 0.85;
+    skillAI = 1;
   };
 };
 
