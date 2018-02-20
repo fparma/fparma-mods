@@ -18,5 +18,5 @@ if (isNil QGVAR(state) || {player != _unit}) exitWith {};
 private _respawns = RETDEF(GVAR(respawns),-1);
 if (_respawns >= 0 && {_deaths > _respawns}) then {
     [true] call EFUNC(common,spectate);
-    [QGVAR(onPermaDeath), [_deaths, _timeOfDeath]] call CBA_fnc_localEvent;
+    [QGVAR(onPermaDeath), [_deaths, _timeOfDeath, false]] call CBA_fnc_localEvent;
 };

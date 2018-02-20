@@ -36,7 +36,7 @@ if (hasInterface) then {
             (GVAR(state) getVariable [getPlayerUID player, []]) params [["_deaths", 0], ["_timeOfDeath", 0]];
             if (GVAR(respawns) >= 0 && {_deaths > GVAR(respawns)}) then {
                 [true] call EFUNC(common,spectate);
-                [QGVAR(jipPermaDeath), [_deaths, _timeOfDeath]] call CBA_fnc_localEvent;
+                [QGVAR(onPermaDeath), [_deaths, _timeOfDeath, true]] call CBA_fnc_localEvent;
             };
         }] call CBA_fnc_waitUntilAndExecute;
     };
