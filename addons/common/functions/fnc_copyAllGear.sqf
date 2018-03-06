@@ -13,7 +13,7 @@
 private _var = "_unit";
 private _savedRadios = [];
 private _br = toString [13, 10];
-private _center = missionNameSpace getVariable ["BIS_fnc_arsenal_center", player];
+private _center = missionNameSpace getVariable ["BIS_fnc_arsenal_center", ace_player];
 private _export = [format ['%1%1 ["%2", "example.sqf"]', '/', typeof _center]];
 _export pushBack ('params ["_unit", "_type"];' + _br);
 
