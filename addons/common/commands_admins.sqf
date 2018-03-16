@@ -64,6 +64,6 @@
     [QGVAR(chatMessage), [profileName, format ["%1 weapons", ["enabled", "disabled"] select _disableWeapons], "", "", true]] call CBA_fnc_globalEvent;
 }, "Disable/enable all player weapons. 0 enable weapons, 1 disable weapons. <#fp.weaponlock 0/1>"] call FUNC(registerChatCommand);
 
-["adminend", {
+["end.admin", {
     ["AdminEnd", true] remoteExec [QFUNC(endMissionServer), 2];
 }, "Ends the missions with 'Admin End' ending type"] call FUNC(registerChatCommand);
