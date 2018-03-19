@@ -25,3 +25,11 @@ if (!hasInterface) exitWith {};
 
 #include "commands_admins.sqf"
 #include "commands_clients.sqf"
+
+if (isMultiplayer) then {
+    ["CBA_loadingScreenDone", {
+        [{
+            systemChat "Type #fp.help to see available commands!";
+        }, [], 5] call CBA_fnc_waitAndExecute;
+    }] call CBA_fnc_addEventHandler;
+};
