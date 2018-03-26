@@ -10,7 +10,7 @@ if (isServer) then {
 if (isDedicated) then {
 	[{
         GVAR(performanceChecks) = [
-            [{diag_fps < 12}, {format ["fpw is low: %1.", round diag_fps]}],
+            [{diag_fps < 12}, {format ["fps is low: %1.", round diag_fps]}],
             [{
                 count (allUnits select {simulationEnabled _x && !isPlayer _x}) > 120
             }, {"a lot of active AI (>120)"}],
