@@ -14,7 +14,7 @@ if (isDedicated) then {
             [{
                 count (allUnits select {simulationEnabled _x && !isPlayer _x}) > 120
             }, {"a lot of active AI (>120)"}],
-            [{count allGroups > 75}, {"a lot of groups (>75)"}],
+            [{count (allGroups select {units _x isEqualTo []}) > 30}, {"a lot of empty groups (>30)"}],
             [{count allDead > 40}, {"a lot of corpses (>40)"}]
         ];
 
