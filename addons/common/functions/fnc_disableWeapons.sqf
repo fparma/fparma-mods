@@ -14,7 +14,7 @@
 
   Examples:
     (begin)
-      [true] call fpa_common_fnc_disableWeapons;
+      [true, "a_reason"] call fpa_common_fnc_disableWeapons;
     (end)
 
     Author:
