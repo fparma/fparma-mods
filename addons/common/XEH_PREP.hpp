@@ -25,3 +25,4 @@ PREP(trackKills);
 PREP(translateSide);
 PREP(validateMission);
 PREP(vehicleName);
+PREP(initRagdoll);
