@@ -35,6 +35,7 @@ GVAR(ragdollRunning) = true;
         _unit setUnconscious false;
     };
 }] call CBA_fnc_addEventHandler;
+
 player addEventHandler ["AnimChanged", {
     params ["_unit","_anim"];
     if(!GVAR(ragdolling)) exitWith {}; // disable ragdolling mid mission
@@ -44,17 +45,22 @@ player addEventHandler ["AnimChanged", {
         [_unit, [_unit] call ace_common_fnc_getDeathAnim, 2, true] call ace_common_fnc_doAnimation;
         if(isMultiplayer) then {
             // combat sync issues
-            [{
-                params["_unit"];
-                if(!(_unit getVariable ["ACE_isUnconscious",false])) then {
-                    // unit is not unconscious anymore
-                    _unit setUnconscious false;
-                } else {
-                    // unit is still unconscious, reapply death animation just in case and sync it again to all clients
-                    [_unit, [_unit] call ace_common_fnc_getDeathAnim, 2, true] call ace_common_fnc_doAnimation;
-                };
-            }, [_unit]] call CBA_fnc_waitAndExecute;
+            [
+                {
+                    params ["_unit"];
+                    if(!(_unit getVariable ["ACE_isUnconscious",false])) then {
+                        // unit is not unconscious anymore
+                        _unit setUnconscious false;
+                    } else {
+                        // unit is still unconscious, reapply death animation just in case and sync it again to all clients
+                        [_unit, [_unit] call ace_common_fnc_getDeathAnim, 2, true] call ace_common_fnc_doAnimation;
+                    };
+                }, // code
+                [_unit], // params
+                5 // delay
+            ] call CBA_fnc_waitAndExecute;
         };
     };
 }];
+
 player createDiaryRecord ["CBA_docs", ["Ragdolling", "Ragdolling has been activated in this mission! Better check those bodies!"]];
