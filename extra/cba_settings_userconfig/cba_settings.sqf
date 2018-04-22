@@ -31,7 +31,7 @@ force force ace_common_checkPBOsCheckAll = false;
 force force ace_common_checkPBOsWhitelist = "[]";
 
 // ACE Cookoff
-force ace_cookoff_enable = true;
+force force ace_cookoff_enable = false;
 force ace_cookoff_enableAmmobox = true;
 force ace_cookoff_enableAmmoCookoff = true;
 force force ace_cookoff_ammoCookoffDuration = 0.2;
@@ -227,7 +227,7 @@ force ace_arsenal_allowDefaultLoadouts = true;
 force ace_arsenal_allowSharedLoadouts = true;
 ace_arsenal_EnableRPTLog = false;
 
-//ACEX 
+//ACEX
 force force acex_sitting_enable = true;
 force force acex_viewrestriction_mode = 0;
 force acex_viewrestriction_modeSelectiveFoot = 0;
