@@ -35,6 +35,6 @@ if (!isNil "_positionOrCode") then {
     };
 };
 
-[player, true] call EFUNC(commmon,disableWeapons);
+[true, "jrm"] call EFUNC(commmon,disableWeapons);
 [false] call EFUNC(common,spectate);
-[{[player, false] call EFUNC(commmon,disableWeapons)}, [], 3] call CBA_fnc_waitAndExecute;
+[{[false, "jrm"] call EFUNC(commmon,disableWeapons)}, [], 3] call CBA_fnc_waitAndExecute;
