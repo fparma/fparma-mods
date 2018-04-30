@@ -1,5 +1,21 @@
 #include "script_component.hpp"
 
+// Zeus events
+["ModuleCurator_F", "init", {
+    params ["_module"];
+    _module addEventHandler ["CuratorPinged", {
+        params ["_curator", "_unit"];
+        systemChat format ["Pinged by %1", name _unit];
+    }];
+
+    _module addEventHandler ["CuratorGroupPlaced", {
+        params ["", "_group"];
+        if (local _group) then {
+            _group deleteGroupWhenEmpty true;
+        };
+    }];
+}, false, [], true] call CBA_fnc_addClassEventHandler;
+
 if (isServer) then {
     [] call FUNC(trackKills);
 
