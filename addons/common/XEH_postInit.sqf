@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 // Zeus events
-["ModuleCurator_F", "init", {
+["ModuleCurator_F", "initPost", {
     params ["_module"];
     _module addEventHandler ["CuratorPinged", {
         params ["_curator", "_unit"];
