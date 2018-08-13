@@ -23,7 +23,7 @@ if (isServer && {_resetState}) then {
 if (!hasInterface || {!RETDEF((ace_spectator_isSet),false)}) exitWith {};
 
 // Exiting spectator is up to the function
-if (_positionOrCode isEqualType {}) exitWith {
+if (!isNil "_positionOrCode" && {_positionOrCode isEqualType {}}) exitWith {
     [player] call _positionOrCode;
 };
 
@@ -35,6 +35,6 @@ if (!isNil "_positionOrCode") then {
     };
 };
 
-[player, true] call EFUNC(commmon,disableWeapons);
+[true, "jrm"] call EFUNC(common,disableWeapons);
 [false] call EFUNC(common,spectate);
-[{[player, false] call EFUNC(commmon,disableWeapons)}, [], 3] call CBA_fnc_waitAndExecute;
+[{[false, "jrm"] call EFUNC(common,disableWeapons)}, [], 3] call CBA_fnc_waitAndExecute;

@@ -1,14 +1,40 @@
 #include "script_component.hpp"
 
+// Zeus events
+["ModuleCurator_F", "initPost", {
+    params ["_module"];
+    _module addEventHandler ["CuratorPinged", {
+        params ["_curator", "_unit"];
+        systemChat format ["Pinged by %1", name _unit];
+    }];
+
+    _module addEventHandler ["CuratorGroupPlaced", {
+        params ["", "_group"];
+        if (local _group) then {
+            _group deleteGroupWhenEmpty true;
+        };
+    }];
+}, false, [], true] call CBA_fnc_addClassEventHandler;
+
 if (isServer) then {
     [] call FUNC(trackKills);
 
     GVAR(chatChannel) = radioChannelCreate [[0.9,0.1,0.1,1], "Chat", "Chat", [], true];
     publicVariable QGVAR(chatChannel);
+    
+    // Unassign curator on disconnect to fix bug where zeus doesn't work when reconnecting
+    addMissionEventHandler ["HandleDisconnect",{
+        params ["_unit"];
+        private _module = getAssignedCuratorLogic _unit;
+        if (isNull _module) exitWith {};
+        unassignCurator _module;
+
+        false
+    }];
 };
 
 if (isDedicated) then {
-	[{
+    [{
         GVAR(performanceChecks) = [
             [{diag_fps < 12}, {format ["fps is low: %1.", round diag_fps]}],
             [{

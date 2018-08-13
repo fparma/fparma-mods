@@ -9,7 +9,7 @@
 
     Examples:
     (begin)
-        [] call fpa_common_fnc_initRagdoll;
+      [] call fpa_common_fnc_initRagdoll;
     (end)
 
     Returns:

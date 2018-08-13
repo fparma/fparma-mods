@@ -31,7 +31,7 @@ force force ace_common_checkPBOsCheckAll = false;
 force force ace_common_checkPBOsWhitelist = "[]";
 
 // ACE Cookoff
-force ace_cookoff_enable = true;
+force force ace_cookoff_enable = false;
 force ace_cookoff_enableAmmobox = true;
 force ace_cookoff_enableAmmoCookoff = true;
 force force ace_cookoff_ammoCookoffDuration = 0.2;
@@ -49,7 +49,7 @@ force ace_frag_maxTrack = 8;
 force ace_frag_maxTrackPerFrame = 8;
 
 // ACE Interaction
-force ace_interaction_enableTeamManagement = true;
+ace_interaction_enableTeamManagement = true;
 force force ace_interaction_disableNegativeRating = true;
 
 // ACE Mag repack
@@ -58,8 +58,8 @@ force force ace_magazinerepack_timePerMagazine = 1.5;
 force force ace_magazinerepack_timePerBeltLink = 4;
 
 // ACE Map
-force ace_map_BFT_Enabled = true;
-force ace_map_BFT_Interval = 15;
+ace_map_BFT_Enabled = true;
+ace_map_BFT_Interval = 15;
 force force ace_map_BFT_HideAiGroups = true;
 force ace_map_BFT_ShowPlayerNames = false;
 force force ace_map_mapIllumination = true;
@@ -83,17 +83,18 @@ force force ace_medical_medicSetting = 1;
 force force ace_medical_increaseTrainingInLocations = true;
 force ace_medical_enableFor = 0;
 force force ace_medical_enableOverdosing = false;
-force ace_medical_bleedingCoefficient = 1;
-force ace_medical_painCoefficient = 1;
+ace_medical_bleedingCoefficient = 1;
+ace_medical_painCoefficient = 1;
 force force ace_medical_enableAdvancedWounds = false;
 force force ace_medical_enableVehicleCrashes = true;
 force force ace_medical_enableScreams = true;
-force ace_medical_playerDamageThreshold = 2;
-force ace_medical_AIDamageThreshold = 1;
-force ace_medical_enableUnconsciousnessAI = 0;
+ace_medical_playerDamageThreshold = 2;
+ace_medical_AIDamageThreshold = 1;
+ace_medical_enableUnconsciousnessAI = 0;
 force force ace_medical_remoteControlledAI = false;
-force ace_medical_preventInstaDeath = true;
-force ace_medical_enableRevive = 0;
+ace_medical_preventInstaDeath = true;
+
+ace_medical_enableRevive = 0;
 force ace_medical_maxReviveTime = 600;
 force ace_medical_amountOfReviveLives = -1;
 force ace_medical_allowDeadBodyMovement = true;
@@ -112,10 +113,10 @@ force force ace_medical_menu_allow = 1;
 force force ace_medical_menu_maxRange = 5;
 
 // ACE MK6 Mortar
-force ace_mk6mortar_airResistanceEnabled = false;
-force ace_mk6mortar_allowComputerRangefinder = true;
-force ace_mk6mortar_allowCompass = true;
-force ace_mk6mortar_useAmmoHandling = true;
+ace_mk6mortar_airResistanceEnabled = false;
+ace_mk6mortar_allowComputerRangefinder = true;
+ace_mk6mortar_allowCompass = true;
+ace_mk6mortar_useAmmoHandling = true;
 
 // ACE Nametags
 ace_nametags_showNamesForAI = false;
@@ -126,6 +127,7 @@ ace_nametags_playerNamesViewDistance = 12;
 force ace_nightvision_disableNVGsWithSights = false;
 force ace_nightvision_fogScaling = 0.2;
 force ace_nightvision_effectScaling = 0.3;
+force ace_nightvision_noiseScaling = 0.3;
 force ace_nightvision_aimDownSightsBlur = 0.5;
 
 // ACE Overheating
@@ -136,18 +138,18 @@ force ace_overheating_enabled = true;
 
 // ACE Pylons
 force ace_pylons_enabled = true;
-force ace_pylons_searchDistance = 15;
-force ace_pylons_timePerPylon = 5;
+ace_pylons_searchDistance = 15;
+ace_pylons_timePerPylon = 5;
 force ace_pylons_rearmNewPylons = true;
 force ace_pylons_requireEngineer = false;
 force ace_pylons_requireToolkit = false;
 
 // ACE Rearm
-force ace_rearm_level = 1;
+ace_rearm_level = 1;
 force ace_rearm_supply = 0;
 
 // ACE Refuel
-force ace_refuel_rate = 2;
+ace_refuel_rate = 2;
 force force ace_refuel_hoseLength = 20;
 
 // ACE Respawn
@@ -155,21 +157,21 @@ force ace_respawn_savePreDeathGear = false;
 force force ace_respawn_removeDeadBodiesDisconnected = true;
 
 // ACE Repair
-force ace_repair_engineerSetting_repair = 0;
-force ace_repair_engineerSetting_wheel = 0;
-force ace_repair_repairDamageThreshold = 0.75;
-force ace_repair_repairDamageThreshold_engineer = 0.4;
-force ace_repair_consumeItem_toolKit = 0;
-force ace_repair_fullRepairLocation = 3;
-force ace_repair_engineerSetting_fullRepair = 1;
-force ace_repair_addSpareParts = true;
-force ace_repair_wheelRepairRequiredItems = 0;
+ace_repair_engineerSetting_repair = 0;
+ace_repair_engineerSetting_wheel = 0;
+ace_repair_repairDamageThreshold = 0.75;
+ace_repair_repairDamageThreshold_engineer = 0.4;
+ace_repair_consumeItem_toolKit = 0;
+ace_repair_fullRepairLocation = 3;
+ace_repair_engineerSetting_fullRepair = 1;
+ace_repair_addSpareParts = true;
+ace_repair_wheelRepairRequiredItems = 0;
 force force ace_repair_autoShutOffEngineWhenStartingRepair = true;
 
 // ACE Spect
-force ace_spectator_enableAI = false;
-force ace_spectator_restrictModes = 0;
-force ace_spectator_restrictVisions = 0;
+ace_spectator_enableAI = false;
+ace_spectator_restrictModes = 0;
+ace_spectator_restrictVisions = 0;
 
 // ACE VD
 force ace_viewdistance_enabled = false;
@@ -180,12 +182,12 @@ ace_viewdistance_limitViewDistance = 0;
 ace_viewdistance_objectViewDistanceCoeff = 0;
 
 // ACE Weather
-force ace_weather_enabled = true;
+ace_weather_enabled = true;
 force ace_weather_updateInterval = 60;
 force ace_weather_windSimulation = false;
 
 // ACE Wind deflection
-force ace_winddeflection_enabled = true;
+ace_winddeflection_enabled = true;
 force ace_winddeflection_vehicleEnabled = true;
 force ace_winddeflection_simulationInterval = 0.05;
 
@@ -201,7 +203,7 @@ force ace_captives_allowSurrender = true;
 force ace_captives_requireSurrenderAi = false;
 
 // ACE Expl
-force ace_explosives_requireSpecialist = false;
+ace_explosives_requireSpecialist = false;
 force ace_explosives_punishNonSpecialists = true;
 force ace_explosives_explodeOnDefuse = true;
 
@@ -214,7 +216,7 @@ force force ace_zeus_revealMines = 0;
 force force ace_zeus_autoAddObjects = true;
 
 // ACE Adv ballistic
-force ace_advanced_ballistics_enabled = true;
+ace_advanced_ballistics_enabled = true;
 force ace_advanced_ballistics_muzzleVelocityVariationEnabled = true;
 force ace_advanced_ballistics_ammoTemperatureEnabled = true;
 force ace_advanced_ballistics_barrelLengthInfluenceEnabled = true;
@@ -227,7 +229,7 @@ force ace_arsenal_allowDefaultLoadouts = true;
 force ace_arsenal_allowSharedLoadouts = true;
 ace_arsenal_EnableRPTLog = false;
 
-//ACEX 
+//ACEX
 force force acex_sitting_enable = true;
 force force acex_viewrestriction_mode = 0;
 force acex_viewrestriction_modeSelectiveFoot = 0;
