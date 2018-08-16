@@ -17,7 +17,7 @@
 */
 #include "script_component.hpp"
 
-if(!hasInterface) exitWith {};
+if (!hasInterface) exitWith {};
 
 // no need to initialise ragdolling twice!
 if (RETDEF(GVAR(ragdollRunning),false)) exitWith {};
@@ -25,13 +25,13 @@ GVAR(ragdollRunning) = true;
 
 ["ace_unconscious", {
     params [["_unit", objNull],["_state", false]];
-    if(!GVAR(ragdolling)) exitWith {}; // ragdolling if it's active
-    if((!(isPlayer _unit) && {!GVAR(ragdoll_ai)})) exitWith {}; // only ragdoll players and only ragdolling AI if that option is set active
-    if(_state && {(isNull objectParent _unit) && {!([_unit] call ace_medical_fnc_isBeingCarried) && {!([_unit] call ace_medical_fnc_isBeingDragged)}}}) then {
+    if (!GVAR(ragdolling)) exitWith {}; // ragdolling if it's active
+    if ((!(isPlayer _unit) && {!GVAR(ragdoll_ai)})) exitWith {}; // only ragdoll players and only ragdolling AI if that option is set active
+    if (_state && {(isNull objectParent _unit) && {!([_unit] call ace_medical_fnc_isBeingCarried) && {!([_unit] call ace_medical_fnc_isBeingDragged)}}}) then {
         // ragdoll unit
         _unit setUnconscious true;
     };
-    if(!_state) then {
+    if (!_state) then {
         // unit woke up before ragdolling was finished
         _unit setUnconscious false;
     };

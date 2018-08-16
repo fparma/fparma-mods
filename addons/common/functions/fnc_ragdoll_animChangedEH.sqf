@@ -18,13 +18,13 @@
 */
 #include "script_component.hpp"
 params ["_unit","_anim"];
-if(!(_unit getVariable ["ACE_isUnconscious",false])) exitWith {}; // do not run if unit is conscious
-if(!(alive _unit) &&  // do not run if unit is dead
+if (!(_unit getVariable ["ACE_isUnconscious",false])) exitWith {}; // do not run if unit is conscious
+if (!(alive _unit) ||  // do not run if unit is dead
 	{!(isNull objectParent _unit)}) exitWith {}; // do not run if unit in any vehicle
 
 _anim = toLower(_anim);
 
-if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animations
+if ((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animations
   {_anim == "unconsciousoutprone" || // catch another ragdoll recovery animation
   {(_anim find "amov") == 0 }} ) then { // catch any movement or stance type of animation (player specific clause)
   _anim = "unconscious";
@@ -37,7 +37,7 @@ if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animation
   // array of array for each animation
   private _animHolder = [];
 
-  if(isNil QGVAR(ragdoll_animHolder)) then {
+  if (isNil QGVAR(ragdoll_animHolder)) then {
     GVAR(ragdoll_animHolder) = [];
     // mod version found
     GVAR(ragdoll_animHolder) pushBack ["kka3_unc_2","kka3_unc_2_1","kka3_unc_7_1","kka3_unc_8_1","kka3_unc_5_1","kka3_unc_6_1"]; // 0 on their back
@@ -46,12 +46,12 @@ if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animation
     GVAR(ragdoll_animHolder) pushBack ["kka3_unc_5","kka3_unc_6","KIA_driver_boat01","kka3_unc_1_1","kka3_unc_7_1","kka3_unc_8_1"]; // 3 on their left shoulder
   };
 
-  if( _heightDif > 0.2 || _heightDif < -0.2) then {
+  if (_heightDif > 0.2 || _heightDif < -0.2) then {
     // unit on side
     // first one is right shoulder, second one is on left shoulder
     _anim = selectRandom ([GVAR(ragdoll_animHolder)#2 , GVAR(ragdoll_animHolder)#3] select (_heightDif < -0.2));
   } else {
-    if(_vRightShoulder#0 > _vLeftShoulder#0) then {
+    if (_vRightShoulder#0 > _vLeftShoulder#0) then {
       // unit on their belly
       _anim = selectRandom (GVAR(ragdoll_animHolder)#1);
     } else {
@@ -64,8 +64,8 @@ if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animation
   [
     {
       params ["_unit","_anim"];
-      if(_unit getVariable ["ACE_isUnconscious",false]) then {
-        if(_unit == ace_player) then {
+      if (_unit getVariable ["ACE_isUnconscious",false]) then {
+        if (_unit == ace_player) then {
           ["ace_common_switchMove", [_unit, _anim]] call CBA_fnc_globalEvent;
         } else {
           _unit switchMove _anim;
@@ -78,7 +78,7 @@ if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animation
   [
     {
       params ["_unit","_anim"];
-      if(_unit getVariable ["ACE_isUnconscious",false]) then {
+      if (_unit getVariable ["ACE_isUnconscious",false]) then {
         _unit setUnconscious false;
       };
     }, // code
@@ -87,27 +87,27 @@ if((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animation
   ] call CBA_fnc_waitAndExecute;
 
   // combat network sync issues
-  if(isMultiplayer) then {
+  if (isMultiplayer) then {
     [
       {
         params ["_unit","_anim"];
-        if((_unit getVariable ["ACE_isUnconscious",false]) && // unit still unconscious
+        if ((_unit getVariable ["ACE_isUnconscious",false]) && // unit still unconscious
           {(isNull objectParent _unit) && // unit not in a car
           {!([_unit] call ace_medical_fnc_isBeingCarried) && // not being carried
           {!([_unit] call ace_medical_fnc_isBeingDragged)}}} // not being dragged
           ) then {
           // reapply unconscious animation just in case
-          if(_unit == ace_player) then {
+          if (_unit == ace_player) then {
             ["ace_common_switchMove", [_unit, _anim]] call CBA_fnc_globalEvent;
           } else {
             _unit switchMove _anim;
           };
         };
-        if(!(_unit getVariable ["ACE_isUnconscious",false])) then {
+        if (!(_unit getVariable ["ACE_isUnconscious",false])) then {
           // unit is not unconscious anymore
           _unit setUnconscious false;
           // free unit of unconscious animation if it is still trapped in it
-          if(local _unit) then {
+          if (local _unit) then {
             ["ace_common_switchMove", [_unit, (animationState _unit)]] call CBA_fnc_globalEvent;
           };
         };
