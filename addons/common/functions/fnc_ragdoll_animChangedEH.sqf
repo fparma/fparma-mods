@@ -38,25 +38,25 @@ if ((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animatio
   private _animHolder = [];
 
   if (isNil QGVAR(ragdoll_animHolder)) then {
-    GVAR(ragdoll_animHolder) = [];
+    GVAR(ragdoll_animHolder) = call CBA_fnc_createNamespace;
     // mod version found
-    GVAR(ragdoll_animHolder) pushBack ["kka3_unc_2","kka3_unc_2_1","kka3_unc_7_1","kka3_unc_8_1","kka3_unc_5_1","kka3_unc_6_1"]; // 0 on their back
-    GVAR(ragdoll_animHolder) pushBack ["kka3_unc_1", "kka3_unc_3", "kka3_unc_4","unconscious","KIA_passenger_boat_holdleft","kka3_unc_3_1","kka3_unc_4_1"]; // 1 on their belly
-    GVAR(ragdoll_animHolder) pushBack ["kka3_unc_7","kka3_unc_8","kka3_unc_6_1","kka3_unc_5_1"]; // 2 on their right shoulder
-    GVAR(ragdoll_animHolder) pushBack ["kka3_unc_5","kka3_unc_6","KIA_driver_boat01","kka3_unc_1_1","kka3_unc_7_1","kka3_unc_8_1"]; // 3 on their left shoulder
+    GVAR(ragdoll_animHolder) setVariable [QGVAR(ragdoll_back), ["kka3_unc_2","kka3_unc_2_1","kka3_unc_7_1","kka3_unc_8_1","kka3_unc_5_1","kka3_unc_6_1"]]; // 0 on their back
+    GVAR(ragdoll_animHolder) setVariable [QGVAR(ragdoll_belly), ["kka3_unc_1", "kka3_unc_3", "kka3_unc_4","unconscious","KIA_passenger_boat_holdleft","kka3_unc_3_1","kka3_unc_4_1"]]; // 1 on their belly
+    GVAR(ragdoll_animHolder) setVariable [QGVAR(ragdoll_rightShoulder), ["kka3_unc_7","kka3_unc_8","kka3_unc_6_1","kka3_unc_5_1"]]; // 2 on their right shoulder
+    GVAR(ragdoll_animHolder) setVariable [QGVAR(ragdoll_leftShoulder), ["kka3_unc_5","kka3_unc_6","KIA_driver_boat01","kka3_unc_1_1","kka3_unc_7_1","kka3_unc_8_1"]]; // 3 on their left shoulder
   };
 
   if (_heightDif > 0.2 || _heightDif < -0.2) then {
     // unit on side
     // first one is right shoulder, second one is on left shoulder
-    _anim = selectRandom ([GVAR(ragdoll_animHolder)#2 , GVAR(ragdoll_animHolder)#3] select (_heightDif < -0.2));
+    _anim = selectRandom ([(GVAR(ragdoll_animHolder) getVariable QGVAR(ragdoll_rightShoulder)), (GVAR(ragdoll_animHolder) getVariable QGVAR(ragdoll_leftShoulder))] select (_heightDif < -0.2));
   } else {
     if (_vRightShoulder#0 > _vLeftShoulder#0) then {
       // unit on their belly
-      _anim = selectRandom (GVAR(ragdoll_animHolder)#1);
+      _anim = selectRandom (GVAR(ragdoll_animHolder) getVariable QGVAR(ragdoll_belly));
     } else {
       // unit on their back
-      _anim = selectRandom (GVAR(ragdoll_animHolder)#0);
+      _anim = selectRandom (GVAR(ragdoll_animHolder) getVariable QGVAR(ragdoll_back));
     };
   };
 
@@ -92,9 +92,9 @@ if ((_anim find "unconsciousrevive") != -1 || // catch ragdoll recovery animatio
       {
         params ["_unit","_anim"];
         if ((_unit getVariable ["ACE_isUnconscious",false]) && // unit still unconscious
-          {(isNull objectParent _unit) && // unit not in a car
-          {!([_unit] call ace_medical_fnc_isBeingCarried) && // not being carried
-          {!([_unit] call ace_medical_fnc_isBeingDragged)}}} // not being dragged
+            {(isNull objectParent _unit) && // unit not in a car
+            {!([_unit] call ace_medical_fnc_isBeingCarried) && // not being carried
+            {!([_unit] call ace_medical_fnc_isBeingDragged)}}} // not being dragged
           ) then {
           // reapply unconscious animation just in case
           if (_unit == ace_player) then {
