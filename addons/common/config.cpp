@@ -13,6 +13,7 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 #include "CfgDebriefing.hpp"
+#include "CfgMovesMaleSdr.hpp"
 
 class RscButton;
 class RscText;

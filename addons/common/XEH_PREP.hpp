@@ -26,3 +26,4 @@ PREP(translateSide);
 PREP(validateMission);
 PREP(vehicleName);
 PREP(initRagdoll);
+PREP(ragdoll_animChangedEH);
