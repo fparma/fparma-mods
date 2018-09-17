@@ -14,6 +14,12 @@
   _this call EFUNC(ai,forceMoveWp);
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(driveOnPath), {
+    TRACE_1("args", _this);
+    params [["_unit", objNull], ["_paths", []]];
+    _unit setDriveOnPath _paths;
+}] call CBA_fnc_addEventHandler;
+
 INFO_1("Ares loaded: %1", !isNil "Ares_fnc_RegisterCustomModule");
 if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 
@@ -88,3 +94,10 @@ if (!hasInterface || isNil "Ares_fnc_RegisterCustomModule") exitWith {};
 [AI, "Patrol area", {["PATROL", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Defend area", {["DEFEND", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
 [AI, "Force move WP", {["FORCE_WP", _this select 1] call FUNC(ai)}] call Ares_fnc_RegisterCustomModule;
+
+[AI, "Drive in straight line", {
+    params ["", "_obj"];
+    if (!(_obj isKindOf "LandVehicle") || !alive _obj) exitWith {["ERROR: Select vehicle"] call ares_fnc_ShowZeusMessage};
+
+    [_obj, FUNC(setDrivePath), "Select path (hold ctrl for more)"] call ace_zeus_fnc_getModuleDestination;
+}] call Ares_fnc_RegisterCustomModule;
