@@ -5,7 +5,14 @@
     params ["_module"];
     _module addEventHandler ["CuratorPinged", {
         params ["_curator", "_unit"];
-        systemChat format ["Pinged by %1", name _unit];
+        private _zeus = getAssignedCuratorUnit _curator;
+        if !(isNull _zeus) then {
+            if (_zeus == player) then {
+                systemChat format ["Pinged by %1", name _unit];
+            } else {
+                systemChat "Ping received!";
+            };
+        };
     }];
 
     _module addEventHandler ["CuratorGroupPlaced", {
