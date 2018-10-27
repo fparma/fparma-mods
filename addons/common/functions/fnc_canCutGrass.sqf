@@ -7,7 +7,7 @@
 * 0 - unit
 *
 * Example:
-* [_unit] call fpa_common_fnc_cutGrass
+* [_unit] call fpa_common_fnc_canCutGrass
 *
 */
 
