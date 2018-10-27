@@ -29,10 +29,10 @@ if (!hasInterface) exitWith {};
 
 // Init
 if (isNil QGVAR(weaponsEvtId)) then {
-	GVAR(origAdvThrow) = missionNamespace getVariable ["ace_advanced_throwing_enabled", false];
+    GVAR(origAdvThrow) = missionNamespace getVariable ["ace_advanced_throwing_enabled", false];
 
-	// "can" detonate
-	[{CAN_FIRE}] call ace_explosives_fnc_addDetonateHandler;
+    // "can" detonate
+    [{CAN_FIRE}] call ace_explosives_fnc_addDetonateHandler;
 
     ["ace_firedPlayer", {
       if (CAN_FIRE) exitWith {};

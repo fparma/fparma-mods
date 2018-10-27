@@ -2,6 +2,8 @@ PREP(addToCurators);
 PREP(cameraAtPosition);
 PREP(copyAllGear);
 PREP(clearCargo);
+PREP(canCutGrass);
+PREP(cutGrass);
 PREP(disableWeapons);
 PREP(endMissionServer);
 PREP(exportCfgGroups);

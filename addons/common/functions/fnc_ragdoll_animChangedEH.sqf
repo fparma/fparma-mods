@@ -20,7 +20,7 @@
 params ["_unit","_anim"];
 if (!(_unit getVariable ["ACE_isUnconscious",false])) exitWith {}; // do not run if unit is conscious
 if (!(alive _unit) ||  // do not run if unit is dead
-	{!(isNull objectParent _unit)}) exitWith {}; // do not run if unit in any vehicle
+    {!(isNull objectParent _unit)}) exitWith {}; // do not run if unit in any vehicle
 
 _anim = toLower(_anim);
 

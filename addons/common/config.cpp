@@ -14,6 +14,7 @@ class CfgPatches {
 #include "CfgEventHandlers.hpp"
 #include "CfgDebriefing.hpp"
 #include "CfgMovesMaleSdr.hpp"
+#include "CfgVehicles.hpp"
 
 class RscButton;
 class RscText;
