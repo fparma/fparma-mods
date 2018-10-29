@@ -1,9 +1,8 @@
 /*
 * Author: Cuel
-* Get all endings available
+* Saves drive paths info, or orders it
 *
-*
-* Public: Yes
+* Public: No
 */
 
 #include "script_component.hpp"
