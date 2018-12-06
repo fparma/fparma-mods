@@ -15,6 +15,7 @@ class CfgPatches {
 #include "CfgDebriefing.hpp"
 #include "CfgMovesMaleSdr.hpp"
 #include "CfgVehicles.hpp"
+#include "CfgVideoOptions.hpp"
 
 class RscButton;
 class RscText;
