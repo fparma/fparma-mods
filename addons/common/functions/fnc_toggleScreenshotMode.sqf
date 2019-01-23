@@ -17,11 +17,13 @@ if (isNil QGVAR(screenshotState)) then {
     GVAR(screenshotState) = [
         missionNamespace getVariable ["STHud_UIMode", 0],
         missionNamespace getVariable ["ace_nametags_showplayernames", 0],
+        missionNamespace getVariable ["diwako_dui_toggled_off", false],
         shownHUD
     ];
 
     missionNamespace setVariable ["STHud_UIMode", 0];
     missionNamespace setVariable ["ace_nametags_showplayernames", 0];
+    missionNamespace setVariable ["diwako_dui_toggled_off", true];
     showHUD (shownHUD apply {false});
 
     hintSilent "";
@@ -29,6 +31,7 @@ if (isNil QGVAR(screenshotState)) then {
 } else {
     missionNamespace setVariable ["STHud_UIMode", GVAR(screenshotState) deleteAt 0];
     missionNamespace setVariable ["ace_nametags_showplayernames", GVAR(screenshotState) deleteAt 0];
+    missionNamespace setVariable ["diwako_dui_toggled_off", GVAR(screenshotState) deleteAt 0];
     showHUD (GVAR(screenshotState) param [0, []]);
     showChat true;
     GVAR(screenshotState) = nil;
