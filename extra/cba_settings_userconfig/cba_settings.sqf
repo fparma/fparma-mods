@@ -74,8 +74,8 @@ force ace_markers_movableMarkersEnabled = true;
 force force ace_markers_moveRestriction = 3;
 
 //ACE Medical
-ace_medical_level = 1; //Medical Level (1 = basic, 2 = advanced)
-ace_medical_preventInstaDeath = true; //Prevent Instant Death
+force ace_medical_level = 1; //Medical Level (1 = basic, 2 = advanced)
+force ace_medical_preventInstaDeath = true; //Prevent Instant Death
 
 force force ace_medical_blood_enabledFor = 2; //Enable Blood Drops (Enabled)
 force force ace_medical_medicSetting = 1; //Medic Setting (Normal)
