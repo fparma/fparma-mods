@@ -26,7 +26,7 @@ if (isNil QGVAR(drawNamesId) && {!(GVAR(vehicleNames) isEqualTo [])}) then {
                 {objectParent ACE_player != _veh}) then
             {
                 private _drawPos = _veh modelToWorldVisual [0,0, _height];
-                drawIcon3D ["", _color, _drawPos, 0, 0, 0, _text, 2, 0.04, "PuristaMedium"];
+                drawIcon3D ["", _color, _drawPos, 0, 0, 0, _text, 2, 0.04, "PuristaBold"];
             };
         } forEach GVAR(vehicleNames);
     }];
