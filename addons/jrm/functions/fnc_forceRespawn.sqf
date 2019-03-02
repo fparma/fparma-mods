@@ -20,7 +20,7 @@ if (isServer && {_resetState}) then {
     publicVariable QGVAR(state);
 };
 
-if (!hasInterface || {!RETDEF((ace_spectator_isSet),false)}) exitWith {};
+if (!hasInterface || {!RETDEF((ace_spectator_isSet),false)} || {side group player == sidelogic}) exitWith {};
 
 // Exiting spectator is up to the function
 if (!isNil "_positionOrCode" && {_positionOrCode isEqualType {}}) exitWith {
