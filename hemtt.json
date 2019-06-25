@@ -2,6 +2,7 @@
   "name": "fparma-mods",
   "prefix": "fpa",
   "author": "FP Mod team",
+  "version": "fpmods_v3",
   "files": [
     "mod.cpp"
   ]
