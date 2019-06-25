@@ -1,0 +1,8 @@
+{
+  "name": "fparma-mods",
+  "prefix": "fpa",
+  "author": "FP Mod team",
+  "files": [
+    "mod.cpp"
+  ]
+}
