@@ -120,9 +120,6 @@ force ace_medical_useCondition_PAK = 0; //Condition PAK (Anytime)
 ace_medical_consumeItem_SurgicalKit = 0; //Consume Surgical Kit (No)
 ace_medical_medicSetting_SurgicalKit = 1; //Allow Surgical Kit (Medics Only)
 ace_medical_useCondition_SurgicalKit = 0; //Condition Surgical Kit (Anytime)
-ace_medical_painEffectType = 0; //Pain Effect Type (Color Flashing)
-ace_medical_menuTypeStyle = 0; //Style of Medical Menu (3d Selection)
-ace_medical_menu_openAfterTreatment = true; //Reopen Medical Menu (Yes)
 
 // ACE MK6 Mortar
 ace_mk6mortar_airResistanceEnabled = false;
