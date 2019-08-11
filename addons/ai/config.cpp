@@ -5,10 +5,7 @@ class CfgPatches {
         units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {
-            "A3_Weapons_F_Exp",
-            "fpa_main"
-        };
+        requiredAddons[] = {"fpa_main"};
         author[] = {"Cuel"};
         VERSION_CONFIG;
     };
