@@ -15,7 +15,8 @@ if (hasInterface) exitWith {
     "76561198009543420", // croguy
     "76561197997030424", // Terry
     "76561197980328722", // diwako
-    "76561197997590271" // G4rrus
+    "76561197997590271", // G4rrus
+    "76561198023751916" // Exabit
   ];
 
   _isModerator || IS_ADMIN_LOGGED // return
