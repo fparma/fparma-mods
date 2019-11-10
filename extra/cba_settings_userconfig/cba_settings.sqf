@@ -16,11 +16,14 @@ force ace_switchunits_enableSwitchUnits = false;
 force ace_vehiclelock_vehicleStartingLockState = -1;
 force ace_scopes_enabled = true;
 force ace_noradio_enabled = true;
-force force ace_advanced_fatigue_enabled = false;
 force force ace_microdagr_mapDataAvailable = 2;
 force force ace_gforces_enabledFor = 1;
 force force ace_cargo_enable = true;
 force ace_cargo_paradropTimeCoefficent = 2;
+
+// ACE Advanced Fatigue
+force ace_advanced_fatigue_enabled = false;
+force ace_advanced_fatigue_swayFactor = 0.4;
 
 // ACE Common
 force force ace_common_checkPBOsAction = 0;
@@ -247,7 +250,7 @@ force acex_viewrestriction_modeSelectiveAir = 0;
 force acex_viewrestriction_modeSelectiveSea = 0;
 
 // ACEX HC
-force force acex_headless_enabled = true;
+force acex_headless_enabled = true;
 force force acex_headless_delay = 60;
 force force acex_headless_endMission = 2;
 force acex_headless_log = false;
