@@ -23,12 +23,7 @@ force ace_cargo_paradropTimeCoefficent = 2;
 
 // ACE Advanced Fatigue
 force ace_advanced_fatigue_enabled = false;
-force ace_advanced_fatigue_enableStaminaBar = true;
-force ace_advanced_fatigue_loadFactor = 1;
-force ace_advanced_fatigue_performanceFactor = 1;
-force ace_advanced_fatigue_recoveryFactor = 1;
 force ace_advanced_fatigue_swayFactor = 0.4;
-force ace_advanced_fatigue_terrainGradientFactor = 1;
 
 // ACE Common
 force force ace_common_checkPBOsAction = 0;
