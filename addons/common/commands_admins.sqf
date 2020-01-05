@@ -52,7 +52,7 @@
     if (isNull _unit) exitWith {systemChat "Could not find unit"};
 
     [QGVAR(chatMessage), [profileName, format ["fully healed %1", name _unit], "admin", "", false]] call CBA_fnc_globalEvent;
-    [player, _unit] call ace_medical_fnc_treatmentAdvanced_fullHeal;
+    [player, _unit] call ace_medical_treatment_fnc_fullHeal;
     _unit setDamage 0;
 }, "Fully heals unit <#fp.heal Cuel>"] call FUNC(registerChatCommand);
 

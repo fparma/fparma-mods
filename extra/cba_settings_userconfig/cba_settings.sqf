@@ -76,53 +76,40 @@ force force ace_map_gestures_interval = 0.05;
 force ace_markers_movableMarkersEnabled = true;
 force force ace_markers_moveRestriction = 3;
 
-//ACE Medical
-force ace_medical_level = 1; //Medical Level (1 = basic, 2 = advanced)
-force ace_medical_preventInstaDeath = true; //Prevent Instant Death
+// ACE Medical
+force force ace_medical_treatment_advancedBandages = false;
+force force ace_medical_treatment_advancedMedication = false;
+force force ace_medical_treatment_woundReopening = false;
 
-force force ace_medical_blood_enabledFor = 2; //Enable Blood Drops (Enabled)
-force force ace_medical_medicSetting = 1; //Medic Setting (Normal)
-force force ace_medical_increaseTrainingInLocations = true; //Location Boost Training (Yes)
-force force ace_medical_enableFor = 0; //Enabled for (Player only)
-force force ace_medical_enableOverdosing = false; //Overdosing (No)
-force force ace_medical_enableAdvancedWounds = false; //Advanced Wounds (No)
-force force ace_medical_enableScreams = true; //Enable Screams (Yes)
-force force ace_medical_enableVehicleCrashes = true; //Vehicle Crashes (Yes)
-force force ace_medical_remoteControlledAI = true; //Treat Remote Controlled AI as AI (Yes)
-force force ace_medical_allowLitterCreation = true; //Enable Litter (Yes)
-force force ace_medical_litterCleanUpDelay = 300; //Litter Lifetime (300 seconds)
-force force ace_medical_litterSimulationDetail = 2; //Litter Simulation Level (Medium)
-force force ace_medical_medicSetting_basicEpi = 0; //Allow Epinephrine (Everyone)
-force force ace_medical_medicSetting_PAK = 0; //Allow PAK (Everyone)
-force force ace_medical_useLocation_basicEpi = 0; //Allow Epi-pen (Everyone)
-force force ace_medical_useLocation_PAK = 0; //Allow PAK Location (Everywhere)
-force force ace_medical_useLocation_SurgicalKit = 4; //Allow Surgical Kit Location (Disabled)
-force force ace_medical_healHitPointAfterAdvBandage = true; //Bandages Heal Crippling (Yes)
-force force ace_medical_keepLocalSettingsSynced = true; //Keep Unit Synced (Yes)
-force force ace_medical_painIsOnlySuppressed = false; //Only Suppress Pain (No)
-force force ace_medical_allowUnconsciousAnimationOnTreatment = true; //Unconscious Animation On Treatment (Yes)
-force force ace_medical_moveUnitsFromGroupOnUnconscious = false; //Move Unconscious Units From Group (No)
-force force ace_medical_ai_enabledFor = 2; //Medical AI Enabled (Yes)
-force force ace_medical_delayUnconCaptive = 2; //Delay AI Cease Fire (2 seconds)
-force force ace_medical_menu_allow = 1; //Allow Medical Menu (Yes)
-force force ace_medical_menu_useMenu = 1; //Use Medical Menu (Yes)
-force force ace_medical_menu_maxRange = 5; //Medical Menu Max Range (5 meters)
-
-force ace_medical_bleedingCoefficient = 1; //Bleeding Coefficient (1)
-force ace_medical_painCoefficient = 1; //Pain Coefficient (1)
-force ace_medical_AIDamageThreshold = 1; //AI Damage Threshold (1)
-force ace_medical_playerDamageThreshold = 2; //Player Damage Threshold
-force ace_medical_enableUnconsciousnessAI = 0; //AI Unconsciousness (Disabled)
-
-force ace_medical_amountOfReviveLives = -1; //Revive Lives (None)
-force ace_medical_enableRevive = 0; //Enable Revive (Disabled)
-force ace_medical_maxReviveTime = 600; //Max Revive Time (600 seconds)
-force ace_medical_consumeItem_PAK = 0; //Consume PAK (No)
-force ace_medical_useCondition_PAK = 0; //Condition PAK (Anytime)
-
-ace_medical_consumeItem_SurgicalKit = 0; //Consume Surgical Kit (No)
-ace_medical_medicSetting_SurgicalKit = 1; //Allow Surgical Kit (Medics Only)
-ace_medical_useCondition_SurgicalKit = 0; //Condition Surgical Kit (Anytime)
+force ace_medical_ai_enabledFor = 1; // only hc and server
+force ace_medical_AIDamageThreshold = 1;
+force ace_medical_playerDamageThreshold = 2;
+force ace_medical_blood_enabledFor = 2; // blood drops are players only
+force ace_medical_fatalDamageSource = 0; // only large hits and vital organs
+force ace_medical_fractures = 0; // enable fractures
+force ace_medical_gui_enableMedicalMenu = 1;
+force ace_medical_gui_maxDistance = 5;
+force ace_medical_gui_openAfterTreatment = true;
+force ace_medical_ivFlowRate = 2;
+force ace_medical_limping = 1; // limp on open wounds
+force ace_medical_spontaneousWakeUpChance = 1; // boosted wake up chance
+force ace_medical_spontaneousWakeUpEpinephrineBoost = 30; // epi boost on wake up chance
+force ace_medical_statemachine_AIUnconsciousness = false; // disallow AI to be unconscious
+force ace_medical_statemachine_cardiacArrestTime = 900; // 15 minutes
+force ace_medical_statemachine_fatalInjuriesAI = 0; // AI can die any time
+force ace_medical_statemachine_fatalInjuriesPlayer = 1; // players can only die during cardiac arrest
+force ace_medical_treatment_advancedDiagnose = true;
+force ace_medical_treatment_allowSelfIV = 1; // allow giving IV to yourself
+force ace_medical_treatment_allowSharedEquipment = 1; // use medics stuff first
+force ace_medical_treatment_clearTraumaAfterBandage = true; // clear trauma on bandage
+force ace_medical_treatment_consumePAK = 0; // do not consume pak
+force ace_medical_treatment_convertItems = 0; // convert vanilla items to ace medical
+force ace_medical_treatment_cprSuccessChance = 1; // chance to stabilize heart rate
+force ace_medical_treatment_holsterRequired = 0; // not needed to holster or lower gun
+force ace_medical_treatment_locationEpinephrine = 0; // allow everywhere
+force ace_medical_treatment_locationPAK = 0; // allow everywhere
+force ace_medical_treatment_medicEpinephrine = 0; // allow for everyone
+force ace_medical_treatment_medicPAK = 1; // only allow for medics
 
 // ACE MK6 Mortar
 ace_mk6mortar_airResistanceEnabled = false;
