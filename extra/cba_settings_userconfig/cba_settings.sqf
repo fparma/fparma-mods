@@ -110,7 +110,7 @@ force ace_medical_treatment_locationEpinephrine = 0; // allow everywhere
 force ace_medical_treatment_locationPAK = 0; // allow everywhere
 force ace_medical_treatment_medicEpinephrine = 0; // allow for everyone
 force ace_medical_treatment_medicPAK = 1; // only allow for medics
-force ace_medical_painCoefficient = 0.5; // pain coefficient
+force ace_medical_painCoefficient = 1; // pain coefficient
 force ace_medical_bleedingCoefficient = 0.5; // bleeding coeficient
 
 // ACE MK6 Mortar
