@@ -83,7 +83,7 @@ force force ace_medical_treatment_woundReopening = false;
 
 force ace_medical_ai_enabledFor = 0; // no one
 force ace_medical_AIDamageThreshold = 1;
-force ace_medical_playerDamageThreshold = 3;
+force ace_medical_playerDamageThreshold = 5;
 force ace_medical_blood_enabledFor = 2; // blood drops are players only
 force ace_medical_fatalDamageSource = 1; // trauma
 force ace_medical_fractures = 0; // enable fractures
