@@ -77,7 +77,7 @@ force ace_markers_movableMarkersEnabled = true;
 force force ace_markers_moveRestriction = 3;
 
 // ACE Medical
-force force ace_medical_treatment_advancedBandages = false;
+force force ace_medical_treatment_advancedBandages = 0;
 force force ace_medical_treatment_advancedMedication = false;
 force force ace_medical_treatment_woundReopening = false;
 
@@ -90,7 +90,7 @@ force ace_medical_fractures = 0; // enable fractures
 force ace_medical_gui_enableMedicalMenu = 1;
 force ace_medical_gui_maxDistance = 5;
 force ace_medical_gui_openAfterTreatment = true;
-force ace_medical_ivFlowRate = 2.5;
+force ace_medical_ivFlowRate = 3.5;
 force ace_medical_limping = 1; // limp on open wounds
 force ace_medical_spontaneousWakeUpChance = 1; // boosted wake up chance
 force ace_medical_spontaneousWakeUpEpinephrineBoost = 10; // epi boost on wake up chance
@@ -99,6 +99,7 @@ force ace_medical_statemachine_cardiacArrestTime = 900; // 15 minutes
 force ace_medical_statemachine_fatalInjuriesAI = 0; // AI can die any time
 force ace_medical_statemachine_fatalInjuriesPlayer = 1; // players can only die during cardiac arrest
 force ace_medical_treatment_advancedDiagnose = true;
+force ace_medical_treatment_medicIV = 0; // anyone can give blood
 force ace_medical_treatment_allowSelfIV = 1; // allow giving IV to yourself
 force ace_medical_treatment_allowSharedEquipment = 1; // use medics stuff first
 force ace_medical_treatment_clearTraumaAfterBandage = true; // clear trauma on bandage
