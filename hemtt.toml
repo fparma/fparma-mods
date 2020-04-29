@@ -2,8 +2,6 @@ name = "fparma-mods"
 prefix = "fpa"
 author = "FP Mod team"
 modname ="fp_core"
-keyname = "fp_core_v{{version}}"
-signame = "fp_core_v{{version}}"
 files = [
     "mod.cpp",
     "mod.cpp",

@@ -9,3 +9,6 @@ texHeaders.bin
 Thumbs.db
 
 node_modules
+
+keys/*
+.hemtt/local
