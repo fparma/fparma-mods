@@ -6,7 +6,7 @@
         _pos = _obj call CBA_fnc_getPos;
     };
 
-    [_pos, true] call EFUNC(common,cameraAtPosition);
+    [_pos, false] call EFUNC(common,cameraAtPosition);
 }] call Ares_fnc_RegisterCustomModule;
 
 [UTIL, "Eject cargo", {

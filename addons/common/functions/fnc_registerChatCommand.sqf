@@ -45,11 +45,20 @@ if (isNil QGVAR(chatCommands)) then {
     }, "all"] call CBA_fnc_registerChatCommand;
 };
 
-if (_cmd find "." isEqualTo -1) then {
-    _cmd = format ["fp.%1", _cmd];
+private _fpCmd = _cmd;
+if (_fpCmd find "." isEqualTo -1) then {
+    _fpCmd = format ["fp.%1", _fpCmd];
 };
 
-GVAR(chatCommands) setVariable [_cmd, [_description, _code, _adminOnly, _argsForCode]];
-[_cmd, {
+GVAR(chatCommands) setVariable [_fpCmd, [_description, _code, _adminOnly, _argsForCode]];
+
+[_fpCmd, {
     [param [0, ""], _thisArgs] call FUNC(runChatCommand);
-}, "all", _cmd] call CBA_fnc_registerChatCommand;
+}, "all", _fpCmd] call CBA_fnc_registerChatCommand;
+
+if !(_fpCmd isEqualTo _cmd) then {
+    systemChat format ["registering %1", _cmd];
+    [_cmd, {
+        [param [0, ""], _thisArgs] call FUNC(runChatCommand);
+    }, "all", _fpCmd] call CBA_fnc_registerChatCommand;
+};

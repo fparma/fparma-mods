@@ -1,15 +1,17 @@
-["whisper", {
-    params [["_str", ""]];
-    private _split = (_str splitString " ");
-    private _to = _split param [0, ""];
-    _split deleteAt 0;
-    private _msg = _split joinString " ";
-    if (_to isEqualTo "" || _msg isEqualTo "") exitWith {systemChat "Invalid arguments"};
+{
+    [_x, {
+        params [["_str", ""]];
+        private _split = (_str splitString " ");
+        private _to = _split param [0, ""];
+        _split deleteAt 0;
+        private _msg = _split joinString " ";
+        if (_to isEqualTo "" || _msg isEqualTo "") exitWith {systemChat "Invalid arguments"};
 
-    private _receiver = [_to] call FUNC(getPlayer);
-    if (isNull _receiver) exitWith {systemChat "Could not find receiver"};
-    [_msg, "whisper", name _receiver] call FUNC(sendChatMessage);
-}, "Send a whisper chat message only visible for receiver <#fp.whisper Cuel yo what is up>", false] call FUNC(registerChatCommand);
+        private _receiver = [_to] call FUNC(getPlayer);
+        if (isNull _receiver) exitWith {systemChat "Could not find receiver"};
+        [_msg, "whisper", name _receiver] call FUNC(sendChatMessage);
+    }, "Send a whisper chat message only visible for receiver <#fp.whisper Cuel yo what is up>", false] call FUNC(registerChatCommand);
+} forEach ["w", "whisper"];
 
 ["zeus", {
     params [["_msg", ""]];

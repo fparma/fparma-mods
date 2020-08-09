@@ -8,7 +8,7 @@
         _pos = ASLToATL _pos;
     };
 
-    [_pos, true] call EFUNC(common,cameraAtPosition);
+    [_pos, false] call EFUNC(common,cameraAtPosition);
 }] call zen_custom_modules_fnc_register;
 
 [UTIL, "Eject cargo", {
