@@ -8,7 +8,7 @@ ADDON = false;
     ["Enable ACRE gestures", "Enable ACRE gestures"],
     FP_SETTINGS,
     true,
-    true
+    false
 ] call CBA_fnc_addSetting;
 
 ADDON = true;

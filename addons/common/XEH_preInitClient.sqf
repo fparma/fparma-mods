@@ -13,6 +13,7 @@ if (!hasInterface) exitWith {};
     ''
 ] call CBA_fnc_addKeybind;
 
+GVAR(lastMessageFrom) = "";
 [QGVAR(chatMessage), {
     params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];
 
@@ -43,5 +44,9 @@ if (!hasInterface) exitWith {};
         if (GVAR(customChatPingSound) && _ping) then {
             playSound "3DEN_notificationWarning";
         };
+
+        if !((toLower _type) isEqualTo "server") then {
+            GVAR(lastMessageFrom) = _sender;
+        }
     };
 }] call CBA_fnc_addEventHandler;

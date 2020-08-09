@@ -24,3 +24,15 @@
     if (_msg isEqualTo "") exitWith {};
     [_msg, "admin"] call FUNC(sendChatMessage);
 }, "Send a chat message only visible for fparma moderators <#fp.admin I require assistance>", false] call FUNC(registerChatCommand);
+
+{
+    [_x, {
+        params [["_msg", ""]];
+        _msg = [_msg] call CBA_fnc_trim;
+        if (_msg isEqualTo "") exitWith {};
+        private _receiver = [GVAR(lastMessageFrom)] call FUNC(getPlayer);
+        if (isNull _receiver) exitWith {systemChat "Could not find receiver"};
+        if (_receiver isEqualTo ([] call CBA_fnc_currentUnit)) exitWith {systemChat "Messaging yourself is not helping"};
+        [_msg, "whisper", name _receiver] call FUNC(sendChatMessage);
+    }, "Send a whisper reply to the person you last recevied a message from <#fp.r OR #fp.reply Hello stop pinging me!>", false] call FUNC(registerChatCommand);
+} forEach ["r", "reply"];
