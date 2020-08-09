@@ -57,7 +57,6 @@ GVAR(chatCommands) setVariable [_fpCmd, [_description, _code, _adminOnly, _argsF
 }, "all", _fpCmd] call CBA_fnc_registerChatCommand;
 
 if !(_fpCmd isEqualTo _cmd) then {
-    systemChat format ["registering %1", _cmd];
     [_cmd, {
         [param [0, ""], _thisArgs] call FUNC(runChatCommand);
     }, "all", _fpCmd] call CBA_fnc_registerChatCommand;
