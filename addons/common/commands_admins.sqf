@@ -42,7 +42,7 @@
     private _unit = _name call FUNC(getPlayer);
     if (isNull _unit) exitWith {systemChat "Could not find unit"};
 
-    [getPos _unit, true] call EFUNC(common,cameraAtPosition);
+    [getPos _unit, false] call EFUNC(common,cameraAtPosition);
     [QGVAR(chatMessage), [profileName, format ["created camera at %1", name _unit], "admin", "", false]] call CBA_fnc_globalEvent;
 }, "Creates camera at unit, acre spectator enabled <#fp.cam Cuel>"] call FUNC(registerChatCommand);
 
@@ -56,13 +56,15 @@
     _unit setDamage 0;
 }, "Fully heals unit <#fp.heal Cuel>"] call FUNC(registerChatCommand);
 
-["weaponlock", {
-    params [["_str", ""]];
-    private _disableWeapons = [false, true] select (_str isEqualTo "1");
-    [_disableWeapons, "admin"] remoteExecCall [QFUNC(disableWeapons)];
+{
+    [_x, {
+        params [["_str", ""]];
+        private _disableWeapons = [false, true] select (_str isEqualTo "1");
+        [_disableWeapons, "admin"] remoteExecCall [QFUNC(disableWeapons)];
 
-    [QGVAR(chatMessage), [profileName, format ["%1 weapons", ["enabled", "disabled"] select _disableWeapons], "", "", true]] call CBA_fnc_globalEvent;
-}, "Disable/enable all player weapons. 0 enable weapons, 1 disable weapons. <#fp.weaponlock 0/1>"] call FUNC(registerChatCommand);
+        [QGVAR(chatMessage), [profileName, format ["%1 weapons", ["enabled", "disabled"] select _disableWeapons], "", "", true]] call CBA_fnc_globalEvent;
+    }, "Disable/enable all player weapons. 0 enable weapons, 1 disable weapons. <#fp.weaponlock 0/1>"] call FUNC(registerChatCommand);
+} forEach ["wl", "weaponlock"];
 
 ["adminend", {
     ["AdminEnd", true] remoteExec [QFUNC(endMissionServer), 2];
