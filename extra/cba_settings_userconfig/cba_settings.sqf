@@ -32,7 +32,7 @@ force force ace_common_checkPBOsCheckAll = false;
 force force ace_common_checkPBOsWhitelist = "[]";
 
 // ACE Cookoff
-force force ace_cookoff_enable = false;
+force force ace_cookoff_enable = true;
 force ace_cookoff_enableAmmobox = true;
 force ace_cookoff_enableAmmoCookoff = true;
 force force ace_cookoff_ammoCookoffDuration = 0.2;
