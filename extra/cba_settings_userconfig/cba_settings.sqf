@@ -50,6 +50,13 @@ force ace_frag_reflectionsEnabled = false;
 force ace_frag_maxTrack = 8;
 force ace_frag_maxTrackPerFrame = 8;
 
+// ACE Hearing
+force ace_hearing_autoAddEarplugsToUnits = false;
+force force ace_hearing_disableEarRinging = true;
+force force ace_hearing_enableCombatDeafness = false;
+force ace_hearing_enabledForZeusUnits = false;
+
+
 // ACE Interaction
 ace_interaction_enableTeamManagement = true;
 force force ace_interaction_disableNegativeRating = true;
