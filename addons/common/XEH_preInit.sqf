@@ -6,6 +6,14 @@ ADDON = false;
 #include "XEH_PREP.hpp"
 
 GVAR(vehicleNames) = [];
+GVAR(admins) = compileFinal str [
+    "76561197970604257", // cuel
+    "76561198009543420", // croguy
+    "76561197997030424", // Terry
+    "76561197980328722", // diwako
+    "76561197997590271", // G4rrus
+    "76561198023751916" // Exabit
+];
 
 [
     QGVAR(displayVehicleNamesSetting), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
