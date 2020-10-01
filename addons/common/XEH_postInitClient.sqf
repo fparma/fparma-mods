@@ -32,6 +32,12 @@ if (isMultiplayer) then {
             systemChat "Type #fp.help to see available commands!";
         }, [], 5] call CBA_fnc_waitAndExecute;
     }] call CBA_fnc_addEventHandler;
+
+    if (getPlayerUID player in (call GVAR(admins))) then {
+        [true, true] call acre_api_fnc_godModeConfigureAccess;
+        [call GVAR(admins), 2, 0] call acre_sys_godmode_fnc_modifyGroup;
+        ["Admin", 2] call acre_api_fnc_godModeNameGroup;
+    };
 };
 
 {
