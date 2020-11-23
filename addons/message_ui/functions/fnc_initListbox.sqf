@@ -43,7 +43,7 @@ private _playerData = [];
     private _name = [_x,true] call BIS_fnc_getName;
     _playerData pushBack [toUpper _name, _name];
 } forEach ([] call CBA_fnc_players);
-_playerData sort false;
+_playerData sort true;
 
 {
     _x call _fnc_addEntry;
