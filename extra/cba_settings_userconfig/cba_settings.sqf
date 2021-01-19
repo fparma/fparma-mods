@@ -1,11 +1,11 @@
 // ACRE
 force force acre_sys_core_ts3ChannelSwitch = true;
 // force force acre_sys_core_interference = false;
-force force acre_sys_core_fullDuplex = true;
+force acre_sys_core_fullDuplex = false;
 force force acre_sys_core_ignoreAntennaDirection = true;
 force force acre_sys_core_automaticAntennaDirection = true
 // force acre_sys_core_revealToAI = 1;
-// acre_sys_core_terrainLoss = 0.5;
+force acre_sys_core_terrainLoss = 0.5;
 
 // ACE Misc
 ace_common_persistentLaserEnabled = false;
