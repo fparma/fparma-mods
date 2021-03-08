@@ -42,6 +42,15 @@ GVAR(admins) = compileFinal str [
     nil // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
 ] call CBA_Settings_fnc_init;
 
+[
+    QGVAR(useFpDuplex),
+    "CHECKBOX",
+    ["Use FP Duplex", "Displays message if stepping on or being stepped on while talking on long range radio. Makes sender who spoke first stop transmitting."],
+    FP_SETTINGS,
+    true,
+    true
+] call CBA_Settings_fnc_init;
+
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;
