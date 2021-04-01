@@ -11,8 +11,8 @@ GVAR(admins) = compileFinal str [
     "76561198009543420", // croguy
     "76561197997030424", // Terry
     "76561197980328722", // diwako
-    "76561197997590271", // G4rrus
-    "76561198023751916" // Exabit
+    "76561198023751916", // Exabit
+    "76561198005696037"  // Pilotguy
 ];
 
 [
@@ -40,6 +40,15 @@ GVAR(admins) = compileFinal str [
     FP_SETTINGS, // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     true, // data for this setting
     nil // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
+] call CBA_Settings_fnc_init;
+
+[
+    QGVAR(useFpDuplex),
+    "CHECKBOX",
+    ["Use FP Duplex", "Displays message if stepping on or being stepped on while talking on long range radio. Makes sender who spoke first stop transmitting."],
+    FP_SETTINGS,
+    true,
+    true
 ] call CBA_Settings_fnc_init;
 
 [QGVAR(endMission), {

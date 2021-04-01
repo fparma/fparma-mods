@@ -47,3 +47,23 @@ if (isMultiplayer) then {
         };
     }] call CBA_fnc_addEventHandler;
 } foreach ["bandageLocal", "checkBloodPressureLocal", "cprLocal", "fullHealLocal", "ivBagLocal", "medicationLocal", "splintLocal", "tourniquetLocal"];
+
+["acre_remoteStartedSpeaking", {
+    _this call FUNC(remoteStartedSpeaking);
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(acreInterruped), {
+    params ["_unit"];
+    systemChat format [selectRandom [
+        "HEY! You stepped on %1 (%2)!!!",
+        "HEY! You cut off %1's (%2) radio message!!!",
+        "HEY! I hope this was important becasue %1 (%2) was still talking!!!"
+    ], name _unit, groupId (group _unit)];
+    playSound "3DEN_notificationWarning";
+}] call CBA_fnc_addEventHandler;
+
+// set default speaking step to second lowest
+[{[] call acre_api_fnc_isInitialized}, {
+    acre_sys_gui_volumeLevel = 0.25;
+    acre_sys_gui_volumeLevel call acre_sys_gui_fnc_setVoiceCurveLevel;
+}, []] call CBA_fnc_waitUntilAndExecute;
