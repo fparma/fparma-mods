@@ -16,7 +16,6 @@
     };
 
     if (_name isEqualTo "") exitWith {
-        systemChat "opening dialog";
         [] call FUNC(openDialog);
     };
 
