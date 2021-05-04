@@ -63,7 +63,7 @@ if (isMultiplayer) then {
 }] call CBA_fnc_addEventHandler;
 
 // set default speaking step to second lowest
-[{[] call acre_api_fnc_isInitialized}, {
+[{time > 0.1}, {
     acre_sys_gui_volumeLevel = 0.25;
     acre_sys_gui_volumeLevel call acre_sys_gui_fnc_setVoiceCurveLevel;
 }, []] call CBA_fnc_waitUntilAndExecute;
