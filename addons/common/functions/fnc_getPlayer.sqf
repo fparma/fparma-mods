@@ -28,8 +28,6 @@
 */
 params ["_name"];
 _name = toLower _name;
-private _players = [] call CBA_fnc_players;
-private _index = _players findIf {_name in toLower(name _x)};
-
-if (_index isEqualTo -1) exitWith {objNull};
-_players select _index;
+private _players = ([] call CBA_fnc_players) select {_name in toLower(name _x)};
+if ((count _players) isEqualTo 1) exitWith {_players select 0};
+objNull
