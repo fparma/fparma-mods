@@ -74,8 +74,8 @@
     params [["_name", ""]];
     private _unit = player;
     if (_name isNotEqualTo "") then {
-        _unit = _name call FUNC(getPlayer);
-        if (isNull _unit) exitWith {systemChat "Could not find unit"};
+        _unit = [_name] call FUNC(getPlayer);
     };
-    [_unit, player] call FUNC(createZeus);
+    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    [QGVAR(createzeus), [_unit, player]] call CBA_fnc_serverEvent;
 }, "Create zeus for given name. No name means create Zeus for yourself"] call FUNC(registerChatCommand);

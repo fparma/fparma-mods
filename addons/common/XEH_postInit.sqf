@@ -28,7 +28,7 @@ if (isServer) then {
 
     GVAR(chatChannel) = radioChannelCreate [[0.9,0.1,0.1,1], "Chat", "Chat", [], true];
     publicVariable QGVAR(chatChannel);
-    
+
     // Unassign curator on disconnect to fix bug where zeus doesn't work when reconnecting
     addMissionEventHandler ["HandleDisconnect",{
         params ["_unit"];
@@ -38,6 +38,8 @@ if (isServer) then {
 
         false
     }];
+
+    [QGVAR(createZeus), {call FUNC(createZeus)}] call CBA_fnc_addEventHandler;
 };
 
 if (isDedicated) then {
