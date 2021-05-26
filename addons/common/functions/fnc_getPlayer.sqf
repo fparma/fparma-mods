@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
     Function: fpa_common_fnc_getPlayer
 
@@ -25,16 +26,10 @@
     Author:
         Cuel 2015-04-21
 */
-
-#include "script_component.hpp"
-
 params ["_name"];
-private _matches = [];
-{
-  if ([_name, name _x] call BIS_fnc_inString) then {
-    _matches pushBack _x;
-  };
-} forEach ([] call CBA_fnc_players);
+_name = toLower _name;
+private _players = [] call CBA_fnc_players;
+private _index = _players findIf {_name in toLower(name _x)};
 
-if (count _matches == 1) exitWith {_matches select 0};
-objNull
+if (_index isEqualTo -1) exitWith {objNull};
+_players select _index;
