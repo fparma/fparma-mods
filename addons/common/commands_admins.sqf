@@ -69,3 +69,13 @@
 ["adminend", {
     ["AdminEnd", true] remoteExec [QFUNC(endMissionServer), 2];
 }, "Ends the missions with 'Admin End' ending type"] call FUNC(registerChatCommand);
+
+["createzeus", {
+    params [["_name", ""]];
+    private _unit = player;
+    if (_name isNotEqualTo "") then {
+        _unit = [_name] call FUNC(getPlayer);
+    };
+    if (isNull _unit) exitWith {systemChat "Could not find unit"};
+    [QGVAR(createzeus), [_unit, player]] call CBA_fnc_serverEvent;
+}, "Create zeus for given name. No name means create Zeus for yourself"] call FUNC(registerChatCommand);
