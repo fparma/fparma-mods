@@ -44,7 +44,7 @@ if (isNull (getAssignedCuratorLogic _unit)) exitWith {
 
     _curator addEventHandler ["CuratorPinged", {
         private _curator = _this select 0;
-        if (isNull (getAssignedCuratorUnit _curator)) then {
+        if !(alive (getAssignedCuratorUnit _curator)) then {
             unassignCurator _curator;
             deleteVehicle _curator;
         };

@@ -56,3 +56,28 @@ addMissionEventHandler ["Ended", {
   params ["_type"];
   format ["Mission ended. (%1)", _type] call FUNC(serverLog);
 }];
+
+if (isDedicated) then {
+    [QEGVAR(common,chatMessage), {
+        params [["_sender", "NONE"], ["_msg", ""], ["_type", "NONE"], ["_receiver", "NONE"]];
+        if (_type == "server") exitWith {};
+        switch (toLower _type) do {
+            case "admin": {
+                private _msg = format ['(ADMIN WHISPER) From %1: "%2"', _sender, _msg];
+                INFO(_msg);
+            };
+            case "zeus": {
+                private _msg = format ['(ZEUS WHISPER) From %1: "%2"', _sender, _msg];
+                INFO(_msg);
+            };
+            case "whisper": {
+                private _msg = format ['(WHISPER) From %1 to %2: "%3"', _sender, _receiver, _msg];
+                INFO(_msg);
+            };
+            default {
+                private _msg = format ['(UNHANDLED WHISPER) Type %4 From %1 to %2: "%3"', _sender, _receiver, _msg, _type];
+                INFO(_msg);
+            };
+        };
+    }] call CBA_fnc_addEventHandler;
+};

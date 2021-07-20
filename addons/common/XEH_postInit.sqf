@@ -40,6 +40,8 @@ if (isServer) then {
     }];
 
     [QGVAR(createZeus), {call FUNC(createZeus)}] call CBA_fnc_addEventHandler;
+
+    missionNamespace setVariable [QGVAR(allowChatMessages), true, true];
 };
 
 if (isDedicated) then {

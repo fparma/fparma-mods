@@ -29,3 +29,4 @@ PREP(validateMission);
 PREP(vehicleName);
 PREP(remoteStartedSpeaking);
 PREP(createZeus);
+PREP(handleChatMessage);
