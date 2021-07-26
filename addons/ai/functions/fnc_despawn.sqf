@@ -34,16 +34,13 @@ if (isNil QGVAR(savedGroups)) then {
 
 private _isReCache = _group isEqualType "";
 private _groups = [];
-private _savedGroups = [];
 private _newGroups = [];
 if (_isReCache) then {
     _id = _group;
     _groups = GVAR(activeGroups) getOrDefault [_id, []];
-    _savedGroups = GVAR(savedGroups) getOrDefault [_id, []];
 
     if !(_groups isEqualTo []) then {
         GVAR(activeGroups) set [_id, []];
-        GVAR(savedGroups) set [_id, []];
     };
 } else {
     if !(_group isEqualType grpNull) then {
