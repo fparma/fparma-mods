@@ -24,10 +24,10 @@ if (isNil QGVAR(activeGroups)) then {
 
 private _groups = GVAR(savedGroups) getOrDefault [_id, []];
 private _hcs = entities "HeadlessClient_F";
-if ((count _hcs) > 0) then {
+if (_hcs isNotEqualTo []) then {
     [QGVAR(spawnGroups), [_groups], selectRandom _hcs] call CBA_fnc_targetEvent;
 } else {
-    [QGVAR(spawnGroups), [_groups]] call CBA_fnc_serverEvent;
+    [QGVAR(spawnGroups), [_groups]] call CBA_fnc_localEvent;
 };
 
 true

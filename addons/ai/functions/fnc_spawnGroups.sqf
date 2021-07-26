@@ -1,7 +1,7 @@
 /*
     Function: fpa_ai_fnc_spawnGroups
     API:
-        Any
+        Server or HC
     Description:
         Part of spawn/despawn functions, used by fpa_ai_fnc_spawn to delegate the actual spawning to possibly other clients
     Parameters:
@@ -15,7 +15,6 @@
 */
 
 #include "script_component.hpp"
-if (!isServer || {isNil QGVAR(savedGroups)}) exitWith {false};
 if (!params [["_groups", [], [[]]]]) exitWith {false};
 
 private _newGroups = [];
