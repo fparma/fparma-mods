@@ -6,16 +6,17 @@
         Part of spawn/despawn functions, used by fpa_ai_fnc_spawn to delegate the actual spawning to possibly other clients
     Parameters:
     _groups - Array of groups formatted as used by spawning/despawning system
+    _id - The id to associate with the spawned groups
     Example:
     (begin example)
-        [_groups] call fpa_ai_fnc_spawnGroups;
+        [_groups, _id] call fpa_ai_fnc_spawnGroups;
     (end)
     Author:
     Tinter 2021-07-26
 */
 
 #include "script_component.hpp"
-if (!params [["_groups", [], [[]]]]) exitWith {false};
+if (!params [["_groups", [], [[]]], ["_id", "", [""]]]) exitWith {false};
 
 private _newGroups = [];
 
@@ -128,9 +129,9 @@ private _newGroups = [];
     _callParams append _params;
     _callParams call _init;
 
-    _newGroups pushBack _group;
+    _newGroups pushBack [_group, _params, _init];
 } forEach _groups;
 
-[QGVAR(updateActiveGroups), [_newGroups]] call CBA_fnc_serverEvent;
+[QGVAR(updateActiveGroups), [_newGroups, _id]] call CBA_fnc_serverEvent;
 
 true

@@ -6,7 +6,7 @@ ADDON = false;
 
 if (isServer) then {
     [QGVAR(updateActiveGroups), {
-        params ["_newGroups"];
+        params ["_newGroups", "_id"];
         private _spawnedGroups = GVAR(activeGroups) getOrDefault [_id, []];
         _spawnedGroups append _newGroups;
         GVAR(activeGroups) set [_id, _spawnedGroups];

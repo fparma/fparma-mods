@@ -58,11 +58,12 @@ if (_id == "" ) exitWith {
 };
 {
     private _group = _x;
-    if ((units _group) isEqualTo []) then {deleteGroup _group; continue};
     if (_isReCache) then {
-        _init = _savedGroups#_forEachIndex#0#1;
-        _params = _savedGroups#_forEachIndex#0#2;
+        _group = _x#0;
+        _params = _x#1;
+        _init = _x#2;
     };
+    if ((units _group) isEqualTo []) then {deleteGroup _group; continue};
 
     private _info = [side _group, _init, _params, currentWaypoint _group, combatMode _group, combatBehaviour _group, formation _group, speedMode _group];
 
