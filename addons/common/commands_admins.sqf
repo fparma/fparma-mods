@@ -79,3 +79,13 @@
     if (isNull _unit) exitWith {systemChat "Could not find unit"};
     [QGVAR(createzeus), [_unit, player]] call CBA_fnc_serverEvent;
 }, "Create zeus for given name. No name means create Zeus for yourself"] call FUNC(registerChatCommand);
+
+{
+    [_x, {
+        params [["_str", ""]];
+        private _disable = [false, true] select (_str isEqualTo "1");
+        missionNamespace setVariable [QGVAR(allowChatMessages), !_disable, true];
+
+        [QGVAR(chatMessage), [profileName, format ["Side/Global chat has been %1!", ["unlocked", "locked"] select _disable], "", "", true]] call CBA_fnc_globalEvent;
+    }, "Disable/enable all player chat messages in global and side chat. 0 enable weapons, 1 disable weapons. <#fp.chatlock 0/1>"] call FUNC(registerChatCommand);
+} forEach ["cl", "chatlock"];

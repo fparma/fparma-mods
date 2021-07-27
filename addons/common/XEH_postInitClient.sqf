@@ -38,6 +38,10 @@ if (isMultiplayer) then {
         [call GVAR(admins), 2, 0] call acre_sys_godmode_fnc_modifyGroup;
         ["Admin", 2] call acre_api_fnc_godModeNameGroup;
     };
+
+    addMissionEventHandler ["HandleChatMessage", {
+        call FUNC(handleChatMessage);
+    }];
 };
 
 {
