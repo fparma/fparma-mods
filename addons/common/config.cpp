@@ -16,6 +16,7 @@ class CfgPatches {
 #include "CfgVehicles.hpp"
 #include "CfgVideoOptions.hpp"
 #include "adminWhitelist.hpp"
+#include "CfgEden.hpp"
 
 class RscButton;
 class RscText;

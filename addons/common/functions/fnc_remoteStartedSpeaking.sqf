@@ -19,7 +19,7 @@
 params ["_unit", ["_onRadio", 0], ["_radioID", ""]];
 if !(GVAR(useFpDuplex)) exitWith {};
 private _player = [] call CBA_fnc_currentUnit;
-if (_onRadio isNotEqualTo 1 || {_unit isEqualTo _player || {!([_radioID] call acre_sys_radio_fnc_canUnitReceive)}}) exitWith {};
+if (_onRadio isNotEqualTo 1 || {_unit isEqualTo _player || {_player getVariable [QGVAR(hasFPDuplexPriority), false] || {!([_radioID] call acre_sys_radio_fnc_canUnitReceive)}}}) exitWith {};
 private _isLR = false;
 private _prcBand = false;
 {
