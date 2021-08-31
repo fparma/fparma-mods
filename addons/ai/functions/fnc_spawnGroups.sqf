@@ -38,7 +38,7 @@ private _newGroups = [];
 
     {
         //_itemCargo
-        _x params["_type", "_pos", "_vectorDirAndUp", "_crew", "_backpackCargo", "_itemCargo", "_magazineCargo", "_weaponCargo"];
+        _x params["_type", "_pos", "_vectorDirAndUp", "_crew", "_backpackCargo", "_itemCargo", "_magazineCargo", "_weaponCargo", "_allPylonsInfo"];
         private _veh = _type createVehicle _pos;
         _veh setPosWorld _pos;
         _veh setVectorDirAndUp _vectorDirAndUp;
@@ -75,6 +75,11 @@ private _newGroups = [];
                 _veh addItemCargoGlobal [_type, _amount];
             } foreach (_array#0);
         } foreach [_itemCargo, _magazineCargo, _weaponCargo];
+
+        {
+            _x params["_pylonIndex", "_pylonName", "_turret", "_magazine", "_ammoCount", "_magazineDetail"];
+            _veh setPylonLoadout [_pylonIndex, _magazine, true, _turret];
+        } foreach _allPylonsInfo;
 
     } forEach _vehicles;
 
