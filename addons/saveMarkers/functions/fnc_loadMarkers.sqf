@@ -2,7 +2,7 @@
 
 params ["_saveName","_mapName",["_markersData",[]]];
 
-if (_mapName isNotEqualTo worldName) exitWith {
+if (_mapName != worldName) exitWith {
     playSound "3DEN_notificationWarning";
     systemChat format ["fpa-saveMarkers: Save with name ""%1"" is made for map ""%2"" but we are on ""%3""!", _saveName, _mapName, worldName];
 };
