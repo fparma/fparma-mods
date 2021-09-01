@@ -79,7 +79,7 @@ if (_id == "" ) exitWith {
             private _index = _realUnits findIf {_x == _unit};
             _x set [0, _index];
         } foreach _crew;
-        _vehicles pushBack [typeOf _x, getPosWorld _x, [vectorDir _x, vectorUp _x], _crew, getBackpackCargo _x, getItemCargo _x, getMagazineCargo _x, getWeaponCargo _x];
+        _vehicles pushBack [typeOf _x, getPosWorld _x, [vectorDir _x, vectorUp _x], _crew, getBackpackCargo _x, getItemCargo _x, getMagazineCargo _x, getWeaponCargo _x, getAllPylonsInfo _x];
     } foreach _realVehicles;
 
     private _waypoints = [];
