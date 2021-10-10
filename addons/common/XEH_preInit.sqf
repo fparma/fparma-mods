@@ -44,6 +44,15 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
     true
 ] call CBA_Settings_fnc_init;
 
+[
+    QGVAR(acreCutOffTransmission),
+    "CHECKBOX",
+    ["Make FP duplex end transmission", ""],
+    FP_SETTINGS,
+    true,
+    true
+] call CBA_Settings_fnc_init;
+
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;

@@ -51,8 +51,16 @@ private _dataPlayer = [_currentPlayerRadio, "getCurrentChannelData"] call acre_s
 private _frequencyRemote = _dataRemote getVariable ["frequencyTX", 0];
 private _frequencyPlayer = _dataPlayer getVariable ["frequencyTX", 0];
 
-if (_frequencyRemote isEqualTo _frequencyPlayer) then { // steppy
-    [] call acre_sys_core_fnc_handleMultiPttKeyPressUp;
+if (_frequencyRemote isEqualTo _frequencyPlayer) then {
+    private _signalCalc = [_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignalCore;
+
+    // if smaller than -500 signal then it can be heard
+    if ((_signalCalc select 1) >= -500) exitWith {};
+
+    // steppy
+    if (GVAR(acreCutOffTransmission)) then {
+        [] call acre_sys_core_fnc_handleMultiPttKeyPressUp;
+    };
 
     systemChat format [selectRandom [
         "%1 (%2) stepped on your message",
