@@ -53,7 +53,13 @@ if (isMultiplayer) then {
 } foreach ["bandageLocal", "checkBloodPressureLocal", "cprLocal", "fullHealLocal", "ivBagLocal", "medicationLocal", "splintLocal", "tourniquetLocal"];
 
 ["acre_remoteStartedSpeaking", {
-    _this call FUNC(remoteStartedSpeaking);
+    _this call FUNC(fpDuplex);
+    _this call FUNC(acreShowReiceiverHint);
+}] call CBA_fnc_addEventHandler;
+
+["acre_remoteStoppedSpeaking", {
+    params ["_unit"];
+    [format ["%1$%2", QGVAR(acre), name _unit]] call acre_sys_list_fnc_hideHint;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(acreInterruped), {

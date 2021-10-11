@@ -11,7 +11,7 @@
 * 2 - Radio id
 *
 * Example
-* [carl, 1, "acre_prc148_id_2"] call fpa_common_fnc_remoteStartedSpeaking;
+* [carl, 1, "acre_prc148_id_2"] call fpa_common_fnc_fpDuplex;
 *
 * Public: no
 */
