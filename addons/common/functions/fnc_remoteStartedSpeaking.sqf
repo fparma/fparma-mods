@@ -52,24 +52,26 @@ private _frequencyRemote = _dataRemote getVariable ["frequencyTX", 0];
 private _frequencyPlayer = _dataPlayer getVariable ["frequencyTX", 0];
 
 if (_frequencyRemote isEqualTo _frequencyPlayer) then {
-    ([_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
-    systemChat str [_pX, _signal];
+    [{
+        params ["_frequencyRemote", "_dataRemote", "_currentPlayerRadio", "_radioID", "_unit", "_player"];
+        ([_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
 
-    // if smaller than -500 signal then it can't be heard
-    if (_pX < 0.02 && {_signal <= -121} || {_signal <= -124}) exitWith {};
+        // if smaller than -500 signal then it can't be heard
+        if (_pX < 0.02 && {_signal <= -121} || {_signal <= -124}) exitWith {};
 
-    // steppy
-    if (GVAR(fpDuplexCutOffTransmission)) then {
-        [] call acre_sys_core_fnc_handleMultiPttKeyPressUp;
-    };
+        // steppy
+        if (GVAR(fpDuplexCutOffTransmission)) then {
+            [] call acre_sys_core_fnc_handleMultiPttKeyPressUp;
+        };
 
-    systemChat format [selectRandom [
-        "%1 (%2) stepped on your message",
-        "Your message was cut off by %1 (%2)",
-        "%1 (%2) just stomped your message"
-    ], name _unit, groupId (group _unit)];
-    playSound "3DEN_notificationWarning";
-    if (player isEqualTo _player) then {
-        [QGVAR(acreInterruped), [player], _unit] call CBA_fnc_targetEvent;
-    };
+        systemChat format [selectRandom [
+            "%1 (%2) stepped on your message",
+            "Your message was cut off by %1 (%2)",
+            "%1 (%2) just stomped your message"
+        ], name _unit, groupId (group _unit)];
+        playSound "3DEN_notificationWarning";
+        if (player isEqualTo _player) then {
+            [QGVAR(acreInterruped), [player], _unit] call CBA_fnc_targetEvent;
+        };
+    }, [_frequencyRemote, _dataRemote, _currentPlayerRadio, _radioID, _unit, _player], 0.1] call cba_fnc_waitAndExecute;
 };
