@@ -11,7 +11,7 @@
 * 2 - Radio id
 *
 * Example
-* [carl, 1, "acre_prc148_id_1"] call fpa_common_fnc_remoteStartedSpeaking;
+* [carl, 1, "acre_prc148_id_2"] call fpa_common_fnc_remoteStartedSpeaking;
 *
 * Public: no
 */
@@ -52,19 +52,21 @@ private _frequencyRemote = _dataRemote getVariable ["frequencyTX", 0];
 private _frequencyPlayer = _dataPlayer getVariable ["frequencyTX", 0];
 
 if (_frequencyRemote isEqualTo _frequencyPlayer) then {
-    private _signalCalc = [_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignalCore;
+    ([_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
+    systemChat str [_pX, _signal];
 
-    // if smaller than -500 signal then it can be heard
-    if ((_signalCalc select 1) >= -500) exitWith {};
+    // if smaller than -500 signal then it can't be heard
+    if (_pX < 0.02 && {_signal <= -121} || {_signal <= -124}) exitWith {};
 
     // steppy
-    if (GVAR(acreCutOffTransmission)) then {
+    if (GVAR(fpDuplexCutOffTransmission)) then {
         [] call acre_sys_core_fnc_handleMultiPttKeyPressUp;
     };
 
     systemChat format [selectRandom [
         "%1 (%2) stepped on your message",
-        "Your message was cut off by %1 (%2)"
+        "Your message was cut off by %1 (%2)",
+        "%1 (%2) just stomped your message"
     ], name _unit, groupId (group _unit)];
     playSound "3DEN_notificationWarning";
     if (player isEqualTo _player) then {

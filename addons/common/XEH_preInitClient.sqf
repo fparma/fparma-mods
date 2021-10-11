@@ -45,7 +45,7 @@ GVAR(lastMessageFrom) = "";
             playSound "3DEN_notificationWarning";
         };
 
-        if !((toLower _type) isEqualTo "server") then {
+        if ((toLower _type) isNotEqualTo "server") then {
             GVAR(lastMessageFrom) = _sender;
         }
     };

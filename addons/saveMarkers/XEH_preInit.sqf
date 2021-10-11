@@ -6,7 +6,7 @@
     QGVAR(setting_canBeOpened),
     "LIST",
     ["Save markers", "Enabled"],
-    FP_SETTINGS,
+    [FP_SETTINGS, "Markers"],
     [
         [0,1,2],
         ["never","first 10min of mission","always"],
