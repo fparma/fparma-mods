@@ -52,13 +52,16 @@ if (isMultiplayer) then {
     }] call CBA_fnc_addEventHandler;
 } foreach ["bandageLocal", "checkBloodPressureLocal", "cprLocal", "fullHealLocal", "ivBagLocal", "medicationLocal", "splintLocal", "tourniquetLocal"];
 
+GVAR(acreTalking) = [];
 ["acre_remoteStartedSpeaking", {
+    GVAR(acreTalking) pushBackUnique (_this select 0);
     _this call FUNC(fpDuplex);
     _this call FUNC(acreShowReiceiverHint);
 }] call CBA_fnc_addEventHandler;
 
 ["acre_remoteStoppedSpeaking", {
     params ["_unit"];
+    GVAR(acreTalking) = GVAR(acreTalking) - [_unit];
     [format ["%1$%2", QGVAR(acre), name _unit]] call acre_sys_list_fnc_hideHint;
 }] call CBA_fnc_addEventHandler;
 

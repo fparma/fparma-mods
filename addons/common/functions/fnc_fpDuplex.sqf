@@ -56,8 +56,10 @@ if (_frequencyRemote isEqualTo _frequencyPlayer) then {
         params ["_frequencyRemote", "_dataRemote", "_currentPlayerRadio", "_radioID", "_unit", "_player"];
         ([_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
 
-        // if smaller than -500 signal then it can't be heard
-        if (_pX < 0.02 && {_signal <= -121} || {_signal <= -124}) exitWith {};
+        private _radioClass = (toLower _currentPlayerRadio) regexReplace ["(_id_\d+)", ""];
+        private _cutOffPoint = getNumber (configfile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin");
+
+        if (_signal <= _cutOffPoint || {_signal <= -150}) exitWith {};
 
         // steppy
         if (GVAR(fpDuplexCutOffTransmission)) then {

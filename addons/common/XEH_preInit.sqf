@@ -63,11 +63,20 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(showReiceiverHintColor),
+    QGVAR(showReiceiverHintColorLR),
     "COLOR",
-    "Receiver hint color",
+    ["Receiver hint color LR", "Color for long range receiving hint"],
     [FP_SETTINGS, "ACRE"],
     [0.5, 1.0, 0, 0.8],
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(showReiceiverHintColorSR),
+    "COLOR",
+    ["Receiver hint color SR", "Color for short range receiving hint"],
+    [FP_SETTINGS, "ACRE"],
+    [0.8, 0.5, 1.0, 0.8],
     false
 ] call CBA_fnc_addSetting;
 
