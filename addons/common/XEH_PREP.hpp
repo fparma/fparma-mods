@@ -27,6 +27,7 @@ PREP(trackKills);
 PREP(translateSide);
 PREP(validateMission);
 PREP(vehicleName);
-PREP(remoteStartedSpeaking);
+PREP(fpDuplex);
 PREP(createZeus);
 PREP(handleChatMessage);
+PREP(acreShowReiceiverHint);
