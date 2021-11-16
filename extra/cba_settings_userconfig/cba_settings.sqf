@@ -7,6 +7,9 @@ force force acre_sys_core_automaticAntennaDirection = true
 // force acre_sys_core_revealToAI = 1;
 force acre_sys_core_terrainLoss = 0.5;
 
+// ACE Advanced Vehicle Damage
+force ace_vehicle_damage_enabled = false;
+
 // ACE Misc
 ace_common_persistentLaserEnabled = false;
 force ace_hitreactions_minDamageToTrigger = 0.1;
@@ -114,7 +117,8 @@ force ace_medical_treatment_allowSharedEquipment = 1; // use medics stuff first
 force ace_medical_treatment_clearTraumaAfterBandage = true; // clear trauma on bandage
 force ace_medical_treatment_consumePAK = 0; // do not consume pak
 force ace_medical_treatment_convertItems = 0; // convert vanilla items to ace medical
-force ace_medical_treatment_cprSuccessChance = 0.40; // chance to stabilize heart rate
+force ace_medical_treatment_cprSuccessChanceMin = 0.4; // chance to stabilize heart rate
+force ace_medical_treatment_cprSuccessChanceMax = 0.7; // chance to stabilize heart rate
 force ace_medical_treatment_holsterRequired = 0; // not needed to holster or lower gun
 force ace_medical_treatment_locationEpinephrine = 0; // allow everywhere
 force ace_medical_treatment_locationPAK = 0; // allow everywhere
@@ -145,7 +149,9 @@ force ace_nightvision_aimDownSightsBlur = 0.5;
 force ace_overheating_overheatingDispersion = true;
 force ace_overheating_unJamOnreload = true;
 force ace_overheating_unJamFailChance = 0;
+force ace_overheating_heatCoef = 0.5;
 force ace_overheating_enabled = true;
+force ace_overheating_cookoffCoef = 0;
 
 // ACE Pylons
 force ace_pylons_enabled = true;
