@@ -90,9 +90,9 @@ force force ace_markers_moveRestriction = 3;
 
 // ACE Medical
 force force ace_medical_treatment_advancedBandages = 0;
-force force ace_medical_treatment_advancedMedication = false;
 force force ace_medical_treatment_woundReopening = false;
 
+force ace_medical_treatment_advancedMedication = false; // advanced medication
 force ace_medical_ai_enabledFor = 0; // no one
 force ace_medical_AIDamageThreshold = 1;
 force ace_medical_playerDamageThreshold = 5;
@@ -110,7 +110,7 @@ force ace_medical_statemachine_AIUnconsciousness = false; // disallow AI to be u
 force ace_medical_statemachine_cardiacArrestTime = 900; // 15 minutes
 force ace_medical_statemachine_fatalInjuriesAI = 0; // AI can die any time
 force ace_medical_statemachine_fatalInjuriesPlayer = 1; // players can only die during cardiac arrest
-force ace_medical_treatment_advancedDiagnose = true;
+force ace_medical_treatment_advancedDiagnose = 1;
 force ace_medical_treatment_medicIV = 0; // anyone can give blood
 force ace_medical_treatment_allowSelfIV = 1; // allow giving IV to yourself
 force ace_medical_treatment_allowSharedEquipment = 1; // use medics stuff first
@@ -126,6 +126,11 @@ force ace_medical_treatment_medicEpinephrine = 0; // allow for everyone
 force ace_medical_treatment_medicPAK = 1; // only allow for medics
 force ace_medical_painCoefficient = 0.8; // pain coefficient
 force ace_medical_bleedingCoefficient = 0.5; // bleeding coeficient
+
+force ace_medical_treatment_treatmentTimeCPR = 7.5; // cpr time. default 15
+force ace_medical_treatment_treatmentTimeIV = 6; // bloodbag/saline time. default 12
+force ace_medical_treatment_treatmentTimeTourniquet = 5; // tourniquet time. default 7
+force ace_medical_treatment_timeCoefficientPAK = 0.5; // PAK time multiplier. default 1
 
 // ACE MK6 Mortar
 ace_mk6mortar_airResistanceEnabled = false;
@@ -182,7 +187,6 @@ ace_repair_consumeItem_toolKit = 0;
 ace_repair_fullRepairLocation = 3;
 ace_repair_engineerSetting_fullRepair = 1;
 ace_repair_addSpareParts = true;
-ace_repair_wheelRepairRequiredItems = 0;
 force force ace_repair_autoShutOffEngineWhenStartingRepair = true;
 
 // ACE Spect
@@ -195,7 +199,6 @@ force ace_viewdistance_enabled = false;
 ace_viewdistance_viewDistanceOnFoot = 0;
 ace_viewdistance_viewDistanceLandVehicle = 0;
 ace_viewdistance_viewDistanceAirVehicle = 0;
-ace_viewdistance_limitViewDistance = 0;
 ace_viewdistance_objectViewDistanceCoeff = 0;
 
 // ACE Weather
