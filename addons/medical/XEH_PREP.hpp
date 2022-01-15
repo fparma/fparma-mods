@@ -1,0 +1,2 @@
+PREP(canInjectVital);
+PREP(medicationLocal);
