@@ -18,6 +18,16 @@ This function has only one parameter, which is completely optional (defaults to 
 [_lives] call fpa_jrm_fnc_init;
 ```
 
+Add this into your `description.ext`
+
+```hpp
+respawnTemplates[] = {"Base"};
+respawndelay = 5;
+respawnDialog = 0;
+respawnOnStart = 0;
+respawn = "BASE";
+```
+
 ## Respawning people
 
 Mission makers only need one function, if at all to respawn people. The function is named `fpa_jrm_fnc_forceRespawn`.
