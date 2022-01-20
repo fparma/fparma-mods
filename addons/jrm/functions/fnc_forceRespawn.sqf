@@ -38,3 +38,5 @@ if (!isNil "_positionOrCode") then {
 [true, "jrm"] call EFUNC(common,disableWeapons);
 [false] call EFUNC(common,spectate);
 [{[false, "jrm"] call EFUNC(common,disableWeapons)}, [], 3] call CBA_fnc_waitAndExecute;
+
+[QGVAR(respawned)] call CBA_fnc_localEvent;
