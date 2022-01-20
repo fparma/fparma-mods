@@ -56,10 +56,11 @@ Effectively resets lives if true is passed.
 
 ## Events
 
-| Name                 | Params                        | Remark                                                                            |
-| -------------------- | ----------------------------- | --------------------------------------------------------------------------------- |
-| fpa_jrm_respawned    | none                          | Raised when player has been respawned using JRM, raised on player's machine       |
-| fpa_jrm_forceRespawn | See the forceRespawn function | Never raised by framework, can be raised by mission maker to force respawn people |
+| Name                 | Params                           | Remark                                                                            |
+| -------------------- | -------------------------------- | --------------------------------------------------------------------------------- |
+| fpa_jrm_respawned    | none                             | Raised when player has been respawned usng JRM, raised on player's machine        |
+| fpa_jrm_onPermaDeath | [_deaths, _timeOfDeath, _didJip] | Raised when player has no lives left, raised on player's machine                  |
+| fpa_jrm_forceRespawn | See the forceRespawn function    | Never raised by framework, can be raised by mission maker to force respawn people |
 
 ### Usage
 
