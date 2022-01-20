@@ -3,7 +3,22 @@
 Respawn system for the FPArma modpack. Automatically handles lives and puts players into ACE spectator when no lives are left.
 Simple way to for mission maker to respawn people via zeus interface or via mission triggers/code.
 
-## Functions
+## Initialization
+
+Put this into your mission's `init.sqf`.
+This function has only one parameter, which is completely optional (defaults to -1). It is the amount of lives someone has.
+
+| Value | Remark                                            |
+| ----- | ------------------------------------------------- |
+| -1    | Infinite respawn                                  |
+| 0     | Players go into spectator on first death          |
+| >= 1  | Can die X times before being moved into spectator |
+
+```sqf
+[_lives] call fpa_jrm_fnc_init;
+```
+
+## Respawning people
 
 Mission makers only need one function, if at all to respawn people. The function is named `fpa_jrm_fnc_forceRespawn`.
 
