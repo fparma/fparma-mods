@@ -8,4 +8,8 @@ class CfgVehicles {
             MACRO_ADDITEM(GVAR(vital),1);
         };
     };
+    class ace_zeus_moduleBase;
+    class ace_zeus_moduleUnconscious: ace_zeus_moduleBase {
+        function = QFUNC(moduleUnconscious);
+    };
 };

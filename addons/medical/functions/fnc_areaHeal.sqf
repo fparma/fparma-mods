@@ -10,7 +10,7 @@
 * 1 - range of effect in meters
 *
 * Example
-* [_position, 100] call fpa_common_fnc_areaHeal
+* [_position, 100] call fpa_medical_fnc_areaHeal
 *
 * Public: yes
 */

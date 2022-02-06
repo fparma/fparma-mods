@@ -31,4 +31,3 @@ PREP(fpDuplex);
 PREP(createZeus);
 PREP(handleChatMessage);
 PREP(acreShowReiceiverHint);
-PREP(areaHeal);

@@ -17,7 +17,6 @@ class CfgPatches {
 #include "CfgVideoOptions.hpp"
 #include "adminWhitelist.hpp"
 #include "CfgEden.hpp"
-#include "zen_context_menu_actions.hpp"
 
 class RscButton;
 class RscText;
