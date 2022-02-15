@@ -26,14 +26,18 @@ private _onCompletion = {
         [_unit, "AmovPknlMstpSrasWrflDnon", 1] call ace_common_fnc_doAnimation;
     };
     deleteVehicle (_unit getVariable [QGVAR(axeObject), objNull]);
+
+    ["grad_treeChoppingSucceeded", [_unit, _treeObject]] call CBA_fnc_localEvent;
 };
 
 private _onFail = {
-    (_this select 0) params ["", "", "_unit"];
+    (_this select 0) params ["_treeObject", "", "_unit"];
     if !(_unit call ace_common_fnc_isSwimming) then {
         [_unit, "AmovPknlMstpSrasWrflDnon", 1] call ace_common_fnc_doAnimation;
     };
     deleteVehicle (_unit getVariable [QGVAR(axeObject), objNull]);
+
+    ["grad_treeChoppingStopped", [_unit, _treeObject]] call CBA_fnc_localEvent;
 };
 
 private _progressCheck = {
@@ -67,4 +71,4 @@ _unit setdir ([_unit, _treeObject] call BIS_fnc_dirTo);
 
 [_timeToCut, [_treeObject, 0, _unit, getPosWorld _unit], _onCompletion, _onFail, localize "STR_GRAD_AXE_CUTTING_TREE", _progressCheck, ["isNotSwimming"]] call ace_common_fnc_progressBar;
 
-["grad_treeChoppingStarted", [_unit, _treeObject]] call CBA_fnc_globalEvent;
+["grad_treeChoppingStarted", [_unit, _treeObject]] call CBA_fnc_localEvent;
