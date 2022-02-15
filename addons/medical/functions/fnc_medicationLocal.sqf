@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-params ["_unit", "_bodyPart", "_classname"];
+params ["_unit", "", "_classname"];
 
 if (_classname isNotEqualTo "Vital" || {!alive _unit}) exitWith {};
 
@@ -35,5 +35,7 @@ if (_blood <= 5.100) then {
 _unit setVariable ["ace_medical_bloodPressure", [_bloodPressureL, _bloodPressureH], true];
 
 [{
-    ["ace_medical_WakeUp", _this] call CBA_fnc_localEvent;
+    if ((_this select 0) getVariable ["ACE_isUnconscious",false]) then {
+        ["ace_medical_WakeUp", _this] call CBA_fnc_localEvent;
+    };
 }, [_unit], 0.25 + (random 10)] call CBA_fnc_waitAndExecute;
