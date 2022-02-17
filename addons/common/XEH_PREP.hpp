@@ -31,3 +31,5 @@ PREP(fpDuplex);
 PREP(createZeus);
 PREP(handleChatMessage);
 PREP(acreShowReiceiverHint);
+PREP(onChatOpen);
+PREP(onChatClose);

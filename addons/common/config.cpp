@@ -44,3 +44,8 @@ class RscDisplayCurator {
         };
     };
 };
+
+class RscDisplayChat {
+    onLoad = QUOTE([ARR_2('GVAR(chatOpened)',_this)] call CBA_fnc_localEvent;);
+    onUnload = QUOTE([ARR_2('GVAR(chatClosed)',_this)] call CBA_fnc_localEvent;);
+};

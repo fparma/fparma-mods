@@ -13,6 +13,15 @@ if (!hasInterface) exitWith {};
     ''
 ] call CBA_fnc_addKeybind;
 
+[
+    QGVAR(hideChatHint),
+    "CHECKBOX",
+    ["Hide chat hint", "Man I do not wanna see that giant box when i am shit posting!"],
+    [FP_SETTINGS, "General"],
+    false,
+    false
+] call CBA_fnc_addSetting;
+
 GVAR(lastMessageFrom) = "";
 [QGVAR(chatMessage), {
     params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];
@@ -22,13 +31,13 @@ GVAR(lastMessageFrom) = "";
             [{call FUNC(isAdmin)}, format ["(Admins) %1:", _sender]];
         };
         case "zeus": {
-            [{!(profileName isEqualTo _sender) && !isNull (getAssignedCuratorLogic player)}, format ["(Zeus) %1:", _sender]];
+            [{profileName isNotEqualTo _sender && {!isNull (getAssignedCuratorLogic player)}}, format ["(Zeus) %1:", _sender]];
         };
         case "whisper": {
             [{profileName isEqualTo _receiver}, format ["Whisper from %1:", _sender]];
         };
         case "server": {
-            [{call FUNC(isAdmin) || !isNull (getAssignedCuratorLogic player)}, format ["Notice (%1):", _sender]];
+            [{call FUNC(isAdmin) || {!isNull (getAssignedCuratorLogic player)}}, format ["Notice (%1):", _sender]];
         };
         default {
             [{true}, format ["Notice (%1):", _sender]];
@@ -45,8 +54,8 @@ GVAR(lastMessageFrom) = "";
             playSound "3DEN_notificationWarning";
         };
 
-        if ((toLower _type) isNotEqualTo "server") then {
+        if ((toLower _type) in ["admin", "zeus", "whisper"]) then {
             GVAR(lastMessageFrom) = _sender;
-        }
+        };
     };
 }] call CBA_fnc_addEventHandler;
