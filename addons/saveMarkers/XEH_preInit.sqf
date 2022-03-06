@@ -12,4 +12,4 @@
         ["never","first 10min of mission","always"],
         1
     ]
-] call CBA_Settings_fnc_init;
+] call CBA_fnc_addSetting;
