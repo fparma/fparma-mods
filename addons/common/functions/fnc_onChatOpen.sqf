@@ -8,6 +8,15 @@ private _width = (profilenamespace getvariable ["IGUI_GRID_CHAT_W", (20 * ( ((sa
 private _xPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_X", (safezoneX + 1 * ( ((safezoneW / safezoneH) min 1.2) / 40))]);
 private _yPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_Y", (safezoneY + safezoneH - 10.5 * ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25))]);
 
+private _dumbNamePair = selectRandom [
+    ["_[SOG]_xXxSlayer69xXx_", "slayer"],
+    ["361684XBlaBlub", "blab"],
+    ["===Mingebag~~~~D!", "minge"],
+    ["Username3813", "user"],
+    ["Hard Core Milsim", "mils"],
+    ["ih8Civs", "ih8"]
+];
+
 private _text = format ['<t size="2.0" color="#ff0000" shadow="1" shadowColor="#000000">%1</t><br/>
 If you need to contact zeus, an admin, or want to send a messsage to a friend, do not use side or global chat!<br/>
 Use the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat commands</t> instead or the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat box in the escape menu</t>!<br/>
@@ -20,8 +29,9 @@ Contact an admin:<br/>
 <t size="1.1" color="#ff0000" shadow="1" shadowColor="#000000">#admin</t> %3<br/>
 <br/>
 Contact your friend:<br/>
-<t size="1.1" color="#ff0000" shadow="1" shadowColor="#000000">#w friendname</t> %4<br/><br/>
-You can hide this hint within the Addon Options menu under "FPARMA Settings".<br/>
+<t size="1.1" color="#ff0000" shadow="1" shadowColor="#000000">#w friendname</t> %4<br/>
+The given name can be partial as well. Example, instead of <t color="#ff0000" shadow="1" shadowColor="#000000">%5</t> you can write <t color="#ff0000" shadow="1" shadowColor="#000000">%6</t><br/><br/>
+You can hide this hint within the <t color="#ff0000" shadow="1" shadowColor="#000000">Addon Options</t> menu under <t color="#ff0000" shadow="1" shadowColor="#000000">FPARMA Settings</t>.<br/>
 Also, check out the command <t size="1.1" color="#ff0000" shadow="1" shadowColor="#000000">#fp.help</t>',
 selectRandom [ // 1 header
     "Hey, read this before you send a message!",
@@ -67,7 +77,7 @@ selectRandom [ // 1 header
     "stop overpressuring me!!!!",
     "epi last!!",
     "fart"
-]];
+], _dumbNamePair select 0, _dumbNamePair select 1];
 
 private _ctrl = _display ctrlCreate ["RscStructuredText", -1];
 _ctrl ctrlSetStructuredText (parseText _text);
