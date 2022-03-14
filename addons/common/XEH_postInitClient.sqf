@@ -42,6 +42,16 @@ if (isMultiplayer) then {
     addMissionEventHandler ["HandleChatMessage", {
         call FUNC(handleChatMessage);
     }];
+
+    [QGVAR(chatOpened), {
+        params ["_display"];
+        [_display] call FUNC(onChatOpen);
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(chatClosed), {
+        params ["_display"];
+        [_display] call FUNC(onChatClose);
+    }] call CBA_fnc_addEventHandler;
 };
 
 GVAR(acreTalking) = [];
