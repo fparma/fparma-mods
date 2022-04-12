@@ -63,8 +63,13 @@ GVAR(acreTalking) = [];
 
 ["acre_remoteStoppedSpeaking", {
     params ["_unit"];
-    GVAR(acreTalking) = GVAR(acreTalking) - [_unit];
-    [format ["%1$%2", QGVAR(acre), name _unit]] call acre_sys_list_fnc_hideHint;
+    GVAR(acreTalking) = GVAR(acreTalking) - [_unit, objNull];
+    [QGVAR(removeAcreReceiverHint), [name _unit]] call CBA_fnc_localEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(removeAcreReceiverHint), {
+    params ["_name"];
+    [format ["%1$%2", QGVAR(acre), _name]] call acre_sys_list_fnc_hideHint;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(acreInterruped), {

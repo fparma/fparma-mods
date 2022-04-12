@@ -32,6 +32,8 @@ if (isServer) then {
     // Unassign curator on disconnect to fix bug where zeus doesn't work when reconnecting
     addMissionEventHandler ["HandleDisconnect",{
         params ["_unit"];
+        // hide acre radio helper
+        [QGVAR(removeAcreReceiverHint), [name _unit]] call CBA_fnc_globalEvent;
         private _module = getAssignedCuratorLogic _unit;
         if (isNull _module) exitWith {};
         unassignCurator _module;
