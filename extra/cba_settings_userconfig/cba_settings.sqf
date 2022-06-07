@@ -16,6 +16,7 @@ force ace_switchunits_enableSwitchUnits = false;
 force ace_vehiclelock_vehicleStartingLockState = -1;
 force ace_scopes_enabled = true;
 force ace_scopes_correctZeroing = false;
+force force ace_scopes_simplifiedZeroing = false;
 force ace_noradio_enabled = true;
 force force ace_microdagr_mapDataAvailable = 2;
 force force ace_gforces_enabledFor = 1;
