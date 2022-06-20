@@ -3,9 +3,10 @@ force force acre_sys_core_ts3ChannelSwitch = true;
 // force force acre_sys_core_interference = false;
 force force acre_sys_core_fullDuplex = true;
 force force acre_sys_core_ignoreAntennaDirection = true;
-force force acre_sys_core_automaticAntennaDirection = true
+force force acre_sys_core_automaticAntennaDirection = true;
 // force acre_sys_core_revealToAI = 1;
-force acre_sys_core_terrainLoss = 0.5;
+force acre_sys_core_terrainLoss = 0;
+force acre_sys_signal_signalModel = 1;
 
 // ACE Advanced Vehicle Damage
 force ace_vehicle_damage_enabled = false;
