@@ -1,5 +1,8 @@
 #include "script_component.hpp"
 params ["_marker", "_local"];
+
+if (missionNamespace getVariable [QGVAR(disabled),false]) exitWith {};
+
 if (!_local || {
     !isMultiplayer || {
     ("ACE_BFT_" in _marker) || {
