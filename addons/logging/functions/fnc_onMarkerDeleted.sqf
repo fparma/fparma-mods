@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 params ["_marker", "_local"];
 
-if (missionNamespace getVariable [QGVAR(disabled),false]) exitWith {};
+if (missionNamespace getVariable [QGVAR(deleteMarkerDisabled),false]) exitWith {};
 
 if (!_local || {
     !isMultiplayer || {
