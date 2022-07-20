@@ -7,4 +7,4 @@ params [
 ];
 
 if (GVAR(disabled) || {!isServer}) exitWith {};
-["log", [GVAR(id), _logLevel min 2, _t, _txt]] call sock_rpc;
+"fp_extension" callExtension ["log", [GVAR(id), _logLevel min 2, _t, _txt]];
