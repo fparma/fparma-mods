@@ -1,3 +1,4 @@
+[project]
 name = "fparma-mods"
 prefix = "fpa"
 author = "FP Mod team"

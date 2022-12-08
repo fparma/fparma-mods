@@ -3,6 +3,7 @@
 *.sh         text    eol=lf
 *.txt        text    eol=lf
 *.sqf        text    eol=lf
+*.hpp        text    eol=lf
 *.toml       text    eol=lf
 *.cpp        text    eol=lf
 *.fsm        text    eol=lf
