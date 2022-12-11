@@ -6,7 +6,6 @@ modname ="fpa"
 version = "1.0.0"
 files = [
     "mod.cpp",
-    "mod.cpp",
     "AUTHORS.txt",
     "LICENSE",
     "logo_ca.paa",
