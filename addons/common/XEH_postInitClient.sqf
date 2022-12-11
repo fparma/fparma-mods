@@ -119,3 +119,37 @@ if (GVAR(arsenalAddAcreTab)) then {
         "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\Radio_ca.paa"
     ] call ace_arsenal_fnc_addRightPanelButton;
 };
+
+if (GVAR(enableViewdistanceSelector)) then {
+    private _actDistCat = ["ViewDist","View distance","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["OverallDist","Overall","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["ObjectDist","Object","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["BothtDist","Both","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+
+    private _min = GVAR(viewdistanceMaximum) min GVAR(viewdistanceMinimum);
+    private _max = GVAR(viewdistanceMaximum) max GVAR(viewdistanceMinimum);
+
+    for "_i" from _min to _max step 250 do {
+        private _iStr = str _i;
+        private _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setViewDistance _dist
+        },{viewDistance isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","OverallDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+        _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setObjectViewDistance _dist
+        },{(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","ObjectDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+        private _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setViewDistance _dist;
+            setObjectViewDistance _dist
+        },{viewDistance isNotEqualTo (_this select 2) || {(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","BothtDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+    };
+};

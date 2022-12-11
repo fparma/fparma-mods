@@ -6,3 +6,12 @@
     false,
     false
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(unconSpectator),
+    "CHECKBOX",
+    "Enable Unconscious Spectator",
+    [FP_SETTINGS, "View Distance"],
+    false,
+    true
+] call CBA_fnc_addSetting;

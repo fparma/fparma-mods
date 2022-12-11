@@ -98,6 +98,40 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
     false
 ] call CBA_fnc_addSetting;
 
+[
+    QGVAR(disableRHSStartUp),
+    "CHECKBOX",
+    "Disable RHS engine start up",
+    [FP_SETTINGS, "General"],
+    true,
+    true
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(enableViewdistanceSelector),
+    "CHECKBOX",
+    "Enable Viewdistance Selector",
+    [FP_SETTINGS, "View Distance"],
+    true,
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(viewdistanceMinimum), "SLIDER",
+    ["Minimum Value", "Must be set before mission, cannot change during mission!"],
+    [FP_SETTINGS, "View Distance"],
+    [250, 10000, 500, 0],
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(viewdistanceMaximum), "SLIDER",
+    ["Maximum Value", "Must be set before mission, cannot change during mission!"],
+    [FP_SETTINGS, "View Distance"],
+    [250, 10000, 5000, 0],
+    false
+] call CBA_fnc_addSetting;
+
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;
