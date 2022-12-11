@@ -80,6 +80,24 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
     false
 ] call CBA_fnc_addSetting;
 
+[
+    QGVAR(arsenalAddMedicalTab),
+    "CHECKBOX",
+    "Add medical tab",
+    [FP_SETTINGS, "Arsenal"],
+    true,
+    false
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(arsenalAddAcreTab),
+    "CHECKBOX",
+    "Add radio tab",
+    [FP_SETTINGS, "Arsenal"],
+    true,
+    false
+] call CBA_fnc_addSetting;
+
 [QGVAR(endMission), {
     if (!isNil QGVAR(ending)) exitWith {};
     GVAR(ending) = true;
