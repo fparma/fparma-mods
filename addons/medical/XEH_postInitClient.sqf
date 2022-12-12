@@ -15,6 +15,7 @@ _effect ppEffectAdjust [0];
 _effect ppEffectCommit 0;
 _effect ppEffectEnable false;
 GVAR(unconBlur) = _effect;
+
 ["ace_unconscious", {
     params ["_unit", "_enable"];
     if (_unit isNotEqualTo player) exitWith {};
