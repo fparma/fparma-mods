@@ -11,7 +11,7 @@
     QGVAR(unconSpectator),
     "CHECKBOX",
     "Enable Unconscious Spectator",
-    [FP_SETTINGS, "View Distance"],
+    [FP_SETTINGS, "Medical"],
     false,
     true
 ] call CBA_fnc_addSetting;
