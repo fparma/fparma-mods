@@ -25,6 +25,9 @@ GVAR(unconBlur) = _effect;
             [{
                 if (!(player getVariable ["ace_isunconscious", false]) || {!alive player}) exitWith {};
                 [true, true, false] call ace_spectator_fnc_setSpectator;
+                [{
+                    hint "You are unconscious!";
+                }, nil, 0.5] call CBA_fnc_waitAndExecute;
             }, nil, 5] call CBA_fnc_waitAndExecute;
         } else {
             [false] call ace_spectator_fnc_setSpectator;
