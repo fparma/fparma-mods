@@ -87,3 +87,69 @@ GVAR(acreTalking) = [];
     acre_sys_gui_volumeLevel = 0.25;
     acre_sys_gui_volumeLevel call acre_sys_gui_fnc_setVoiceCurveLevel;
 }, []] call CBA_fnc_waitUntilAndExecute;
+
+if (GVAR(arsenalAddMedicalTab)) then {
+    [
+        ["FirstAidKit","Medikit","ACE_adenosine","ACE_fieldDressing","ACE_elasticBandage","ACE_packingBandage","ACE_quikclot","ACE_SterileGauze","ACE_bodyBag","gm_ge_army_burnBandage","ACE_EarPlugs","ACE_epinephrine","Empty_bloodIV_250","Empty_bloodIV_500","ACE_morphine","ACE_plasmaIV","ACE_plasmaIV_250","ACE_plasmaIV_500","ACE_salineIV","ACE_salineIV_250","ACE_salineIV_500","ACE_splint","ACE_surgicalKit","ACE_tourniquet",QEGVAR(medical,vital)],
+        "Medical",
+        "\z\ace\addons\medical_gui\data\categories\medication.paa"
+    ] call ace_arsenal_fnc_addRightPanelButton;
+};
+
+if (GVAR(arsenalAddAcreTab)) then {
+    private _radios = [];
+    {
+        _radios pushBack _x;
+        for "_i" from 1 to 512 do {
+            _radios pushBack (format ["%1_ID_%2", _x, _i]);
+        };
+    } forEach [
+        "ACRE_BF888S",
+        "ACRE_PRC117F",
+        "ACRE_PRC148",
+        "ACRE_PRC152",
+        "ACRE_PRC343",
+        "ACRE_PRC77",
+        "ACRE_SEM52SL",
+        "ACRE_SEM70"
+    ];
+    [
+        _radios,
+        "Radios",
+        "\A3\Ui_f\data\GUI\Rsc\RscDisplayArsenal\Radio_ca.paa"
+    ] call ace_arsenal_fnc_addRightPanelButton;
+};
+
+if (GVAR(enableViewdistanceSelector)) then {
+    private _actDistCat = ["ViewDist","View distance","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["OverallDist","Overall","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["ObjectDist","Object","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+    _actDistCat = ["BothtDist","Both","",{},{}] call ace_interact_menu_fnc_createAction;
+    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
+
+    private _min = GVAR(viewdistanceMaximum) min GVAR(viewdistanceMinimum);
+    private _max = GVAR(viewdistanceMaximum) max GVAR(viewdistanceMinimum);
+
+    for "_i" from _min to _max step 250 do {
+        private _iStr = str _i;
+        private _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setViewDistance _dist
+        },{viewDistance isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","OverallDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+        _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setObjectViewDistance _dist
+        },{(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","ObjectDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+        private _action = [_iStr,_iStr,"",{
+            params ["", "", "_dist"];
+            setViewDistance _dist;
+            setObjectViewDistance _dist
+        },{viewDistance isNotEqualTo (_this select 2) || {(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}}, nil, _i] call ace_interact_menu_fnc_createAction;
+        [typeOf player, 1, ["ACE_SelfActions","ViewDist","BothtDist"], _action] call ace_interact_menu_fnc_addActionToClass;
+    };
+};
