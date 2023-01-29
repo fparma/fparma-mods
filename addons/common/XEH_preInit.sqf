@@ -128,7 +128,7 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
     QGVAR(viewdistanceStep), "SLIDER",
     ["Value Step", "Must be set before mission, cannot change during mission!"],
     [FP_SETTINGS, "View Distance"],
-    [100, 1000, 500, 0],
+    [100, 1000, 250, 0],
     false
 ] call CBA_fnc_addSetting;
 
