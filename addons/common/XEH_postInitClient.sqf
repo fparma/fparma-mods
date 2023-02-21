@@ -133,7 +133,7 @@ if (GVAR(enableViewdistanceSelector)) then {
     private _min = GVAR(viewdistanceMaximum) min GVAR(viewdistanceMinimum);
     private _max = GVAR(viewdistanceMaximum) max GVAR(viewdistanceMinimum);
 
-    for "_i" from _min to _max step 250 do {
+    for "_i" from _min to _max step GVAR(viewdistanceStep) do {
         private _iStr = str _i;
         private _action = [_iStr,_iStr,"",{
             params ["", "", "_dist"];
