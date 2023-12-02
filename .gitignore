@@ -11,11 +11,4 @@ Thumbs.db
 node_modules
 
 keys/*
-.hemtt/local
-
-.hemttout
-hemtt
-hemtt.exe
-####
-
-build.bat
+.hemtt
