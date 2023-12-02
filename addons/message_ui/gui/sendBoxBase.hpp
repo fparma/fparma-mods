@@ -16,10 +16,10 @@ class fpa_messageui_sendBoxTitleBase: RscTitle {
         "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"
     };
 
-    x = FPA_MESSAGEUI_TITLE_X;
-    y = FPA_MESSAGEUI_TITLE_Y;
-    w = FPA_MESSAGEUI_TOTAL_W;
-    h = FPA_MESSAGEUI_ELEMENT_H;
+    x = QUOTE(FPA_MESSAGEUI_TITLE_X);
+    y = QUOTE(FPA_MESSAGEUI_TITLE_Y);
+    w = QUOTE(FPA_MESSAGEUI_TOTAL_W);
+    h = QUOTE(FPA_MESSAGEUI_ELEMENT_H);
 };
 
 class fpa_messageui_sendBoxBGBase: RscText {
@@ -27,10 +27,10 @@ class fpa_messageui_sendBoxBGBase: RscText {
 
     colorBackground[] = {0, 0, 0, 0.700000};
 
-    x = FPA_MESSAGEUI_TITLE_X;
-    y = FPA_MESSAGEUI_EDITBOX_BG_Y;
-    w = FPA_MESSAGEUI_TOTAL_W;
-    h = FPA_MESSAGEUI_EDITBOX_BG_H;
+    x = QUOTE(FPA_MESSAGEUI_TITLE_X);
+    y = QUOTE(FPA_MESSAGEUI_EDITBOX_BG_Y);
+    w = QUOTE(FPA_MESSAGEUI_TOTAL_W);
+    h = QUOTE(FPA_MESSAGEUI_EDITBOX_BG_H);
 };
 
 class fpa_messageui_sendBoxBase: RscEdit {
@@ -47,10 +47,10 @@ class fpa_messageui_sendBoxBase: RscEdit {
 
     onKeyDown = "if ((_this select 1) isEqualTo 28 && !(_this select 2) && !(_this select 3) && !(_this select 4)) then {call fpa_message_ui_fnc_sendMessage;};";
 
-    x = FPA_MESSAGEUI_EDITBOX_X;
-    y = FPA_MESSAGEUI_EDITBOX_Y;
-    w = FPA_MESSAGEUI_EDITBOX_W;
-    h = FPA_MESSAGEUI_EDITBOX_H;
+    x = QUOTE(FPA_MESSAGEUI_EDITBOX_X);
+    y = QUOTE(FPA_MESSAGEUI_EDITBOX_Y);
+    w = QUOTE(FPA_MESSAGEUI_EDITBOX_W);
+    h = QUOTE(FPA_MESSAGEUI_EDITBOX_H);
 };
 
 class fpa_messageui_sendBoxButtonBase: RscButtonMenu {
@@ -62,10 +62,10 @@ class fpa_messageui_sendBoxButtonBase: RscButtonMenu {
     text = "Send";
     action = "call fpa_message_ui_fnc_sendMessage";
 
-    x = FPA_MESSAGEUI_TITLE_X;
-    y = FPA_MESSAGEUI_SENDBUTTON_Y_2;
-    w = FPA_MESSAGEUI_TOTAL_W;
-    h = FPA_MESSAGEUI_ELEMENT_H;
+    x = QUOTE(FPA_MESSAGEUI_TITLE_X);
+    y = QUOTE(FPA_MESSAGEUI_SENDBUTTON_Y_2);
+    w = QUOTE(FPA_MESSAGEUI_TOTAL_W);
+    h = QUOTE(FPA_MESSAGEUI_ELEMENT_H);
 };
 
 class fpa_messageui_sendBoxListboxBase: RscCombo {
@@ -78,8 +78,8 @@ class fpa_messageui_sendBoxListboxBase: RscCombo {
     onLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxListboxCtrl"",(_this select 0)]; _this call fpa_message_ui_fnc_initListbox";
     onUnLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxListboxCtrl"",nil]";
 
-    x = FPA_MESSAGEUI_TITLE_X;
-    y = FPA_MESSAGEUI_SENDBUTTON_Y;
-    w = FPA_MESSAGEUI_TOTAL_W;
-    h = FPA_MESSAGEUI_ELEMENT_H;
+    x = QUOTE(FPA_MESSAGEUI_TITLE_X);
+    y = QUOTE(FPA_MESSAGEUI_SENDBUTTON_Y);
+    w = QUOTE(FPA_MESSAGEUI_TOTAL_W);
+    h = QUOTE(FPA_MESSAGEUI_ELEMENT_H);
 };

@@ -8,7 +8,7 @@ class CfgPatches {
         requiredAddons[] = {"fpa_main", "fpa_common"};
         units[] = {};
         weapons[] = {};
-        VERSION_CONFIG;
+        //QUOTE(VERSION_CONFIG);
     };
 };
 

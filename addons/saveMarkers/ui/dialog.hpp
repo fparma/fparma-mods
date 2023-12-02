@@ -36,17 +36,17 @@ class GVAR(RscDisplayMarkers) {
         class helpDialog: RscControlsGroupNoScrollbars {
             idc = IDC_HELP;
 
-            x = safezoneX + safezoneW - 13 * X_FACTOR;
-            y = safezoneY + 5 * Y_FACTOR;
-            w = 8 * X_FACTOR;
-            h = 22.2 * Y_FACTOR;
+            x = "safezoneX + safezoneW - 13 * X_FACTOR";
+            y = "safezoneY + 5 * Y_FACTOR";
+            w = "8 * X_FACTOR";
+            h = "22.2 * Y_FACTOR";
 
             deletable = 0;
             fade = 0;
             shadow = 0;
             style = 16;
             type = 15;
-            moving = true;
+            moving = "true";
 
             class controls {
                 class mainBackground: RscText {
@@ -54,22 +54,22 @@ class GVAR(RscDisplayMarkers) {
 
                     x = 0;
                     y = 0;
-                    w = 8 * X_FACTOR;
-                    h = 22.2 * Y_FACTOR;
+                    w = "8 * X_FACTOR";
+                    h = "22.2 * Y_FACTOR";
 
-                    SizeEx = (Y_FACTOR * 1);
+                    SizeEx = "(Y_FACTOR * 1)";
                     colorBackground[] = {0,0,0,0.8};
                 };
 
                 class text: RscStructuredText {
                     idc = IDC_HELP_TEXT;
 
-                    x = HELP_TEXT_PADDING_X;
-                    y = HELP_TEXT_PADDING_Y;
-                    w = 8 * X_FACTOR - 2 * HELP_TEXT_PADDING_X;
-                    h = 22.2 * Y_FACTOR - 2 * HELP_TEXT_PADDING_Y;
+                    x = "HELP_TEXT_PADDING_X";
+                    y = "HELP_TEXT_PADDING_Y";
+                    w = "8 * X_FACTOR - 2 * HELP_TEXT_PADDING_X";
+                    h = "22.2 * Y_FACTOR - 2 * HELP_TEXT_PADDING_Y";
 
-                    sizeEx = 0.8 * Y_FACTOR;
+                    sizeEx = "0.8 * Y_FACTOR";
 
                     class Attributes;
                 };
@@ -79,28 +79,28 @@ class GVAR(RscDisplayMarkers) {
         class markersDialog: RscControlsGroupNoScrollbars {
             idc = -1;
 
-            x = safezoneX + 5 * X_FACTOR;
-            y = safezoneY + 5 * Y_FACTOR;
-            w = 20 * X_FACTOR;
-            h = 22.2 * Y_FACTOR;
+            x = "safezoneX + 5 * X_FACTOR";
+            y = "safezoneY + 5 * Y_FACTOR";
+            w = "20 * X_FACTOR";
+            h = "22.2 * Y_FACTOR";
 
             deletable = 0;
             fade = 0;
             shadow = 0;
             style = 16;
             type = 15;
-            moving = true;
+            moving = "true";
 
             class controls {
                 class title: RscTitle {
                     idc = -1;
 
-                    x = 0 * X_FACTOR;
-                    y = 0 * Y_FACTOR;
-                    w = 20 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "0 * X_FACTOR";
+                    y = "0 * Y_FACTOR";
+                    w = "20 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
 
-                    sizeEx = (Y_FACTOR * 1);
+                    sizeEx = "(Y_FACTOR * 1)";
                     text = "FPA SAVE-MARKERS";
                     colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
                 };
@@ -108,24 +108,24 @@ class GVAR(RscDisplayMarkers) {
                 class mainBackground: RscText {
                     idc = -1;
 
-                    x = 0 * X_FACTOR;
-                    y = 1.1 * Y_FACTOR;
-                    w = 20 * X_FACTOR;
-                    h = 20 * Y_FACTOR;
+                    x = "0 * X_FACTOR";
+                    y = "1.1 * Y_FACTOR";
+                    w = "20 * X_FACTOR";
+                    h = "20 * Y_FACTOR";
 
-                    SizeEx = (Y_FACTOR * 1);
+                    SizeEx = "(Y_FACTOR * 1)";
                     colorBackground[] = {0,0,0,0.8};
                 };
 
                 class editName: RscEdit {
                     idc = IDC_EDITNAME;
 
-                    x = 6 * X_FACTOR;
-                    y = 19.6 * Y_FACTOR;
-                    w = 13.5 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "6 * X_FACTOR";
+                    y = "19.6 * Y_FACTOR";
+                    w = "13.5 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
 
-                    sizeEx = 0.8 * Y_FACTOR;
+                    sizeEx = "0.8 * Y_FACTOR";
                 };
 
                 class saveAsText: RscText {
@@ -133,24 +133,24 @@ class GVAR(RscDisplayMarkers) {
 
                     text = "Save as:";
 
-                    x = 0.5 * X_FACTOR;
-                    y = 19.6 * Y_FACTOR;
-                    w = 5.5 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "0.5 * X_FACTOR";
+                    y = "19.6 * Y_FACTOR";
+                    w = "5.5 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
 
-                    sizeEx = 0.8 * Y_FACTOR;
+                    sizeEx = "0.8 * Y_FACTOR";
                     style = 1;
                 };
 
                 class savesList: RscListNBox {
                     idc = IDC_SAVESLIST;
 
-                    x = 0.5 * X_FACTOR;
-                    y = 1.6 * Y_FACTOR;
-                    w = 19 * X_FACTOR;
-                    h = 17.5 * Y_FACTOR;
+                    x = "0.5 * X_FACTOR";
+                    y = "1.6 * Y_FACTOR";
+                    w = "19 * X_FACTOR";
+                    h = "17.5 * Y_FACTOR";
 
-                    sizeEx = 0.8 * Y_FACTOR;
+                    sizeEx = "0.8 * Y_FACTOR";
                     columns[] = {0,0.7};
 
                     class ListScrollBar;
@@ -163,10 +163,10 @@ class GVAR(RscDisplayMarkers) {
 
                     action = QUOTE((findDisplay IDD_SAVEMARKERS) closeDisplay 2);
 
-                    x = 0 * X_FACTOR;
-                    y = 21.2 * Y_FACTOR;
-                    w = 4.925 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "0 * X_FACTOR";
+                    y = "21.2 * Y_FACTOR";
+                    w = "4.925 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
                 };
 
                 class buttonDelete: RscButtonMenu {
@@ -174,10 +174,10 @@ class GVAR(RscDisplayMarkers) {
 
                     text = "Delete";
 
-                    x = 5.025 * X_FACTOR;
-                    y = 21.2 * Y_FACTOR;
-                    w = 4.925 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "5.025 * X_FACTOR";
+                    y = "21.2 * Y_FACTOR";
+                    w = "4.925 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
                 };
 
                 class buttonSave: RscButtonMenu {
@@ -185,10 +185,10 @@ class GVAR(RscDisplayMarkers) {
 
                     text = "Save";
 
-                    x = 10.050 * X_FACTOR;
-                    y = 21.2 * Y_FACTOR;
-                    w = 4.925 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "10.050 * X_FACTOR";
+                    y = "21.2 * Y_FACTOR";
+                    w = "4.925 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
                 };
 
                 class buttonLoad: RscButtonMenu {
@@ -196,10 +196,10 @@ class GVAR(RscDisplayMarkers) {
 
                     text = "Load";
 
-                    x = 15.075 * X_FACTOR;
-                    y = 21.2 * Y_FACTOR;
-                    w = 4.925 * X_FACTOR;
-                    h = 1 * Y_FACTOR;
+                    x = "15.075 * X_FACTOR";
+                    y = "21.2 * Y_FACTOR";
+                    w = "4.925 * X_FACTOR";
+                    h = "1 * Y_FACTOR";
                 };
             };
         };

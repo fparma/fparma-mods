@@ -1,0 +1,22 @@
+////////////////////////////////////////////////////////////////////
+//DeRap: Objects\data\objectBorder.rvmat
+//Produced from mikero's Dos Tools Dll version 9.10
+//https://mikero.bytex.digital/Downloads
+//'now' is Fri Dec 01 18:19:52 2023 : 'file' last modified on Mon May 25 09:58:00 2020
+////////////////////////////////////////////////////////////////////
+
+#define _ARMA_
+
+class StageTI
+{
+	texture = "a3\data_f\destruct_ti_ca.paa";
+};
+ambient[] = {50,50,50,0.5};
+diffuse[] = {0,0,0,1};
+forcedDiffuse[] = {0,0,0,1};
+emmisive[] = {4.0,600.0,15.0,1};
+specular[] = {0,0,0,0};
+specularPower = 0;
+renderFlags[] = {"NoZWrite","NoAlphaWrite","AddBlend"};
+PixelShaderID = "Normal";
+VertexShaderID = "Basic";
