@@ -66,3 +66,7 @@ if (isDedicated) then {
         }, 30, []] call CBA_fnc_addPerFrameHandler;
     }, 10] call CBA_fnc_waitAndExecute;
 };
+
+if (GVAR(disableRHSStartUp)) then {
+    RHS_ENGINE_STARTUP_OFF = "fuck no";
+};

@@ -29,10 +29,6 @@ params [
   ["_id", "", [""]]
 ];
 
-if (isNil QGVAR(cachedGroups)) then {
-  GVAR(cachedGroups) = [[], []] call CBA_fnc_hashCreate;
-};
-
 private _isReCache = _units isEqualType "";
 if (_isReCache) then {
   _id = _units;

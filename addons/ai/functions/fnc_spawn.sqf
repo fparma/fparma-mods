@@ -18,10 +18,6 @@
 if (!isServer || {isNil QGVAR(savedGroups)}) exitWith {false};
 if (!params [["_id", "", [""]]]) exitWith {false};
 
-if (isNil QGVAR(activeGroups)) then {
-  GVAR(activeGroups) = createHashMap;
-};
-
 private _groups = GVAR(savedGroups) getOrDefault [_id, []];
 private _hcs = entities "HeadlessClient_F";
 if (_hcs isNotEqualTo []) then {

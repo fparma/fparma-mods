@@ -10,6 +10,6 @@
     [
         [0,1,2],
         ["never","first 10min of mission","always"],
-        1
+        2
     ]
 ] call CBA_fnc_addSetting;

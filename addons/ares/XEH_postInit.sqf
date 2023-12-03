@@ -25,9 +25,9 @@ INFO_1("ZEN loaded: %1", !isNil "zen_custom_modules_fnc_register");
 if (!hasInterface) exitWith {};
 
 if !(isNil "Ares_fnc_RegisterCustomModule") then {
-    #include "aresModules.sqf";
+    #include "aresModules.sqf"
 };
 
 if !(isNil "zen_custom_modules_fnc_register") then {
-    #include "zenModules.sqf";
+    #include "zenModules.sqf"
 };

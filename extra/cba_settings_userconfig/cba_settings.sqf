@@ -41,8 +41,8 @@ force force ace_common_checkPBOsWhitelist = "[]";
 force ace_cookoff_enable = 2;
 force ace_cookoff_enableAmmobox = true;
 force ace_cookoff_enableAmmoCookoff = true;
-force force ace_cookoff_ammoCookoffDuration = 0.2;
-force force ace_cookoff_probabilityCoef = 0.75;
+force ace_cookoff_ammoCookoffDuration = 0.2;
+force ace_cookoff_probabilityCoef = 0.75;
 
 // ACE Finger
 force ace_finger_enabled = true;

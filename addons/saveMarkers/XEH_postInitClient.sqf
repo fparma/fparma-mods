@@ -11,7 +11,7 @@ During map screen you can also load markers if you know the save name like so:<b
 ";
 // <execute expression='openMap [false,false]; [fpa_saveMarkers_fnc_loadDisplay,[]] call CBA_fnc_execNextFrame;'>[Open Save Markers]</execute>
 
-if (isMultiplayer) then {
+if (GVAR(setting_canBeOpened) < 2 && {isMultiplayer}) then {
     _helpText = _helpText + "<br/><br/>This message will self destruct 10 minutes after mission start!";
 
     [{ time > 0.1},{

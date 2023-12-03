@@ -1,0 +1,4 @@
+prefix=a3\ui_f_curator;
+product=Arma 3;
+version=150267;
+
