@@ -87,7 +87,8 @@ _colorOutside = configfile >> "CfgWorlds" >> worldname >> "OutsideTerrain" >> "c
 _colorOutside = if (isarray _colorOutside) then {
     _colorOutside call bis_fnc_colorCOnfigToRGBA;
 } else {
-    WARNING(format ["colorOutside param is mission in ""CfgWorlds"" >> ""%1"" >> ""OutsideTerrain""", worldname]);
+    private _msg = format ["colorOutside param is mission in ""CfgWorlds"" >> ""%1"" >> ""OutsideTerrain""", worldname];
+    WARNING(_msg);
     [0,0,0,1]
 };
 
