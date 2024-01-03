@@ -2,8 +2,10 @@ name = "fparma-mods"
 prefix = "fpa"
 author = "FP Mod team"
 modname ="fpa"
-version = "1.0.0"
-files = [
+reuse_private_key = false
+
+[files]
+include = [
     "mod.cpp",
     "mod.cpp",
     "AUTHORS.txt",
@@ -21,4 +23,8 @@ exclude = [
     "*.png",
     "*.tga"
 ]
-reuse_private_key = false
+
+[version]
+major = 2
+minor = 0
+patch = 0
