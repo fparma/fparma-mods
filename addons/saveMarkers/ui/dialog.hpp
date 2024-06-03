@@ -1,5 +1,4 @@
 #include "defines.hpp"
-#include "script_component.hpp"
 
 class RscMapControl;
 class RscPicture;

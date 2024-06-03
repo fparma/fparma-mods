@@ -4,7 +4,7 @@ class CfgPatches {
   class ADDON {
     units[] = {};
     weapons[] = {};
-    requiredVersion = 2.16;
+    requiredVersion = REQUIRED_VERSION;
     requiredAddons[] = {"fpa_main"};
     author[] = {"Cuel"};
     authorUrl = "";
