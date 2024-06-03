@@ -8,6 +8,7 @@ PREP(disableWeapons);
 PREP(endMissionServer);
 PREP(exportCfgGroups);
 PREP(getPlayer);
+PREP(initViewDistance);
 PREP(isAdmin);
 PREP(isPlayer);
 PREP(lowerPlayerWeapon);

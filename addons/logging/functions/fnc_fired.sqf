@@ -50,7 +50,7 @@ if (count (GVAR(grenades) select {!(isNull (_x select 0))}) == 0) then {
         ];
 
         private _sideGrp = side group player;
-        private _lvl = [0, 1] select ({_x distance _pos < 10 && side group _x == _sideGrp} count _lastNear > 0);
+        private _lvl = parseNumber (({_x distance _pos < 10 && side group _x == _sideGrp} count _lastNear) > 0);
         [_str, _lvl, CBA_missionTime] remoteExecCall [QFUNC(serverLog), 2];
     }, 0.1, _id] call CBA_fnc_addPerFrameHandler;
 }, _proj] call CBA_fnc_execNextFrame;

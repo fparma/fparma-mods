@@ -10,7 +10,7 @@ if (_knowledge < 1.5) exitWith {};
 
 if (_sendTimeout isEqualTo 0) exitWith {
     // initial broadcast
-    TRACE_1("inital broadcast wait", _grp);
+    TRACE_1("inital broadcast wait",_grp);
     _grp setVariable [QGVAR(broadcastTimeout), 20 + random [5, 10, 25]];
 };
 
@@ -18,10 +18,10 @@ if (_sendTimeout isEqualTo 0) exitWith {
 private _nearGrps = allGroups select {side _x isEqualTo side _grp && {count units _x >= 2} && {leader _x distance _leader < 300}};
 if (_nearGrps isEqualTo []) then {
     // try again in 15s
-    TRACE_1("no nearby units", _grp);
+    TRACE_1("no nearby units",_grp);
     _grp setVariable [QGVAR(broadcastTimeout), CBA_missionTime + 15];
 } else {
-    TRACE_1("broadcasting", _grp);
+    TRACE_1("broadcasting",_grp);
     // wait until next send. longer delay for dumb units
     private _skill = 0.1 max (_leader skillFinal "commanding");
     private _wait = 15 + ((1 - _skill) * random [15, 40, 80]);

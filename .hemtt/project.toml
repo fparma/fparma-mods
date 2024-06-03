@@ -3,6 +3,7 @@ prefix = "fpa"
 author = "FP Mod team"
 modname ="fpa"
 reuse_private_key = false
+mainprefix = "z"
 
 [files]
 include = [
@@ -28,3 +29,15 @@ exclude = [
 major = 2
 minor = 0
 patch = 0
+
+[hemtt.launch.default]
+workshop = [
+    "450814997", # CBA_A3
+    "463939057", # ACE3
+    "751965892", # ACRE2
+    "1779063631", # zeus enhanced
+    "2018593688" # zeus enhanced ace compat
+]
+parameters = [
+    "-world=empty"
+]

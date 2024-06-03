@@ -118,7 +118,7 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
 
 [
     QGVAR(viewdistanceMinimum), "SLIDER",
-    ["Minimum Value", "Must be set before mission, cannot change during mission!"],
+    ["Minimum Value", ""],
     [FP_SETTINGS, "View Distance"],
     [250, 10000, 500, 0],
     false
@@ -126,7 +126,7 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
 
 [
     QGVAR(viewdistanceStep), "SLIDER",
-    ["Value Step", "Must be set before mission, cannot change during mission!"],
+    ["Value Step", ""],
     [FP_SETTINGS, "View Distance"],
     [100, 1000, 250, 0],
     false
@@ -134,7 +134,7 @@ GVAR(admins) = compileFinal str (getArray (configFile >> QGVAR(admins)));
 
 [
     QGVAR(viewdistanceMaximum), "SLIDER",
-    ["Maximum Value", "Must be set before mission, cannot change during mission!"],
+    ["Maximum Value", ""],
     [FP_SETTINGS, "View Distance"],
     [250, 10000, 5000, 0],
     false

@@ -23,8 +23,8 @@ if (!hasInterface) exitWith {};
     }] call CBA_fnc_execNextFrame;
 }] call CBA_fnc_addEventHandler;
 
-#include "commands_admins.sqf"
-#include "commands_clients.sqf"
+#include "commands_admins.inc.sqf"
+#include "commands_clients.inc.sqf"
 
 if (isMultiplayer) then {
     ["CBA_loadingScreenDone", {
@@ -120,36 +120,4 @@ if (GVAR(arsenalAddAcreTab)) then {
     ] call ace_arsenal_fnc_addRightPanelButton;
 };
 
-if (GVAR(enableViewdistanceSelector)) then {
-    private _actDistCat = ["ViewDist","View distance","",{},{}] call ace_interact_menu_fnc_createAction;
-    [typeOf player, 1, ["ACE_SelfActions"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
-    _actDistCat = ["OverallDist","Overall","",{},{}] call ace_interact_menu_fnc_createAction;
-    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
-    _actDistCat = ["ObjectDist","Object","",{},{}] call ace_interact_menu_fnc_createAction;
-    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
-    _actDistCat = ["BothtDist","Both","",{},{}] call ace_interact_menu_fnc_createAction;
-    [typeOf player, 1, ["ACE_SelfActions","ViewDist"], _actDistCat] call ace_interact_menu_fnc_addActionToClass;
-
-    private _min = GVAR(viewdistanceMaximum) min GVAR(viewdistanceMinimum);
-    private _max = GVAR(viewdistanceMaximum) max GVAR(viewdistanceMinimum);
-
-    for "_i" from _min to _max step GVAR(viewdistanceStep) do {
-        private _iStr = str _i;
-        private _action = [_iStr,_iStr,"",{
-            params ["", "", "_dist"];
-            setViewDistance _dist
-        },{viewDistance isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
-        [typeOf player, 1, ["ACE_SelfActions","ViewDist","OverallDist"], _action] call ace_interact_menu_fnc_addActionToClass;
-        _action = [_iStr,_iStr,"",{
-            params ["", "", "_dist"];
-            setObjectViewDistance _dist
-        },{(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}, nil, _i] call ace_interact_menu_fnc_createAction;
-        [typeOf player, 1, ["ACE_SelfActions","ViewDist","ObjectDist"], _action] call ace_interact_menu_fnc_addActionToClass;
-        private _action = [_iStr,_iStr,"",{
-            params ["", "", "_dist"];
-            setViewDistance _dist;
-            setObjectViewDistance _dist
-        },{viewDistance isNotEqualTo (_this select 2) || {(getObjectViewDistance select 0) isNotEqualTo (_this select 2)}}, nil, _i] call ace_interact_menu_fnc_createAction;
-        [typeOf player, 1, ["ACE_SelfActions","ViewDist","BothtDist"], _action] call ace_interact_menu_fnc_addActionToClass;
-    };
-};
+[] call FUNC(initViewDistance);
