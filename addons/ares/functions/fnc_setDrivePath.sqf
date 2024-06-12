@@ -10,13 +10,13 @@
 params ["_success", "_obj", "_dest", "", "_holdingCtrl"];
 if (!_success) exitWith {
     GVAR(pathDestinations) = [];
-    [RETDEF(GVAR(pathDestEH), -1)] call CBA_fnc_removePerFrameHandler;
+    [RETDEF(GVAR(pathDestEH),-1)] call CBA_fnc_removePerFrameHandler;
 };
 
 if (_holdingCtrl) exitWith {
     GVAR(pathDestinations) pushBack _dest;
 
-    if (RETDEF(GVAR(pathDestEH), -1) == -1) then {
+    if (RETDEF(GVAR(pathDestEH),-1) == -1) then {
         GVAR(pathDestEH) = [{
             params ["_args"];
             _args params ["_obj"];
@@ -35,7 +35,7 @@ if (_holdingCtrl) exitWith {
 };
 
 private _dests = [getPosATL _obj] + GVAR(pathDestinations) + [_dest];
-[RETDEF(GVAR(pathDestEH), -1)] call CBA_fnc_removePerFrameHandler;
+[RETDEF(GVAR(pathDestEH),-1)] call CBA_fnc_removePerFrameHandler;
 GVAR(pathDestinations) = [];
 GVAR(pathDestEH) = -1;
 

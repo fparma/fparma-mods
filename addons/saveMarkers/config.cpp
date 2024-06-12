@@ -4,7 +4,7 @@ class CfgPatches {
     class ADDON {
         author = "GRAD";
         name = QUOTE(ADDON);
-        requiredVersion = 1.0;
+        requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"fpa_main", "fpa_common"};
         units[] = {};
         weapons[] = {};

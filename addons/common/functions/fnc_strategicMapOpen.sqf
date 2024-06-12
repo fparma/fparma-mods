@@ -81,7 +81,7 @@ BIS_fnc_strategicMapOpen_isNight = _isNight;
 
 _scale = 3500 / _mapSize / safezoneH;
 _scale = _scale * (_defaultScale max 0 min 1);
-_maxSatelliteAlpha = if (_isNight) then {0.75} else {1};
+_maxSatelliteAlpha = [1, 0.75] select _isNight;
 
 _colorOutside = configfile >> "CfgWorlds" >> worldname >> "OutsideTerrain" >> "colorOutside";
 _colorOutside = if (isarray _colorOutside) then {
@@ -104,7 +104,7 @@ with uiNamespace do {
 };
 
 //--- Create the viewer
-_displayClass = if (_simulationEnabled) then {"RscDisplayStrategicMapSimulation"} else {"RscDisplayStrategicMap"};
+_displayClass = ["RscDisplayStrategicMap", "RscDisplayStrategicMapSimulation"] select _simulationEnabled;
 _parentDisplay createDisplay _displayClass;
 _display = finddisplay 506;
 if (isnull _display) exitwith {"Unable to create 'RscDisplayStrategicMap' display." call (uinamespace getvariable "bis_fnc_error"); displaynull};

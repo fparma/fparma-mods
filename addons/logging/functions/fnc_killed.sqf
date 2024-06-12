@@ -91,7 +91,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
             };
 
             _msg pushBack format ["Nearby drivers: %1", _texts joinString ('. ')];
-            _lvl = [0, 1] select ({_sideGrp == side group _x} count _nearbyDrivers > 0);
+            _lvl = parseNumber (({_sideGrp == side group _x} count _nearbyDrivers) > 0);
         };
     };
 };

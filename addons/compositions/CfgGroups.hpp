@@ -1,6 +1,5 @@
 
 // Auto-generated file
-#include "script_component.hpp"
 
 class CfgGroups
 {

@@ -68,9 +68,9 @@ if (primaryWeapon _center != "" || {secondaryWeapon _center != ""} || {handgunWe
     ((_center weaponAccessories _wep) select {_x != ""})
   };
 
-  private _primary = ["// Primary weapon", _pw, _pw call _getAccessories, "addPrimaryWeaponItem", primaryWeaponMagazine _center],
-  private _secondary = ["// Secondary weapon", _sw, _sw call _getAccessories, "addSecondaryWeaponItem", secondaryWeaponMagazine _center],
-  private _handgun = ["// Handgun", _hw, _hw call _getAccessories, "addHandgunItem", handgunMagazine _center],
+  private _primary = ["// Primary weapon", _pw, _pw call _getAccessories, "addPrimaryWeaponItem", primaryWeaponMagazine _center];
+  private _secondary = ["// Secondary weapon", _sw, _sw call _getAccessories, "addSecondaryWeaponItem", secondaryWeaponMagazine _center];
+  private _handgun = ["// Handgun", _hw, _hw call _getAccessories, "addHandgunItem", handgunMagazine _center];
   private _binoc = ["// Binoc", binocular _center, [_center call CBA_fnc_binocularMagazine] select {_x != ""}, "addMagazine"];
 
   {
