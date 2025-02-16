@@ -2,9 +2,9 @@
 
 params ["_playerID", "_markerIDIndex", "_markersData"];
 
-[
-    {
-        params ["_playerID", "_markerIDIndex", "_markersData"];
+// [
+//     {
+//         params ["_playerID", "_markerIDIndex", "_markersData"];
 
         private _idx = (count _markersData) - 1;
         private _markerData = _markersData select _idx;
@@ -19,7 +19,7 @@ params ["_playerID", "_markerIDIndex", "_markersData"];
         } else {
             [_playerID, _markerIDIndex + 1, _markersData] call FUNC(loadMarkersLoop);
         };
-    },
-    [_playerID, _markerIDIndex, _markersData],
-    0.5
-] call CBA_fnc_waitAndExecute;
+//     },
+//     [_playerID, _markerIDIndex, _markersData],
+//     0.5
+// ] call CBA_fnc_waitAndExecute;
