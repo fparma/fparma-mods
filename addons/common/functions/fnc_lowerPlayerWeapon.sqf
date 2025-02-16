@@ -18,7 +18,7 @@ if (!hasInterface) exitWith {};
 [{!isNull player && {time > 0}}, {
     private _unit = player;
 
-    if (vehicle _unit != _unit) exitWith {};
+    if !(isNull objectParent _unit) exitWith {};
     private _anim = toLower animationState _unit;
 
     // stance is broken for some animations.

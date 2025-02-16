@@ -10,7 +10,7 @@ params [["_tree",objNull]];
 
 private _searchPos = getPos _tree;
 _searchPos set [2,(_searchPos select 2) min 0.8];
-_searchPos = AGLtoASL _searchPos;
+_searchPos = AGLToASL _searchPos;
 
 // look for cached offset
 if (isNil QGVAR(trunkOffsetsCache)) then {GVAR(trunkOffsetsCache) = call CBA_fnc_createNamespace};

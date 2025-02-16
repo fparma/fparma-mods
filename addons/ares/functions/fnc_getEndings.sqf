@@ -20,7 +20,7 @@ private _add = {
     if (isNull _config) exitWith {};
 
     private _cfgName = configName _config;
-    if !((tolower _cfgName) in _usedClasses) then {
+    if !((toLower _cfgName) in _usedClasses) then {
         private _title = getText (_config >> "title");
         if (_title isEqualTo "") exitWith {};
 
@@ -28,7 +28,7 @@ private _add = {
         private _str = format ['(%1) "%2" %3', _cfgName, _title, ["", " - " + _extra] select (count _extra > 0)];
 
         _endings pushBack [_cfgName, _str];
-        _usedClasses pushBack (tolower _cfgName);
+        _usedClasses pushBack (toLower _cfgName);
     };
 };
 
@@ -40,7 +40,7 @@ if (_filterBad) then {
         private _name = configName _x;
         (_name select [0, 8] != "moduleMP" &&
             {_name select [0,5] != "CPEnd"} &&
-            {!(toUpper _name isEqualTo _name)})
+            {toUpper _name isNotEqualTo _name})
     };
 };
 

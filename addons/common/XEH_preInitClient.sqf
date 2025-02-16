@@ -5,7 +5,7 @@ if (!hasInterface) exitWith {};
 [
     FP_SETTINGS,
     QGVAR(toggleScreenshot),
-    ['Toggle Screenshot Mode', 'Hides UI elements for taking screenshots'],
+    ['Toggle screenshot Mode', 'Hides UI elements for taking screenshots'],
     {
         [] call FUNC(toggleScreenshotMode);
         false
@@ -47,7 +47,7 @@ GVAR(lastMessageFrom) = "";
 
     if ([] call _condition) then {
         GVAR(chatChannel) radioChannelAdd [ACE_player];
-        GVAR(chatChannel) radioChannelSetCallsign _text;
+        GVAR(chatChannel) radioChannelSetCallSign _text;
         ACE_player customChat [GVAR(chatChannel), _msg];
         GVAR(chatChannel) radioChannelRemove [ACE_player];
         if (GVAR(customChatPingSound) && _ping) then {

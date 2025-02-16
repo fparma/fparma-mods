@@ -54,7 +54,7 @@ _playerData sort true;
 if (lbCurSel _ctrl < 0 || lbCurSel _ctrl >= lbSize _ctrl) then {
     _ctrl lbSetCurSel 1;
 } else {
-    if (call compile (_ctrl lbData (lbCursel _ctrl)) < 0) then {
+    if (call compile (_ctrl lbData (lbCurSel _ctrl)) < 0) then {
         _ctrl lbSetCurSel 1;
     };
 };

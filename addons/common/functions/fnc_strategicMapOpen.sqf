@@ -48,15 +48,15 @@ DISPLAY - RscDisplayStrategicMap
 
 #include "script_component.hpp"
 private ["_parentDisplayDefault","_parentDisplay","_mapCenter","_missions","_ORBAT","_markers","_images","_overcast","_scale","_defaultScale","_simulationEnabled","_displayClass","_display","_playerIcon","_playerColor","_cloudTextures","_cloudsGrid","_cloudsMax","_cloudsSize","_map","_fade","_actionText","_missionIcon","_showIconText"];
-disableserialization;
+disableSerialization;
 
 _parentDisplayDefault = switch false do {
-    case isnull (finddisplay 37): {finddisplay 37}; //--- GetReady
-    case isnull (finddisplay 52): {finddisplay 52}; //--- ServerGetReady
-    case isnull (finddisplay 53): {finddisplay 53}; //--- ClientGetReady
+    case isNull (findDisplay 37): {findDisplay 37}; //--- GetReady
+    case isNull (findDisplay 52): {findDisplay 52}; //--- ServerGetReady
+    case isNull (findDisplay 53): {findDisplay 53}; //--- ClientGetReady
     default {[] call bis_fnc_displayMission}; //--- Mission
 };
-_parentDisplay = _this param [0,_parentDisplayDefault,[displaynull]];
+_parentDisplay = _this param [0,_parentDisplayDefault,[displayNull]];
 _mapCenter = _this param [1,position player];
 _mapCenter = _mapCenter call bis_fnc_position;
 _missions = _this param [2,[],[[]]];
@@ -79,15 +79,15 @@ _mapSize = worldSize;
 BIS_fnc_strategicMapOpen_mapSize = _mapSize;
 BIS_fnc_strategicMapOpen_isNight = _isNight;
 
-_scale = 3500 / _mapSize / safezoneH;
+_scale = 3500 / _mapSize / safeZoneH;
 _scale = _scale * (_defaultScale max 0 min 1);
 _maxSatelliteAlpha = [1, 0.75] select _isNight;
 
-_colorOutside = configfile >> "CfgWorlds" >> worldname >> "OutsideTerrain" >> "colorOutside";
-_colorOutside = if (isarray _colorOutside) then {
+_colorOutside = configFile >> "CfgWorlds" >> worldName >> "OutsideTerrain" >> "colorOutside";
+_colorOutside = if (isArray _colorOutside) then {
     _colorOutside call bis_fnc_colorCOnfigToRGBA;
 } else {
-    private _msg = format ["colorOutside param is mission in ""CfgWorlds"" >> ""%1"" >> ""OutsideTerrain""", worldname];
+    private _msg = format ["colorOutside param is mission in ""CfgWorlds"" >> ""%1"" >> ""OutsideTerrain""", worldName];
     WARNING(_msg);
     [0,0,0,1]
 };
@@ -106,8 +106,8 @@ with uiNamespace do {
 //--- Create the viewer
 _displayClass = ["RscDisplayStrategicMap", "RscDisplayStrategicMapSimulation"] select _simulationEnabled;
 _parentDisplay createDisplay _displayClass;
-_display = finddisplay 506;
-if (isnull _display) exitwith {"Unable to create 'RscDisplayStrategicMap' display." call (uinamespace getvariable "bis_fnc_error"); displaynull};
+_display = findDisplay 506;
+if (isNull _display) exitWith {"Unable to create 'RscDisplayStrategicMap' display." call (uiNamespace getVariable "bis_fnc_error"); displayNull};
 
 //--- Life, calculations and everything
 // startloadingscreen ["","RscDisplayLoadingBlack"];
@@ -123,8 +123,8 @@ _onClick = [];
     _pos = _x param [0,player];
     _pos = _pos call bis_fnc_position;
 
-    _class = _x param [1,configfile >> "CfgORBAT",[configfile]];
-    _parent = _x param [2,_class,[configfile]];
+    _class = _x param [1,configFile >> "CfgORBAT",[configFile]];
+    _parent = _x param [2,_class,[configFile]];
     _tags = _x param [3,[],[[]]];
     _tiers = _x param [4,-1,[0]];
 
@@ -163,22 +163,22 @@ _onClick = [];
     //--- Create shortcut from ORBAT viewer
     _onClick set [count _onClick,_class];
     _onClick set [count _onClick,{[_this select 0,1] spawn bis_fnc_strategicMapAnimate; true}];
-} foreach _ORBAT;
+} forEach _ORBAT;
 BIS_fnc_strategicMapOpen_ORBATonClick = _onClick;
 
 //--- Process Missions
 BIS_fnc_strategicMapOpen_missions = [];
 if (count _missions > 0) then {
-    _playerIcon = gettext (configfile >> "CfgInGameUI" >> "IslandMap" >> "iconPlayer");
-    _playerColor = (getarray (configfile >> "cfgingameui" >> "islandmap" >> "colorMe")) call BIS_fnc_colorRGBAtoHTML;
+    _playerIcon = getText (configFile >> "CfgInGameUI" >> "IslandMap" >> "iconPlayer");
+    _playerColor = (getArray (configFile >> "cfgingameui" >> "islandmap" >> "colorMe")) call BIS_fnc_colorRGBAtoHTML;
 
-    _ctrlBackground = _display displayctrl 1000;
-    _ctrlBackground ctrlshow false;
+    _ctrlBackground = _display displayCtrl 1000;
+    _ctrlBackground ctrlShow false;
 
-    _ctrlMissions = _display displayctrl 1500;
-    _lbadd = _ctrlMissions lbadd _actionText;
-    _ctrlMissions lbsetvalue [_lbadd,-1];
-    _ctrlMissions lbsetcolor [_lbadd,[1,1,1,0.5]];
+    _ctrlMissions = _display displayCtrl 1500;
+    _lbAdd = _ctrlMissions lbAdd _actionText;
+    _ctrlMissions lbSetValue [_lbAdd,-1];
+    _ctrlMissions lbSetColor [_lbAdd,[1,1,1,0.5]];
     {
         private ["_pos","_code","_title","_description","_player","_picture","_iconSize","_infoText","_codeParams"];
         _pos = _x param [0,player];
@@ -213,18 +213,18 @@ if (count _missions > 0) then {
             ]
         ];
 
-        _lbadd = _ctrlMissions lbadd format ["%1 (%2/%3)",_title,_foreachindex + 1,count _missions];
-        _ctrlMissions lbsetvalue [_lbAdd,_foreachindex];
+        _lbAdd = _ctrlMissions lbAdd format ["%1 (%2/%3)",_title,_forEachindex + 1,count _missions];
+        _ctrlMissions lbSetValue [_lbAdd,_forEachindex];
 
-    } foreach _missions;
+    } forEach _missions;
 
-    _ctrlMissions lbsetcursel 0;
-    _ctrlMissions ctrladdeventhandler [
-        "lbselchanged",
+    _ctrlMissions lbSetCurSel 0;
+    _ctrlMissions ctrlAddEventHandler [
+        "LBSelChanged",
         "
             _ctrlMissions = _this select 0;
             _cursel = _this select 1;
-            if ((_ctrlMissions lbvalue 0) < 0) exitwith {_ctrlMissions lbdelete 0; _ctrlMissions lbsetcursel 0;};
+            if ((_ctrlMissions lbvalue 0) < 0) exitWith {_ctrlMissions lbdelete 0; _ctrlMissions lbSetCurSel 0;};
             _mission = BIS_fnc_strategicMapOpen_missions select (_ctrlMissions lbvalue _cursel);
             [_mission select 0,1] spawn bis_fnc_strategicmapanimate;
         "
@@ -246,7 +246,7 @@ BIS_fnc_strategicMapOpen_images = [];
 
     _pos = _pos call bis_fnc_position;
     _color = _color call bis_fnc_colorConfigToRGBA;
-    _coef = (0.182 * safezoneH); //--- Magic constant to make kilometer a kilometer
+    _coef = (0.182 * safeZoneH); //--- Magic constant to make kilometer a kilometer
     _w = _w * _coef;
     _h = _h * _coef;
 
@@ -254,7 +254,7 @@ BIS_fnc_strategicMapOpen_images = [];
         count BIS_fnc_strategicMapOpen_images,
         [_texture,_color,_pos,_w,_h,_dir,_text,_shadow]
     ];
-} foreach _images;
+} forEach _images;
 
 //--- Random clouds
 _cloudTextures = [
@@ -288,19 +288,19 @@ BIS_fnc_strategicMapOpen_indexSizeTexture = ("sizeTexture" call bis_fnc_ORBATGet
 BIS_fnc_strategicMapOpen_indexTextureSize = ("textureSize" call bis_fnc_ORBATGetGroupParams);
 
 BIS_fnc_strategicMapOpen_draw = {
-    scriptname "bis_fnc_strategicMapOpen - Draw";
+    scriptName "bis_fnc_strategicMapOpen - Draw";
     _map = _this select 0;
     _mapSize = BIS_fnc_strategicMapOpen_mapSize / 2;
-    _display = ctrlparent _map;
-    _time = diag_ticktime;
+    _display = ctrlParent _map;
+    _time = diag_tickTime;
 
-    //_tooltip = (ctrlparent _map) displayctrl 2350;
-    //_tooltip ctrlsetfade 1;
-    //_tooltip ctrlcommit 0;
+    //_tooltip = (ctrlParent _map) displayCtrl 2350;
+    //_tooltip ctrlSetFade 1;
+    //_tooltip ctrlCommit 0;
 
-    _mousePos = _map ctrlmapscreentoworld BIS_fnc_strategicMapOpen_mousePos;
+    _mousePos = _map ctrlMapScreenToWorld BIS_fnc_strategicMapOpen_mousePos;
     //_mouseLimit = BIS_fnc_strategicMapOpen_mapSize / 3400;
-    _mouseLimit = 2.5 / safezoneh;
+    _mouseLimit = 2.5 / safeZoneH;
     _selected = [];
 
     //--- Cross grid
@@ -315,8 +315,8 @@ BIS_fnc_strategicMapOpen_draw = {
 
     //--- Images
     {
-        _map drawicon _x;
-    } foreach BIS_fnc_strategicMapOpen_images;
+        _map drawIcon _x;
+    } forEach BIS_fnc_strategicMapOpen_images;
 
     //--- ORBAT groups
     {
@@ -348,7 +348,7 @@ BIS_fnc_strategicMapOpen_draw = {
             _map drawIcon _iconSizeParams;
         };
 
-    } foreach BIS_fnc_strategicMapOpen_ORBAT;
+    } forEach BIS_fnc_strategicMapOpen_ORBAT;
 
     //--- Clouds
     _cloudSpeed = sin _time * (1138 + 2000 * BIS_fnc_strategicMapOpen_overcast);
@@ -369,11 +369,11 @@ BIS_fnc_strategicMapOpen_draw = {
             ],
             _size,
             _size,
-            _dir + (_time * _foreachindex) / (count BIS_fnc_strategicMapOpen_clouds * 3),
+            _dir + (_time * _forEachindex) / (count BIS_fnc_strategicMapOpen_clouds * 3),
             "",
             false
         ];
-    } foreach BIS_fnc_strategicMapOpen_clouds;
+    } forEach BIS_fnc_strategicMapOpen_clouds;
 
     //--- Missions
     _textureAnimPhase = abs(6 - floor (_time * 16) % 12);
@@ -383,7 +383,7 @@ BIS_fnc_strategicMapOpen_draw = {
         _size = (_x select 3) * 32;
         _dir = 0;
         _alpha = 0.75;
-        _texture = format [BIS_fnc_strategicMapOpen_missionIcon,_textureAnimPhase,_foreachindex + 1];
+        _texture = format [BIS_fnc_strategicMapOpen_missionIcon,_textureAnimPhase,_forEachindex + 1];
 
         //--- Icon is under cursor
         if ((_pos distance _mousePos) < (_mouseLimit * _size)) then {
@@ -393,23 +393,23 @@ BIS_fnc_strategicMapOpen_draw = {
         };
 
         //--- Outside of the screen area
-        _mappos = _map ctrlmapworldtoscreen _pos;
+        _mappos = _map ctrlMapWorldToScreen _pos;
         _mapposX = _mappos select 0;
         _mapposY = _mappos select 1;
 
-        _borderLeft = safezoneX;
-        _borderRight = safezoneX + safezoneW;
-        _borderTop = safezoneY;
-        _borderBottom = safezoneY + safezoneH;
+        _borderLeft = safeZoneX;
+        _borderRight = safeZoneX + safeZoneW;
+        _borderTop = safeZoneY;
+        _borderBottom = safeZoneY + safeZoneH;
 
         if (
             _mapposX < _borderLeft || _mapposX > _borderRight
             ||
             _mapposY < _borderTop || _mapposY > _borderBottom
         ) then {
-            _texture = gettext (configfile >> "CfgInGameUI" >> "Cursor" >> "outArrow");
-            _mapposX = _mapposX max safezoneX min (safezoneX + safezoneW);
-            _mapposY = _mapposY max safezoneY min (safezoneY + safezoneH);
+            _texture = getText (configFile >> "CfgInGameUI" >> "Cursor" >> "outArrow");
+            _mapposX = _mapposX max safeZoneX min (safeZoneX + safeZoneW);
+            _mapposY = _mapposY max safeZoneY min (safeZoneY + safeZoneH);
             _title = "";
 
             _offset = (_size / 1200);
@@ -438,7 +438,7 @@ BIS_fnc_strategicMapOpen_draw = {
                 };
             };
 
-            _pos = _map ctrlmapscreentoworld [
+            _pos = _map ctrlMapScreenToWorld [
                 _mapposX + _offsetX,
                 _mapposY + _offsetY
             ];
@@ -456,7 +456,7 @@ BIS_fnc_strategicMapOpen_draw = {
             0.08,
             "PuristaBold"
         ];
-    } foreach BIS_fnc_strategicMapOpen_missions;
+    } forEach BIS_fnc_strategicMapOpen_missions;
 
     //--- Night
     if (BIS_fnc_strategicMapOpen_isNight) then {
@@ -491,7 +491,7 @@ BIS_fnc_strategicMapOpen_draw = {
     } else {
         [[],_display] call bis_fnc_ORBATTooltip;
     };
-    _info ctrlcommit 0;
+    _info ctrlCommit 0;
     BIS_fnc_strategicMapOpen_selected = _selected;
 };
 
@@ -513,12 +513,12 @@ BIS_fnc_strategicMapOpen_keyDown = {
     //--- H
     switch _key do {
         case DIK_H: {
-            _fade = ceil ctrlfade (_display displayctrl 2);
+            _fade = ceil ctrlFade (_display displayCtrl 2);
             _fade = (_fade + 1) % 2;
             {
-                (_display displayctrl _x) ctrlsetfade _fade;
-                (_display displayctrl _x) ctrlcommit 0.3;
-            } foreach [2,1000,1500,2350,2301];
+                (_display displayCtrl _x) ctrlSetFade _fade;
+                (_display displayCtrl _x) ctrlCommit 0.3;
+            } forEach [2,1000,1500,2350,2301];
         };
         case DIK_NUMPAD5: {
             [BIS_fnc_strategicMapOpen_mapCenter,1] spawn bis_fnc_strategicMapAnimate;
@@ -528,119 +528,119 @@ BIS_fnc_strategicMapOpen_keyDown = {
 };
 
 
-_map = _display displayctrl 51;
-_map ctrlmapanimadd [0,_scale,_mapCenter];
-ctrlmapanimcommit _map;
+_map = _display displayCtrl 51;
+_map ctrlMapAnimAdd [0,_scale,_mapCenter];
+ctrlMapAnimCommit _map;
 BIS_fnc_strategicMapOpen_mapCenter = _mapCenter;
 
-_map ctrladdeventhandler ["draw","_this call BIS_fnc_strategicMapOpen_draw;"];
-_map ctrladdeventhandler ["mousemoving","_this call BIS_fnc_strategicMapOpen_mouse;"];
-_map ctrladdeventhandler ["mouseholding","_this call BIS_fnc_strategicMapOpen_mouse;"];
-_map ctrladdeventhandler ["mousebuttonclick","[nil,_this] spawn BIS_fnc_strategicMapMouseButtonClick;"];
-_display displayaddeventhandler ["keydown","_this call BIS_fnc_strategicMapOpen_keyDown"];
+_map ctrlAddEventHandler ["Draw","_this call BIS_fnc_strategicMapOpen_draw;"];
+_map ctrlAddEventHandler ["MouseMoving","_this call BIS_fnc_strategicMapOpen_mouse;"];
+_map ctrlAddEventHandler ["MouseHolding","_this call BIS_fnc_strategicMapOpen_mouse;"];
+_map ctrlAddEventHandler ["MouseButtonDblClick","[nil,_this] spawn BIS_fnc_strategicMapMouseButtonClick;"];
+_display displayAddEventHandler ["KeyDown","_this call BIS_fnc_strategicMapOpen_keyDown"];
 
 if (_isNight) then {
-    _map ctrlsetbackgroundcolor [0,0,0,1];
-    _map ctrlcommit 0;
+    _map ctrlSetBackgroundColor [0,0,0,1];
+    _map ctrlCommit 0;
 };
 
 //--- Measure
 [_display] spawn {
-    disableserialization;
+    disableSerialization;
     _display = _this select 0;
     _showMiles = false;
 
-    _map = _display displayctrl 51;
-    waituntil {ctrlmapanimdone _map};
+    _map = _display displayCtrl 51;
+    waitUntil {ctrlMapAnimDone _map};
 
-    _xStart = (_map ctrlmapworldtoscreen [0,0,0]) select 0;
-    _xEnd = (_map ctrlmapworldtoscreen [1000,0,0]) select 0;
+    _xStart = (_map ctrlMapWorldToScreen [0,0,0]) select 0;
+    _xEnd = (_map ctrlMapWorldToScreen [1000,0,0]) select 0;
     _w1km = abs (_xstart - _xEnd);
     _w1m = _w1km * 1.60934;
     if !(_showMiles) then {_w1m = 0.01};
     _h = 0.01;
 
-    _measure = _display displayctrl 2301;
-    _measure ctrlsetposition [
-        safezoneX + 0.02125,
-        safezoneY + safezoneH - 3.5 * 0.04,
+    _measure = _display displayCtrl 2301;
+    _measure ctrlSetPosition [
+        safeZoneX + 0.02125,
+        safeZoneY + safeZoneH - 3.5 * 0.04,
         1,
         _h * 5
     ];
-    //_measure ctrlsetfade 0.25;
-    _measure ctrlcommit 0;
-    _measure ctrlenable false;
+    //_measure ctrlSetFade 0.25;
+    _measure ctrlCommit 0;
+    _measure ctrlEnable false;
 
     _colors = ["#(argb,8,8,3)color(0,0,0,1)","\A3\Ui_f\data\GUI\Rsc\RscDisplayStrategicMap\measure_ca.paa"];
     _kmSegment = _w1km / 5;
     for "_i" from 0 to 4 do {
-        _km = _display displayctrl (1200 + _i);
-        _km ctrlsettext (_colors select (_i % 2));
-        _km ctrlsetposition [
+        _km = _display displayCtrl (1200 + _i);
+        _km ctrlSetText (_colors select (_i % 2));
+        _km ctrlSetPosition [
             _w1m + _kmSegment * _i,
             _h,
             _kmSegment,
             _h
         ];
-        _km ctrlcommit 0;
+        _km ctrlCommit 0;
     };
 
-    _text_0 = _display displayctrl 1002;
-    _text_0 ctrlsetposition [
+    _text_0 = _display displayCtrl 1002;
+    _text_0 ctrlSetPosition [
         _w1m - _w1km,
         _h * 3,
         2 * _w1km,
         _h * 2
     ];
-    _text_0 ctrlcommit 0;
-    _text_km = _display displayctrl 1004;
-    _text_km ctrlsetposition [
-        _w1m - _w1km + (safezoneH / 30),
+    _text_0 ctrlCommit 0;
+    _text_km = _display displayCtrl 1004;
+    _text_km ctrlSetPosition [
+        _w1m - _w1km + (safeZoneH / 30),
         _h * 3,
         2 * _w1km,
         _h * 2
     ];
-    _text_km ctrlcommit 0;
+    _text_km ctrlCommit 0;
 
     if (_showMiles) then {
-        _m0 = _display displayctrl 1205;
-        _m0 ctrlsettext "#(argb,8,8,3)color(1,1,1,1)";
-        _m0 ctrlsetposition [
+        _m0 = _display displayCtrl 1205;
+        _m0 ctrlSetText "#(argb,8,8,3)color(1,1,1,1)";
+        _m0 ctrlSetPosition [
             0,
             _h,
             _w1m,
             _h
         ];
-        _m0 ctrlcommit 0;
-        _text_m = _display displayctrl 1003;
-        _text_m ctrlsetposition [
+        _m0 ctrlCommit 0;
+        _text_m = _display displayCtrl 1003;
+        _text_m ctrlSetPosition [
             0,
             _h * 3,
             2 * _w1m,
             _h * 2
         ];
-        _text_m ctrlcommit 0;
+        _text_m ctrlCommit 0;
     };
 };
 
 //--- Show markers
 {
     _x setMarkerAlphaLocal 1;
-} foreach _markers;
+} forEach _markers;
 BIS_fnc_strategicMapOpen_markers = _markers;
 
 //--- Fade in
-_fade = _display displayctrl 1099;
-_fade ctrlsetfade 1;
-_fade ctrlcommit 2;
+_fade = _display displayCtrl 1099;
+_fade ctrlSetFade 1;
+_fade ctrlCommit 2;
 
 //--- Garbage collector
-_display displayaddeventhandler [
-    "unload",
+_display displayAddEventHandler [
+    "Unload",
     "
         {
             _x setMarkerAlphaLocal 0;
-        } foreach BIS_fnc_strategicMapOpen_markers;
+        } forEach BIS_fnc_strategicMapOpen_markers;
 
         BIS_fnc_strategicMapOpen_player = nil;
         BIS_fnc_strategicMapOpen_mapSize = nil;
@@ -658,7 +658,7 @@ _display displayaddeventhandler [
         BIS_fnc_strategicMapOpen_selected = nil;
         BIS_fnc_strategicMapOpen_indexSizeTexture = nil;
         BIS_fnc_strategicMapOpen_indexTextureSize = nil;
-        with uinamespace do {
+        with uiNamespace do {
             RscDisplayStrategicMap_scaleMin = nil;
             RscDisplayStrategicMap_scaleMax = nil;
             RscDisplayStrategicMap_scaleDefault = nil;
@@ -670,5 +670,5 @@ _display displayaddeventhandler [
     "
 ];
 
-cuttext ["","black in"];
+cutText ["","black in"];
 _display

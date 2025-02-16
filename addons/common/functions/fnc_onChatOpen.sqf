@@ -3,10 +3,10 @@ params ["_display"];
 
 if (GVAR(hideChatHint) || {!(isNull (_display getVariable [QGVAR(chatReminder), controlNull])) || {time < 1}}) exitWith {};
 
-private _height = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8);
-private _width = (profilenamespace getvariable ["IGUI_GRID_CHAT_W", (20 * ( ((safezoneW / safezoneH) min 1.2) / 40))]);
-private _xPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_X", (safezoneX + 1 * ( ((safezoneW / safezoneH) min 1.2) / 40))]);
-private _yPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_Y", (safezoneY + safezoneH - 10.5 * ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25))]);
+private _height = (((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.8);
+private _width = (profileNamespace getVariable ["IGUI_GRID_CHAT_W", (20 * ( ((safeZoneW / safeZoneH) min 1.2) / 40))]);
+private _xPos = (profileNamespace getVariable ["IGUI_GRID_CHAT_X", (safeZoneX + 1 * ( ((safeZoneW / safeZoneH) min 1.2) / 40))]);
+private _yPos = (profileNamespace getVariable ["IGUI_GRID_CHAT_Y", (safeZoneY + safeZoneH - 10.5 * ( ( ((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25))]);
 
 private _dumbNamePair = selectRandom [
     ["_[SOG]_xXxSlayer69xXx_", "slayer"],
@@ -18,7 +18,7 @@ private _dumbNamePair = selectRandom [
 ];
 
 private _text = format ['<t size="2.0" color="#ff0000" shadow="1" shadowColor="#000000">%1</t><br/>
-If you need to contact zeus, an admin, or want to send a messsage to a friend, do not use side or global chat!<br/>
+if you need to contact zeus, an admin, or want to send a messsage to a friend, do not use side or global chat!<br/>
 Use the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat commands</t> instead or the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat box in the escape menu</t>!<br/>
 <br/>
 Here is how VVVV<br/>

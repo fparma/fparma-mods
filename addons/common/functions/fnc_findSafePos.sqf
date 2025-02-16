@@ -18,8 +18,8 @@ params ["_pos", ["_radius", 10], ["_className", ""]];
 _pos = [_pos] call CBA_fnc_getPos;
 
 private _args = [0, _radius];
-if !(_className isEqualTo "") then {_args pushBack _className};
+if (_className isNotEqualTo "") then {_args pushBack _className};
 
 private _emptyPos = _pos findEmptyPosition _args;
-if !(_emptyPos isEqualTo []) exitWith {_emptyPos};
+if (_emptyPos isNotEqualTo []) exitWith {_emptyPos};
 [_pos, _radius + 5, _className] call FUNC(findSafePos);

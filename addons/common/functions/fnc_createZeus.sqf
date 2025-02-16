@@ -29,7 +29,7 @@ if (isNull (getAssignedCuratorLogic _unit)) exitWith {
     _curator addCuratorEditableObjects [(allMissionObjects "Car"), true];
     _curator addCuratorEditableObjects [(allMissionObjects "Ammo"), false];
     _curator setVariable ["birdType",""];
-    _curator setvariable ["owner", getPlayerUID _unit];
+    _curator setVariable ["owner", getPlayerUID _unit];
     _curator setVariable ["showNotification",false];
     _curator setCuratorCoef ["Place", 0];
     _curator setCuratorCoef ["Delete", 0];

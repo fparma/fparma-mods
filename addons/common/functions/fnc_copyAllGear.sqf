@@ -13,8 +13,8 @@
 private _var = "_unit";
 private _savedRadios = [];
 private _br = toString [13, 10];
-private _center = missionNameSpace getVariable ["BIS_fnc_arsenal_center", ace_player];
-private _export = [format ['%1%1 ["%2", "example.sqf"]', '/', typeof _center]];
+private _center = missionNamespace getVariable ["BIS_fnc_arsenal_center", ace_player];
+private _export = [format ['%1%1 ["%2", "example.sqf"]', '/', typeOf _center]];
 _export pushBack ('params ["_unit", "_type"];' + _br);
 
 private _fnc_getRadio = {
@@ -108,7 +108,7 @@ private _containerCommentAdded = false;
 ];
 
 if (!isNull unitBackpack _center) then {
-  _export pushBack format ['%1 addBackpack "%2";', _var, typeof unitbackpack _center];
+  _export pushBack format ['%1 addBackpack "%2";', _var, typeOf unitBackpack _center];
   _export pushBack format ['clearAllItemsFromBackpack %1;', _var];
 };
 
@@ -120,7 +120,7 @@ if (count _assignedItems > 0) then {
 
 {
   _x params ["_comment", ["_items", []], "_cmd"];
-  if !(_items isEqualTo []) then {
+  if (_items isNotEqualTo []) then {
     _export pushBack _comment;
     [_items, _cmd] call _fnc_addMultiple;
   };
@@ -131,11 +131,11 @@ if (count _assignedItems > 0) then {
 ];
 
 // Radios
-if !(_savedRadios isEqualTo []) then {
+if (_savedRadios isNotEqualTo []) then {
   _export pushBack "// Radios";
   {_export pushBack _x} forEach _savedRadios;
 };
 
 private _ret = _export joinString _br;
-copyToClipBoard _ret;
+copyToClipboard _ret;
 _ret

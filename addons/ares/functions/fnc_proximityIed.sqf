@@ -16,7 +16,7 @@ private _ied = createVehicle [_type, _pos, [], 0, "NONE"];
 
 private _condition = {
   {isPlayer _x &&
-    {(vehicle _x) == _x} &&
+    {isNull objectParent _x} &&
     {toUpper (stance _x) in ['CROUCH', 'STAND']}
   } count thisList > 0
 };

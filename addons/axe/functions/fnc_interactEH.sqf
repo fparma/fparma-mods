@@ -42,8 +42,8 @@ if !([ace_player, QGVAR(axe)] call ace_common_fnc_hasItem) exitWith {};
         ((!isNull _attachedTree) && {(damage _attachedTree) < 1} && {(QGVAR(axe) in (items _player))} && {
             //Custom LOS check for tree
             private _headPos = ACE_player modelToWorldVisual (ACE_player selectionPosition "pilot");
-            ((!(lineIntersects [AGLtoASL _headPos, AGLtoASL (_helper modelToWorldVisual [0,0,1.25]), _attachedTree, ACE_player])) ||
-            {!(lineIntersects [AGLtoASL _headPos, getPosASL _attachedTree, _attachedTree, ACE_player])})
+            ((!(lineIntersects [AGLToASL _headPos, AGLToASL (_helper modelToWorldVisual [0,0,1.25]), _attachedTree, ACE_player])) ||
+            {!(lineIntersects [AGLToASL _headPos, getPosASL _attachedTree, _attachedTree, ACE_player])})
         })
     };
 

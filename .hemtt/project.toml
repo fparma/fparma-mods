@@ -36,8 +36,13 @@ workshop = [
     "463939057", # ACE3
     "751965892", # ACRE2
     "1779063631", # zeus enhanced
-    "2018593688" # zeus enhanced ace compat
 ]
 parameters = [
     "-world=empty"
+]
+
+[sqf.var_all_caps]
+enabled = true
+options.ignore = [
+    "ACRE_IS_SPECTATOR",
 ]

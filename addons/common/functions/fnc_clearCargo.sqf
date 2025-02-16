@@ -13,7 +13,8 @@
 */
 #include "script_component.hpp"
 
-if (!(_this isEqualType [])) then {_this = [_this]};
+private _thisNew = _this;
+if !(_thisNew isEqualType []) then {_thisNew = [_thisNew]};
 
 {
   if (_x isEqualType objNull) then {
@@ -22,5 +23,5 @@ if (!(_this isEqualType [])) then {_this = [_this]};
     clearItemCargoGlobal _x;
     clearBackpackCargoGlobal _x;
   };
-} count _this;
+} count _thisNew;
 true
