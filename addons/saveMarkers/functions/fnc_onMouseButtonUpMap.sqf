@@ -7,7 +7,7 @@ if (_mouseButton != 0) exitWith {};
 
 if (isNil QGVAR(selectDrawEH)) exitWith {};
 
-_mapCtrl ctrlRemoveEventHandler ["draw",GVAR(selectDrawEH)];
+_mapCtrl ctrlRemoveEventHandler ["Draw",GVAR(selectDrawEH)];
 GVAR(selectDrawEH) = nil;
 
 GVAR(mouseDragStart) params ["_startMouseX","_startMouseY"];

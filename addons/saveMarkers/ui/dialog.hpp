@@ -23,10 +23,10 @@ class GVAR(RscDisplayMarkers) {
         class map: RscMapControl {
             idc = IDC_MAP;
 
-            x = "safezoneXAbs";
-            y = "safezoneY";
-            w = "safezoneWAbs";
-            h = "safezoneH";
+            x = "safeZoneXAbs";
+            y = "safeZoneY";
+            w = "safeZoneWAbs";
+            h = "safeZoneH";
         };
     };
 
@@ -35,8 +35,8 @@ class GVAR(RscDisplayMarkers) {
         class helpDialog: RscControlsGroupNoScrollbars {
             idc = IDC_HELP;
 
-            x = QUOTE(safezoneX + safezoneW - 13 * X_FACTOR);
-            y = QUOTE(safezoneY + 5 * Y_FACTOR);
+            x = QUOTE(safeZoneX + safeZoneW - 13 * X_FACTOR);
+            y = QUOTE(safeZoneY + 5 * Y_FACTOR);
             w = QUOTE(8 * X_FACTOR);
             h = QUOTE(22.2 * Y_FACTOR);
 
@@ -78,8 +78,8 @@ class GVAR(RscDisplayMarkers) {
         class markersDialog: RscControlsGroupNoScrollbars {
             idc = -1;
 
-            x = QUOTE(safezoneX + 5 * X_FACTOR);
-            y = QUOTE(safezoneY + 5 * Y_FACTOR);
+            x = QUOTE(safeZoneX + 5 * X_FACTOR);
+            y = QUOTE(safeZoneY + 5 * Y_FACTOR);
             w = QUOTE(20 * X_FACTOR);
             h = QUOTE(22.2 * Y_FACTOR);
 
@@ -101,7 +101,7 @@ class GVAR(RscDisplayMarkers) {
 
                     sizeEx = QUOTE(Y_FACTOR * 1);
                     text = "FPA SAVE-MARKERS";
-                    colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+                    colorBackground[] = {"(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])","(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])","(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])","(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"};
                 };
 
                 class mainBackground: RscText {

@@ -8,7 +8,7 @@ if (_mouseButton != 0) exitWith {};
 if (!isNil QGVAR(selectDrawEH)) exitWith {};
 
 GVAR(mouseDragStart) = _mapCtrl ctrlMapScreenToWorld [_mouseX,_mouseY];
-GVAR(selectDrawEH) = _mapCtrl ctrlAddEventHandler ["draw",{
+GVAR(selectDrawEH) = _mapCtrl ctrlAddEventHandler ["Draw",{
     params ["_mapCtrl"];
 
     (_mapCtrl ctrlMapScreenToWorld getMousePosition) params ["_currentMouseX","_currentMouseY"];

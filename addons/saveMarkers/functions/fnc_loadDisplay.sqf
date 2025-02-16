@@ -21,13 +21,13 @@ onMapSingleClick "true";
 
 // buttons =====================================================================
 private _ctrlButtonSave = _display displayCtrl IDC_BUTTONSAVE;
-_ctrlButtonSave ctrlAddEventHandler ["buttonClick",FUNC(onButtonSave)];
+_ctrlButtonSave ctrlAddEventHandler ["ButtonClick",FUNC(onButtonSave)];
 
 private _ctrlButtonDelete = _display displayCtrl IDC_BUTTONDELETE;
-_ctrlButtonDelete ctrlAddEventHandler ["buttonClick",FUNC(onButtonDelete)];
+_ctrlButtonDelete ctrlAddEventHandler ["ButtonClick",FUNC(onButtonDelete)];
 
 private _ctrlButtonLoad = _display displayCtrl IDC_BUTTONLOAD;
-_ctrlButtonLoad ctrlAddEventHandler ["buttonClick",FUNC(onButtonLoad)];
+_ctrlButtonLoad ctrlAddEventHandler ["ButtonClick",FUNC(onButtonLoad)];
 
 [IDC_BUTTONDELETE,false] call FUNC(setButtonEnabled);
 [IDC_BUTTONLOAD,false] call FUNC(setButtonEnabled);
@@ -35,7 +35,7 @@ _ctrlButtonLoad ctrlAddEventHandler ["buttonClick",FUNC(onButtonLoad)];
 
 // saves list ==================================================================
 private _ctrlSavesList = _display displayCtrl IDC_SAVESLIST;
-_ctrlSavesList ctrlAddEventHandler ["lbSelChanged",FUNC(onSavesListSelChanged)];
+_ctrlSavesList ctrlAddEventHandler ["LBSelChanged",FUNC(onSavesListSelChanged)];
 
 [_display] call FUNC(updateSavesList);
 
@@ -43,9 +43,9 @@ _ctrlSavesList ctrlAddEventHandler ["lbSelChanged",FUNC(onSavesListSelChanged)];
 private _ctrlEditName = _display displayCtrl IDC_EDITNAME;
 
 // execNextFrame here, because handler fires before backspace deletes a character
-_ctrlEditName ctrlAddEventHandler ["keyDown",{[FUNC(onEditNameChanged),_this] call CBA_fnc_execNextFrame}];
-_ctrlEditName ctrlAddEventHandler ["setFocus",{(ctrlParent (_this select 0)) setVariable [QGVAR(editNameFocused),true]}];
-_ctrlEditName ctrlAddEventHandler ["killFocus",{(ctrlParent (_this select 0)) setVariable [QGVAR(editNameFocused),false]}];
+_ctrlEditName ctrlAddEventHandler ["KeyDown",{[FUNC(onEditNameChanged),_this] call CBA_fnc_execNextFrame}];
+_ctrlEditName ctrlAddEventHandler ["SetFocus",{(ctrlParent (_this select 0)) setVariable [QGVAR(editNameFocused),true]}];
+_ctrlEditName ctrlAddEventHandler ["KillFocus",{(ctrlParent (_this select 0)) setVariable [QGVAR(editNameFocused),false]}];
 
 // help ========================================================================
 private _ctrlHelp = _display displayCtrl IDC_HELP;

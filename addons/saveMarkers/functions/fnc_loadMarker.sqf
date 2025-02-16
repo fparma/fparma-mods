@@ -39,17 +39,17 @@ private _markerIDIndex = 0;
     };
 
     private _marker = createMarker [_markerID,_pos,_channel,player];
-    _marker setMarkerAlpha _alpha;
-    _marker setMarkerBrush _brush;
-    _marker setMarkerColor _color;
-    _marker setMarkerDir _dir;
-    _marker setMarkerPos _pos;
-    _marker setMarkerShape _shape;
-    _marker setMarkerSize _size;
-    _marker setMarkerText _text;
-    _marker setMarkerType _type;
+    _marker setMarkerAlphaLocal _alpha;
+    _marker setMarkerBrushLocal _brush;
+    _marker setMarkerColorLocal _color;
+    _marker setMarkerDirLocal _dir;
+    _marker setMarkerPosLocal _pos;
+    _marker setMarkerShapeLocal _shape;
+    _marker setMarkerSizeLocal _size;
+    _marker setMarkerTextLocal _text;
     if (count _polyline > 0) then {
-        _marker setMarkerPolyline _polyline;
+        _marker setMarkerPolylineLocal _polyline;
     };
+    _marker setMarkerType _type;
 
 } forEach _markersData;

@@ -8,8 +8,8 @@
 #define IDC_HELP                    67991
 #define IDC_HELP_TEXT               67992
 
-#define X_FACTOR                    (((safezoneW / safezoneH) min 1.2) / 40)
-#define Y_FACTOR                    ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)
+#define X_FACTOR                    (((safeZoneW / safeZoneH) min 1.2) / 40)
+#define Y_FACTOR                    ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)
 
 #define HELP_TEXT_PADDING_X         (0.1 * X_FACTOR)
 #define HELP_TEXT_PADDING_Y         (0.1 * Y_FACTOR)
