@@ -5,7 +5,7 @@ if (!hasInterface) exitWith {};
 [
     FP_SETTINGS,
     QGVAR(toggleScreenshot),
-    ['Toggle screenshot Mode', 'Hides UI elements for taking screenshots'],
+    ['Toggle Screenshot Mode', 'Hides UI elements for taking screenshots'],
     {
         [] call FUNC(toggleScreenshotMode);
         false

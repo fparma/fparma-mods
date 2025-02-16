@@ -63,19 +63,19 @@ if (isDedicated) then {
         if (_type == "server") exitWith {};
         switch (toLower _type) do {
             case "admin": {
-                private _msg = format ['(admin WHISPER) from %1: "%2"', _sender, _msg];
+                private _msg = format ['(ADMIN WHISPER) From %1: "%2"', _sender, _msg];
                 INFO(_msg);
             };
             case "zeus": {
-                private _msg = format ['(ZEUS WHISPER) from %1: "%2"', _sender, _msg];
+                private _msg = format ['(ZEUS WHISPER) From %1: "%2"', _sender, _msg];
                 INFO(_msg);
             };
             case "whisper": {
-                private _msg = format ['(WHISPER) from %1 to %2: "%3"', _sender, _receiver, _msg];
+                private _msg = format ['(WHISPER) From %1 to %2: "%3"', _sender, _receiver, _msg];
                 INFO(_msg);
             };
             default {
-                private _msg = format ['(UNHANDLED WHISPER) type %4 from %1 to %2: "%3"', _sender, _receiver, _msg, _type];
+                private _msg = format ['(UNHANDLED WHISPER) Type %4 From %1 to %2: "%3"', _sender, _receiver, _msg, _type];
                 INFO(_msg);
             };
         };

@@ -18,7 +18,7 @@ private _dumbNamePair = selectRandom [
 ];
 
 private _text = format ['<t size="2.0" color="#ff0000" shadow="1" shadowColor="#000000">%1</t><br/>
-if you need to contact zeus, an admin, or want to send a messsage to a friend, do not use side or global chat!<br/>
+If you need to contact zeus, an admin, or want to send a messsage to a friend, do not use side or global chat!<br/>
 Use the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat commands</t> instead or the <t size="1.1" color="#ffDDDD" shadow="1" shadowColor="#000000">chat box in the escape menu</t>!<br/>
 <br/>
 Here is how VVVV<br/>
