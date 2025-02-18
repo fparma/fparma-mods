@@ -33,7 +33,7 @@ private _newGroups = [];
         _unit setVectorDirAndUp _vectorDirAndUp;
         _unit setUnitLoadout _loadout;
         _unit setUnitPos _unitPos;
-        _spawnedUnits pushback _unit;
+        _spawnedUnits pushBack _unit;
     } forEach _units;
 
     {
@@ -54,7 +54,7 @@ private _newGroups = [];
                 case "turret": {_unit moveInTurret [_veh, _turretPath]};
                 case "cargo": {_unit moveInCargo [_veh, _cargoIndex]};
             };
-        } foreach _crew;
+        } forEach _crew;
 
         clearBackpackCargoGlobal _veh;
         clearItemCargoGlobal _veh;
@@ -65,7 +65,7 @@ private _newGroups = [];
             _type = _x;
             _amount = _backpackCargo#1#_forEachIndex;
             _veh addBackpackCargoGlobal [_type, _amount];
-        } foreach _backpackCargo#0;
+        } forEach _backpackCargo#0;
 
         {
             private _array = _x;
@@ -73,13 +73,13 @@ private _newGroups = [];
                 _type = _x;
                 _amount = _array#1#_forEachIndex;
                 _veh addItemCargoGlobal [_type, _amount];
-            } foreach (_array#0);
-        } foreach [_itemCargo, _magazineCargo, _weaponCargo];
+            } forEach (_array#0);
+        } forEach [_itemCargo, _magazineCargo, _weaponCargo];
 
         {
             _x params["_pylonIndex", "_pylonName", "_turret", "_magazine", "_ammoCount", "_magazineDetail"];
             _veh setPylonLoadout [_pylonIndex, _magazine, true, _turret];
-        } foreach _allPylonsInfo;
+        } forEach _allPylonsInfo;
 
     } forEach _vehicles;
 

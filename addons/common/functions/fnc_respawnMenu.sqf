@@ -56,11 +56,11 @@ if (_missions isEqualTo []) then {
 if (_missions isEqualTo []) exitWith {displayNull};
 
 if (_middle - [0] isEqualTo []) then {
-  {_middle = _middle vectorAdd (_x select 0)} foreach _missions;
+  {_middle = _middle vectorAdd (_x select 0)} forEach _missions;
   _middle = _middle vectorMultiply (1 / count _missions);
 };
 
-private _isNight = daytime > 20 || daytime < 6;
+private _isNight = dayTime > 20 || dayTime < 6;
 // return strategic map
 [
   [] call BIS_fnc_displayMission,   //0: DISPLAY - parent display. When empty, mission display is used.

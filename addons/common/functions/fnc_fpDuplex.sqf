@@ -28,7 +28,7 @@ private _prcBand = false;
         _prcBand = true;
         break;
     };
-} foreach ["acre_prc148", "acre_prc117f", "acre_prc152", "acre_prc77", "acre_vrc64", "acre_vrc103", "acre_vrc110", "acre_vrc111"];
+} forEach ["acre_prc148", "acre_prc117f", "acre_prc152", "acre_prc77", "acre_vrc64", "acre_vrc103", "acre_vrc110", "acre_vrc111"];
 
 if !(_isLR) then {
     {
@@ -36,7 +36,7 @@ if !(_isLR) then {
             _isLR = true;
             break;
         };
-    } foreach ["acre_sem70", "acre_sem90"];
+    } forEach ["acre_sem70", "acre_sem90"];
 };
 
 if !(_isLR) exitWith {}; // exit if not a LR radio
@@ -57,7 +57,7 @@ if (_frequencyRemote isEqualTo _frequencyPlayer) then {
         ([_frequencyRemote, _dataRemote getVariable ["power", 0], _currentPlayerRadio, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
 
         private _radioClass = (toLower _currentPlayerRadio) regexReplace ["(_id_\d+)", ""];
-        private _cutOffPoint = getNumber (configfile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin");
+        private _cutOffPoint = getNumber (configFile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin");
 
         if (_signal <= _cutOffPoint || {_signal <= -150}) exitWith {};
 

@@ -10,10 +10,10 @@ class fpa_messageui_sendBoxTitleBase: RscTitle {
 
     text = "Message some schmuck";
     colorBackground[] = {
-        "(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])",
-        "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])",
-        "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])",
-        "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"
+        "(profilenamespace getVariable ['GUI_BCG_RGB_R',0.13])",
+        "(profilenamespace getVariable ['GUI_BCG_RGB_G',0.54])",
+        "(profilenamespace getVariable ['GUI_BCG_RGB_B',0.21])",
+        "(profilenamespace getVariable ['GUI_BCG_RGB_A',0.8])"
     };
 
     x = QUOTE(FPA_MESSAGEUI_TITLE_X);
@@ -40,7 +40,7 @@ class fpa_messageui_sendBoxBase: RscEdit {
     autocomplete = "";
     shadow = 0;
     font = "EtelkaMonospacePro";
-    sizeEx = "0.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    sizeEx = "0.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
 
     onLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxCtrl"",(_this select 0)]";
     onUnLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxCtrl"",nil]";
@@ -73,7 +73,7 @@ class fpa_messageui_sendBoxListboxBase: RscCombo {
 
     font = "EtelkaMonospacePro";
     rowHeight = 10;
-    /*sizeEx = "0.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";*/
+    /*sizeEx = "0.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";*/
 
     onLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxListboxCtrl"",(_this select 0)]; _this call fpa_message_ui_fnc_initListbox";
     onUnLoad = "uiNamespace setVariable [""fpa_message_ui_sendBoxListboxCtrl"",nil]";

@@ -3,10 +3,10 @@ params ["_display"];
 
 if (GVAR(hideChatHint) || {!(isNull (_display getVariable [QGVAR(chatReminder), controlNull])) || {time < 1}}) exitWith {};
 
-private _height = (((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8);
-private _width = (profilenamespace getvariable ["IGUI_GRID_CHAT_W", (20 * ( ((safezoneW / safezoneH) min 1.2) / 40))]);
-private _xPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_X", (safezoneX + 1 * ( ((safezoneW / safezoneH) min 1.2) / 40))]);
-private _yPos = (profilenamespace getvariable ["IGUI_GRID_CHAT_Y", (safezoneY + safezoneH - 10.5 * ( ( ((safezoneW / safezoneH) min 1.2) / 1.2) / 25))]);
+private _height = (((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.8);
+private _width = (profileNamespace getVariable ["IGUI_GRID_CHAT_W", (20 * ( ((safeZoneW / safeZoneH) min 1.2) / 40))]);
+private _xPos = (profileNamespace getVariable ["IGUI_GRID_CHAT_X", (safeZoneX + 1 * ( ((safeZoneW / safeZoneH) min 1.2) / 40))]);
+private _yPos = (profileNamespace getVariable ["IGUI_GRID_CHAT_Y", (safeZoneY + safeZoneH - 10.5 * ( ( ((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25))]);
 
 private _dumbNamePair = selectRandom [
     ["_[SOG]_xXxSlayer69xXx_", "slayer"],

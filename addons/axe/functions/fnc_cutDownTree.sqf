@@ -20,7 +20,7 @@ if !(_unit call ace_common_fnc_isSwimming) then {
 
 private _onCompletion = {
     (_this select 0) params ["_treeObject", "", "_unit"];
-    _treeObject setdamage [1, true, ACE_player];
+    _treeObject setDamage [1, true, ACE_player];
     [_treeObject] call FUNC(checkCutDown);
     if !(_unit call ace_common_fnc_isSwimming) then {
         [_unit, "AmovPknlMstpSrasWrflDnon", 1] call ace_common_fnc_doAnimation;
@@ -67,7 +67,7 @@ _unit setVariable [QGVAR(axeObject), _axe];
 
 // holster any weapon
 _unit action ["SwitchWeapon", _unit, _unit, 299];
-_unit setdir ([_unit, _treeObject] call BIS_fnc_dirTo);
+_unit setDir ([_unit, _treeObject] call BIS_fnc_dirTo);
 
 [_timeToCut, [_treeObject, 0, _unit, getPosWorld _unit], _onCompletion, _onFail, localize "STR_GRAD_AXE_CUTTING_TREE", _progressCheck, ["isNotSwimming"]] call ace_common_fnc_progressBar;
 

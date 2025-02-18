@@ -14,4 +14,4 @@
 #define FPA_TAG FPA
 
 // MINIMAL required version for the Mod. Components can specify others..
-#define REQUIRED_VERSION 2.16
+#define REQUIRED_VERSION 2.18

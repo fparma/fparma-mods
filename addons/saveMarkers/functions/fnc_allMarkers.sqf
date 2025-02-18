@@ -3,7 +3,7 @@
 params [["_selectEditorMarkers",false]];
 
 private _allMarkers = allMapMarkers select {
-    !(markerType _x == "Empty") &&
+    (markerType _x != "Empty") &&
     ((markerType _x != "") || (markerShape _x == "POLYLINE")) &&
     {(_x find "ACE_BFT_") != 0}
 };

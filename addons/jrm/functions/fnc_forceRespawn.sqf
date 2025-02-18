@@ -20,7 +20,7 @@ if (isServer && {_resetState}) then {
     publicVariable QGVAR(state);
 };
 
-if (!hasInterface || {!RETDEF((ace_spectator_isSet),false)} || {side group player == sidelogic}) exitWith {};
+if (!hasInterface || {!RETDEF((ace_spectator_isSet),false)} || {side group player == sideLogic}) exitWith {};
 
 // Exiting spectator is up to the function
 if (!isNil "_positionOrCode" && {_positionOrCode isEqualType {}}) exitWith {
@@ -29,7 +29,7 @@ if (!isNil "_positionOrCode" && {_positionOrCode isEqualType {}}) exitWith {
 
 if (!isNil "_positionOrCode") then {
     private _pos = _positionOrCode call CBA_fnc_getPos;
-    if (!(_pos - [0] isEqualTo [])) then {
+    if ((_pos - [0]) isNotEqualTo []) then {
         player setPos ([_pos, 10] call CBA_fnc_randPos);
         {player reveal [_x, 4]} forEach nearestObjects [player, ["All"], 100];
     };

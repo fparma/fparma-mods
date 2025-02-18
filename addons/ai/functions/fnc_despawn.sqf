@@ -39,7 +39,7 @@ if (_isReCache) then {
     _id = _group;
     _groups = GVAR(activeGroups) getOrDefault [_id, []];
 
-    if !(_groups isEqualTo []) then {
+    if (_groups isNotEqualTo []) then {
         GVAR(activeGroups) set [_id, []];
     };
 } else {
@@ -68,7 +68,7 @@ if (_id == "" ) exitWith {
     private _realUnits = units _group;
     {
         _units pushBack [typeOf _x, getPosWorld _x, [vectorDir _x, vectorUp _x], getUnitLoadout _x, unitPos _x];
-    } foreach _realUnits;
+    } forEach _realUnits;
 
     private _vehicles = [];
     private _realVehicles = [_group, true] call BIS_fnc_groupVehicles;
@@ -78,9 +78,9 @@ if (_id == "" ) exitWith {
             private _unit = _x#0;
             private _index = _realUnits findIf {_x == _unit};
             _x set [0, _index];
-        } foreach _crew;
+        } forEach _crew;
         _vehicles pushBack [typeOf _x, getPosWorld _x, [vectorDir _x, vectorUp _x], _crew, getBackpackCargo _x, getItemCargo _x, getMagazineCargo _x, getWeaponCargo _x, getAllPylonsInfo _x];
-    } foreach _realVehicles;
+    } forEach _realVehicles;
 
     private _waypoints = [];
     {
@@ -106,22 +106,22 @@ if (_id == "" ) exitWith {
             waypointTimeout _x,
             waypointVisible _x
         ];
-    } foreach (waypoints _group);
+    } forEach (waypoints _group);
 
     private _newGroup = [_info, _units, _vehicles, _waypoints];
 
     //Cleanup
     {
         deleteVehicle _x;
-    } foreach _realUnits;
+    } forEach _realUnits;
     {
         deleteVehicle _x;
-    } foreach _realVehicles;
+    } forEach _realVehicles;
 
     deleteGroup _group;
 
-    _newGroups pushback _newGroup;
-} foreach _groups;
+    _newGroups pushBack _newGroup;
+} forEach _groups;
 
 private _existingGroups = GVAR(savedGroups) getOrDefault [_id, []];
 _existingGroups append _newGroups;

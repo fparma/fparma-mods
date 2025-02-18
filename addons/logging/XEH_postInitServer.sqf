@@ -19,7 +19,7 @@ addMissionEventHandler ["PlayerDisconnected",{
 
 ["ace_unconscious", {
     params ["_unit", "_state"];
-    if ((getPosATL _unit) distance2d [0,0] < 400) exitWith {};
+    if ((getPosATL _unit) distance2D [0,0] < 400) exitWith {};
     if (!(_unit call EFUNC(common,isPlayer))) exitWith {};
     private _msg = format ["%1 %2 at %3",
         name _unit,

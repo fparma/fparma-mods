@@ -3133,7 +3133,7 @@ enum
 
 
 //A3 credits
-#define ONBUTTONCLICK_START_CREDITS "0 = _this spawn (uinamespace getvariable 'bis_fnc_credits');"
+#define ONBUTTONCLICK_START_CREDITS "0 = _this spawn (uiNamespace getVariable 'bis_fnc_credits');"
 
 
 // Hitzone types

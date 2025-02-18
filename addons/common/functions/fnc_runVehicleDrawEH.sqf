@@ -10,7 +10,7 @@
 
 #include "script_component.hpp"
 
-if (isNil QGVAR(drawNamesId) && {!(GVAR(vehicleNames) isEqualTo [])}) then {
+if (isNil QGVAR(drawNamesId) && {GVAR(vehicleNames) isNotEqualTo []}) then {
     GVAR(drawNamesId) = addMissionEventHandler ["Draw3D", {
         GVAR(vehicleNames) = GVAR(vehicleNames) select {alive (_x select 0)};
 

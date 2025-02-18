@@ -4,11 +4,11 @@
 #define FPA_MESSAGEUI_UISIZESMALL        0.55
 #define FPA_MESSAGEUI_UISCALE            ((getResolution select 5)/FPA_MESSAGEUI_UISIZESMALL)
 
-#define FPA_MESSAGEUI_SCALEFACTOR_Y      ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)
-#define FPA_MESSAGEUI_SCALESUMMAND_Y     (safezoneY)
+#define FPA_MESSAGEUI_SCALEFACTOR_Y      ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)
+#define FPA_MESSAGEUI_SCALESUMMAND_Y     (safeZoneY)
 
-#define FPA_MESSAGEUI_SCALEFACTOR_X      (((safezoneW / safezoneH) min 1.2) / 40)
-#define FPA_MESSAGEUI_SCALESUMMAND_X     (safezoneX)
+#define FPA_MESSAGEUI_SCALEFACTOR_X      (((safeZoneW / safeZoneH) min 1.2) / 40)
+#define FPA_MESSAGEUI_SCALESUMMAND_X     (safeZoneX)
 
 #define FPA_MESSAGEUI_SPACER_Y           (0.1 * FPA_MESSAGEUI_SCALEFACTOR_Y)
 
@@ -25,7 +25,7 @@
 #define FPA_MESSAGEUI_EDITBOX_H          (FPA_MESSAGEUI_EDITBOX_BG_H - 2 * FPA_MESSAGEUI_EDITBOX_PADDING_Y)
 #define FPA_MESSAGEUI_EDITBOX_Y          (FPA_MESSAGEUI_EDITBOX_BG_Y + FPA_MESSAGEUI_EDITBOX_PADDING_Y)
 
-#define FPA_MESSAGEUI_EDITBOX_PADDING_X  (0.5 * (((safezoneW / safezoneH) min 1.2) / 40))
+#define FPA_MESSAGEUI_EDITBOX_PADDING_X  (0.5 * (((safeZoneW / safeZoneH) min 1.2) / 40))
 #define FPA_MESSAGEUI_EDITBOX_X          (FPA_MESSAGEUI_TITLE_X + FPA_MESSAGEUI_EDITBOX_PADDING_X)
 #define FPA_MESSAGEUI_EDITBOX_W          (FPA_MESSAGEUI_TOTAL_W - 2 * FPA_MESSAGEUI_EDITBOX_PADDING_X)
 

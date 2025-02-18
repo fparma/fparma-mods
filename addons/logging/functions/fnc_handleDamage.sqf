@@ -26,7 +26,7 @@ if !(_veh isKindOf "CAManBase") then {
     private _vehtype = typeOf _veh;
 
     _text pushBack (format ["Was in vehicle: %1(%2), role: %3, tpath: %4",
-        getText (configfile >> "CfgVehicles" >> _vehtype >> "displayName"),
+        getText (configFile >> "CfgVehicles" >> _vehtype >> "displayName"),
         _vehtype,
         _role,
         _tpath

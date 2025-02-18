@@ -36,7 +36,7 @@ _playerRadioID = _playerRadioID select 0;
     ([_frequencyRemote, _dataRemote getVariable ["power", 0], _playerRadioID, _radioID] call acre_sys_signal_fnc_getSignal) params ["_pX", "_signal"];
     private _isShortRange = "acre_prc343" in _radioID || {"acre_sem70" in _radioID};
     private _radioClass = (toLower _playerRadioID) regexReplace ["(_id_\d+)", ""];
-    private _cutOffPoint = getNumber (configfile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin");
+    private _cutOffPoint = getNumber (configFile >> "CfgAcreComponents" >> _radioClass >> "sensitivityMin");
 
     if (_signal <= _cutOffPoint || {_signal <= -150}) exitWith {};
 

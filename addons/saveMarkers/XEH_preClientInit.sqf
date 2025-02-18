@@ -29,7 +29,7 @@
 
     (_saveMarkersData select _index) params ["_saveName","_mapName",["_markersData",[]]];
 
-    [_saveName,_mapName,_markersData] call FUNC(loadMarkers);
+    [_saveName,_mapName,+_markersData] call FUNC(loadMarkersStart);
 
     (format ["fpa-saveMarkers: %1 just loaded his marker set %2.",profileName,_saveName]) remoteExec ["systemChat",0,false];
 }, "Save and load markers <#fp.saveMarkers>", false] call EFUNC(common,registerChatCommand);

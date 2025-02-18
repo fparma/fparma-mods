@@ -9,14 +9,15 @@
  */
 #include "script_component.hpp"
 
-if (!isServer) exitWith {
+if !(isServer) exitWith {
     _this remoteExecCall [QUOTE(FUNC(addToCurators)), 2];
 };
 
-if (!(_this isEqualType [])) then {
-    _this = [_this];
+private _thisNew = _this;
+if !(_thisNew isEqualType []) then {
+    _thisNew = [_thisNew];
 };
 
 {
-  _x addCuratorEditableObjects [_this, true];
+  _x addCuratorEditableObjects [_thisNew, true];
 } forEach allCurators;

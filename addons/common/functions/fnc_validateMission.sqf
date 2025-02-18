@@ -2,7 +2,7 @@
 * Description:
 * Validate mission settings
 * Currently checks wind, respawn type and respawn templates
-* 
+*
 * Arguments:
 * 0 - Mission config
 */
@@ -24,9 +24,9 @@ if (!_okrespawn) then {
 
 // RespawnTemplates
 private _custom = "true" configClasses (_cfg >> "CustomAttributes") select {getText (_x >> "name") == "multiplayer"};
-if !(_custom isEqualTo []) then {
+if (_custom isNotEqualTo []) then {
     private _res = "true" configClasses (_custom select 0) select {getText (_x >> "property") == "RespawnTemplates"};
-     if (!(_res isEqualTo []) && {getText ((_res select 0) >> "expression") == "true"}) then {
+     if (_res isNotEqualTo [] && {getText ((_res select 0) >> "expression") == "true"}) then {
         "Error: Do not select any RespawnTemplates in Eden" call _add;
     };
 };
@@ -65,6 +65,6 @@ private _grps = "true" configClasses (_cfg >> "Mission" >> "Entities") select {g
     };
 } forEach _grps;
 
-if (!(_err isEqualTo [])) then {
+if (_err isNotEqualTo []) then {
     "Validation errors" hintC composeText _err;
 };

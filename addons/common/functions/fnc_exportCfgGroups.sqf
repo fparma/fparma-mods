@@ -69,7 +69,7 @@ private _br = toString [13, 10];
         (getDir _x - _dir) % 360
     ];
     _text = _text + _objText + _br;
-} foreach _objects;
+} forEach _objects;
 
 deleteVehicle _logic;
 copyToClipboard _text;

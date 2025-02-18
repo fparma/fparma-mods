@@ -42,7 +42,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
 
     // killed by vehicle, use effectiveCommander like vanilla does
     if ((!isNull _killer) && {!((vehicle _killer) isKindOf "CAManBase")}) then {
-        private _text = format ["Killed by vehicle: %1", getText (configfile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
+        private _text = format ["Killed by vehicle: %1", getText (configFile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
         private _plrCrew = (fullCrew _killer) select {
                 _x params ["_obj", "_role"];
                 (_role != "cargo" && {_obj call EFUNC(common,isPlayer)})
@@ -62,7 +62,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
     // killed by AI
     if (_unit != _killer && {!(_killer call EFUNC(common,isPlayer))}) then {
         _lvl = 0;
-        _msg pushBack format ["Killed by AI(%1)", getText (configfile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
+        _msg pushBack format ["Killed by AI(%1)", getText (configFile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
     };
 
     // still "suicide". get nearby player drivers
@@ -78,7 +78,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
                 _x params ["_driver", "_dist"];
                 private _veh = vehicle _driver;
                 private _type = typeOf _veh;
-                private _dispName =  getText (configfile >> "CfgVehicles" >> _type >> "displayName");
+                private _dispName =  getText (configFile >> "CfgVehicles" >> _type >> "displayName");
                 format ["%1 in %2(%3). pos: %4, speed: %5, dir: %6, dist: %7m",
                     name _driver,
                     _dispName,

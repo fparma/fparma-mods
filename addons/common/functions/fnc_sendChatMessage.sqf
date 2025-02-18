@@ -20,7 +20,7 @@ private _callsign = switch (toLower _type) do {
 };
 
 GVAR(chatChannel) radioChannelAdd [ACE_player];
-GVAR(chatChannel) radioChannelSetCallsign _callsign;
+GVAR(chatChannel) radioChannelSetCallSign _callsign;
 player customChat [GVAR(chatChannel), _msg];
 GVAR(chatChannel) radioChannelRemove [ACE_player];
 

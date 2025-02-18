@@ -32,7 +32,7 @@ if (_prevId != -1) then {
 _targetPos = waypointPosition [_grp, _curWp];
 {
     private _unit = _x;
-    {_unit disableAI _x} foreach AI_MODES;
+    {_unit disableAI _x} forEach AI_MODES;
     _unit setUnitPos "UP";
     _unit doMove _targetPos;
 } forEach _units;
@@ -48,14 +48,14 @@ private _pfhCode = {
     private _units = units _grp;
     private _aliveUnits = _units select {alive _x && {!(_x getVariable ["ACE_isUnconscious", false])}};
     private _noUnits = count _aliveUnits == 0;
-    private _wpChanged = !(_wpPos isEqualTo _origWpPos);
+    private _wpChanged = (_wpPos isNotEqualTo _origWpPos);
     private _someoneClose = {_x distance _wpPos < 15} count units _grp > 0;
 
     if (_wpChanged || {_noUnits} || {_someoneClose}) exitWith {
         TRACE_3("Exiting",_noUnits,_wpChanged,_someoneClose);
         {
             private _unit = _x;
-            {_unit enableAI _x} foreach AI_MODES;
+            {_unit enableAI _x} forEach AI_MODES;
             _unit setUnitPos "AUTO";
             doStop _unit;
         } forEach _units;
@@ -74,13 +74,13 @@ private _pfhCode = {
 
     {
         // need to check distance, sometimes they'll just run off in a random direction
-        private _gettingCloser = _x distance2d _wpPos < (_x getVariable ["fp_lastDist", 9999]);
+        private _gettingCloser = _x distance2D _wpPos < (_x getVariable ["fp_lastDist", 9999]);
         if (!_gettingCloser || {speed _x < 4}) then {
             TRACE_2("Ordering move",_x,_gettingCloser);
             _x forceSpeed (_x getSpeed "FAST");
             _x doMove _wpPos;
         };
-        _x setVariable ["fp_lastDist", _x distance2d _wpPos];
+        _x setVariable ["fp_lastDist", _x distance2D _wpPos];
     } forEach _aliveUnits;
 };
 
