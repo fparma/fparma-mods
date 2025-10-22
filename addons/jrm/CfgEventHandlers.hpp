@@ -13,7 +13,7 @@ class Extended_PreInit_EventHandlers {
 class Extended_Killed_EventHandlers {
     class CAManBase {
         class ADDON {
-            clientKilled = QUOTE(_this call FUNC(handleKilled));
+            clientKilled = QUOTE(call FUNC(handleKilled));
         };
     };
 };
@@ -21,7 +21,7 @@ class Extended_Killed_EventHandlers {
 class Extended_Respawn_EventHandlers {
     class CAManBase {
         class ADDON {
-            clientRespawn = QUOTE(_this call FUNC(handleRespawn));
+            clientRespawn = QUOTE(call FUNC(handleRespawn));
         };
     };
 };

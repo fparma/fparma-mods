@@ -42,4 +42,4 @@ _thisDataMarkersArray resize 0;
 
 saveProfileNamespace;
 
-_newSaveID
+nil

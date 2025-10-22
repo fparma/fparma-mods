@@ -19,7 +19,7 @@ if (_lastShooter == _shooter && {time < _t}) exitWith {};
 GVAR(playerDamageTimeout) = [_shooter, time + 1];
 
 private _text = [];
-_veh = vehicle _shooter;
+private _veh = vehicle _shooter;
 if !(_veh isKindOf "CAManBase") then {
     private _info = fullCrew _veh select {(_x select 0) == _shooter};
     (_info select 0) params ["", ["_role", "unknown"], "", ["_tpath", "unknown"]];

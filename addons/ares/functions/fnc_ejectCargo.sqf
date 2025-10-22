@@ -11,7 +11,8 @@
 
 params ["_vehicle"];
 if (!alive _vehicle || {_vehicle isKindOf "CAManBase"}) exitWith {};
-private _msgFnc = [_msgFnc, zen_common_fnc_showMessage] select _zen;
+private _zen = !isNil "zen_custom_modules_fnc_register";
+private _msgFnc = [ares_fnc_ShowZeusMessage, zen_common_fnc_showMessage] select _zen;
 
 if (abs (speed _vehicle) > 2) exitWith {
     ["ERROR: Vehicle is moving"] call _msgFnc;

@@ -1,10 +1,10 @@
 #include "defines.hpp"
 
 class RscMapControl;
-class RscPicture;
+// class RscPicture;
 class RscText;
 class RscTitle;
-class RscActiveText;
+// class RscActiveText;
 class RscControlsGroupNoScrollbars;
 class RscEdit;
 class RscListNBox;
@@ -17,7 +17,7 @@ class GVAR(RscDisplayMarkers) {
     idd = IDD_SAVEMARKERS;
     movingEnable = 0;
 
-    onUnload = QUOTE(_this call FUNC(onUnload));
+    onUnload = QUOTE(call FUNC(onUnload));
 
     class controlsBackground {
         class map: RscMapControl {
@@ -70,7 +70,7 @@ class GVAR(RscDisplayMarkers) {
 
                     sizeEx = QUOTE(0.8 * Y_FACTOR);
 
-                    class Attributes;
+                    // class Attributes;
                 };
             };
         };
@@ -152,8 +152,8 @@ class GVAR(RscDisplayMarkers) {
                     sizeEx = QUOTE(0.8 * Y_FACTOR);
                     columns[] = {0,0.7};
 
-                    class ListScrollBar;
-                    class ScrollBar;
+                    // class ListScrollBar;
+                    // class ScrollBar;
                 };
 
                 class buttonCancel: RscButtonMenu {

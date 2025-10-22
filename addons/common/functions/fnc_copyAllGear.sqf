@@ -114,7 +114,7 @@ if (!isNull unitBackpack _center) then {
 
 // Assigned items
 private _assignedItems = assignedItems _center - [binocular _center, "ItemRadioAcreFlagged"];
-if (count _assignedItems > 0) then {
+if (_assignedItems isNotEqualTo []) then {
   _export pushBack format ['{%1 linkItem _x} forEach %2;%3', _var, _assignedItems, _br];
 };
 

@@ -29,7 +29,7 @@ if (_prevId != -1) then {
     [_prevId] call CBA_fnc_removePerFrameHandler;
 };
 
-_targetPos = waypointPosition [_grp, _curWp];
+private _targetPos = waypointPosition [_grp, _curWp];
 {
     private _unit = _x;
     {_unit disableAI _x} forEach AI_MODES;
@@ -47,11 +47,11 @@ private _pfhCode = {
     private _wpPos = waypointPosition [_grp, _curWp];
     private _units = units _grp;
     private _aliveUnits = _units select {alive _x && {!(_x getVariable ["ACE_isUnconscious", false])}};
-    private _noUnits = count _aliveUnits == 0;
+    private _noUnits = _aliveUnits isEqualTo [];
     private _wpChanged = (_wpPos isNotEqualTo _origWpPos);
     private _someoneClose = {_x distance _wpPos < 15} count units _grp > 0;
 
-    if (_wpChanged || {_noUnits} || {_someoneClose}) exitWith {
+    if (_wpChanged || _noUnits || _someoneClose) exitWith {
         TRACE_3("Exiting",_noUnits,_wpChanged,_someoneClose);
         {
             private _unit = _x;

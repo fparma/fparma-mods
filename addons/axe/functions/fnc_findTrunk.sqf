@@ -17,9 +17,9 @@ if (isNil QGVAR(trunkOffsetsCache)) then {GVAR(trunkOffsetsCache) = call CBA_fnc
 private _modelName = ((str _tree) splitString " .") select 1;
 private _offset = GVAR(trunkOffsetsCache) getVariable [_modelName,[]];
 if (_offset isNotEqualTo []) exitWith {
-    _dirCCW = -(getDir _tree);
+    private _dirCCW = -(getDir _tree);
     _offset params ["_x","_y"];
-    _trunkPos = (getPosASL _tree) vectorAdd [_x * cos _dirCCW - _y * sin _dirCCW, _x * sin _dirCCW + _y * cos _dirCCW, 0];
+    private _trunkPos = (getPosASL _tree) vectorAdd [_x * cos _dirCCW - _y * sin _dirCCW, _x * sin _dirCCW + _y * cos _dirCCW, 0];
     _trunkPos set [2,_searchPos select 2];
     _trunkPos
 };
@@ -31,6 +31,7 @@ private _searchDirections = [[0,90,180,270],[45,135,225,315]];
 private _searchInterval = 45;
 private _trunkFound = false;
 private _trunkPos = _searchPos;
+private _iteration = 0;
 {
     _iteration = _forEachIndex;
     {
@@ -47,8 +48,8 @@ private _trunkPos = _searchPos;
 
     if (_iteration > 3) exitWith {};
 
-    _searchInterval = _searchInterval / 2;
-    _nextDirections = _searchDirections select (_searchDirections pushBack []);
+    private _searchInterval = _searchInterval / 2;
+    private _nextDirections = _searchDirections select (_searchDirections pushBack []);
     {
         _nextDirections pushBack (_x + _searchInterval);
         _nextDirections pushBack (_x - _searchInterval);

@@ -40,11 +40,11 @@ if (_missions isEqualTo []) then {
     if (_name isEqualTo "") then {
       private _locTypes = ["NameCityCapital","NameCity","NameVillage"];
       private _nearbyLocation = nearestLocations [_pos, _locTypes, 1000] param [0, locationNull];
-      if (!isNull _nearbyLocation) then {
-        _name = format ["Near %1", text _nearbyLocation];
-      } else {
+      if (isNull _nearbyLocation) then {
         _idx = _idx + 1;
         _name = format ["Respawn #%1", _idx];
+      } else {
+        _name = format ["Near %1", text _nearbyLocation];
       };
     };
 

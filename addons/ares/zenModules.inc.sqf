@@ -2,10 +2,10 @@
 
 [UTIL, "Camera at position", {
     params ["_pos", "_obj"];
-    if (!isNull _obj) then {
-        _pos = _obj call CBA_fnc_getPos;
-    } else {
+    if (isNull _obj) then {
         _pos = ASLToATL _pos;
+    } else {
+        _pos = _obj call CBA_fnc_getPos;
     };
 
     [_pos, false] call EFUNC(common,cameraAtPosition);

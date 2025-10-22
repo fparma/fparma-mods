@@ -13,6 +13,7 @@ params ["_mapCtrl"];
     ]
 } forEach GVAR(selectedMarkers);
 
+private _textPos = [];
 {
     _textPos = _mapCtrl ctrlMapScreenToWorld ((_mapCtrl ctrlMapWorldToScreen (getMarkerPos _x)) apply {_x + 0.02});
 

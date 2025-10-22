@@ -31,7 +31,7 @@ class RscDisplayCurator {
             h = "12 * pixelH";
             sizeEx = "12 * pixelH";
             text = "ACRE Spectator";
-            action = QUOTE(_this call FUNC(toggleZeusAcre));
+            action = QUOTE(call FUNC(toggleZeusAcre));
         };
         class GVAR(unitCount): RscText {
             idc = 777551;

@@ -15,7 +15,7 @@
 #include "script_component.hpp"
 params ["_positionOrCode", ["_resetState", false]];
 
-if (isServer && {_resetState}) then {
+if (isServer && _resetState) then {
     GVAR(state) = [true] call CBA_fnc_createNamespace;
     publicVariable QGVAR(state);
 };

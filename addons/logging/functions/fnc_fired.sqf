@@ -2,13 +2,13 @@
 
 params ["_unit", "", "_muzzle", "", "", "", ["_proj", objNull]];
 if (_muzzle != "HandGrenadeMuzzle" ||
-    {GVAR(disabled)} ||
+    GVAR(disabled) ||
     {isNull _proj} ||
     {!(_unit call EFUNC(common,isPlayer))}
 ) exitWith {};
 
 // Clean up previous tracked nades
-if (count (GVAR(grenades) select {!(isNull (_x select 0))}) == 0) then {
+if ((GVAR(grenades) select {!(isNull (_x select 0))}) isEqualTo []) then {
     GVAR(grenades) = [];
 };
 
