@@ -14,7 +14,7 @@ _grp = [_grp] call CBA_fnc_getGroup;
 private _units = units _grp;
 private _zen = !isNil "zen_custom_modules_fnc_register";
 private _msgFnc = [ares_fnc_ShowZeusMessage, zen_common_fnc_showMessage] select _zen;
-if (_grp isEqualTo grpNull || {count _units == 0} || {{isPlayer _x} count _units > 0}) exitWith {
+if (_grp isEqualTo grpNull || {_units isEqualTo []} || {{isPlayer _x} count _units > 0}) exitWith {
     ["Invalid group"] call _msgFnc;
 };
 

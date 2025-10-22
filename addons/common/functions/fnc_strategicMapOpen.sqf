@@ -64,7 +64,7 @@ _ORBAT = _this param [3,[],[[]]];
 _markers = _this param [4,[],[[]]];
 _images = _this param [5,[],[[]]];
 _overcast = (_this param [6,overcast,[0]]) max 0 min 1;
-_isNight = _this param [7,false,[false]];
+private _isNight = _this param [7,false,[false]];
 _defaultScale = _this param [8,1,[0]];
 _simulationEnabled = _this param [9,false,[false]];
 _actionText = _this param [10,localize "str_a3_rscdisplaystrategicmap_missions",[""]];
@@ -75,15 +75,15 @@ BIS_fnc_strategicMapOpen_showIconText = _showIconText;
 BIS_fnc_strategicMapOpen_missionIcon = _missionIcon;
 
 //--- Calculate terrain size and outside color
-_mapSize = worldSize;
+private _mapSize = worldSize;
 BIS_fnc_strategicMapOpen_mapSize = _mapSize;
 BIS_fnc_strategicMapOpen_isNight = _isNight;
 
 _scale = 3500 / _mapSize / safeZoneH;
 _scale = _scale * (_defaultScale max 0 min 1);
-_maxSatelliteAlpha = [1, 0.75] select _isNight;
+private _maxSatelliteAlpha = [1, 0.75] select _isNight;
 
-_colorOutside = configFile >> "CfgWorlds" >> worldName >> "OutsideTerrain" >> "colorOutside";
+private _colorOutside = configFile >> "CfgWorlds" >> worldName >> "OutsideTerrain" >> "colorOutside";
 _colorOutside = if (isArray _colorOutside) then {
     _colorOutside call bis_fnc_colorCOnfigToRGBA;
 } else {
@@ -117,7 +117,7 @@ BIS_fnc_strategicMapOpen_player = player;
 
 //--- Process ORBAT
 BIS_fnc_strategicMapOpen_ORBAT = [];
-_onClick = [];
+private _onClick = [];
 {
     private ["_pos","_class","_parent","_tags","_tiers","_classParams","_text","_texture","_size","_color","_sizeLocal","_sizeParams","_sizeTexture"];
     _pos = _x param [0,player];
@@ -134,7 +134,7 @@ _onClick = [];
     _size = _classParams select ("size" call bis_fnc_ORBATGetGroupParams);
     _color = _classParams select ("color" call bis_fnc_ORBATGetGroupParams);
 
-    _iconSize = sqrt (_size + 1) * 32;
+    private _iconSize = sqrt (_size + 1) * 32;
 
     //--- Group size
     //_sizeLocal = _size max 0 min (count (BIS_fnc_ORBATGetGroupParams_sizes) - 1);
@@ -172,11 +172,11 @@ if (count _missions > 0) then {
     _playerIcon = getText (configFile >> "CfgInGameUI" >> "IslandMap" >> "iconPlayer");
     _playerColor = (getArray (configFile >> "cfgingameui" >> "islandmap" >> "colorMe")) call BIS_fnc_colorRGBAtoHTML;
 
-    _ctrlBackground = _display displayCtrl 1000;
+    private _ctrlBackground = _display displayCtrl 1000;
     _ctrlBackground ctrlShow false;
 
-    _ctrlMissions = _display displayCtrl 1500;
-    _lbAdd = _ctrlMissions lbAdd _actionText;
+    private _ctrlMissions = _display displayCtrl 1500;
+    private _lbAdd = _ctrlMissions lbAdd _actionText;
     _ctrlMissions lbSetValue [_lbAdd,-1];
     _ctrlMissions lbSetColor [_lbAdd,[1,1,1,0.5]];
     {
@@ -246,7 +246,7 @@ BIS_fnc_strategicMapOpen_images = [];
 
     _pos = _pos call bis_fnc_position;
     _color = _color call bis_fnc_colorConfigToRGBA;
-    _coef = (0.182 * safeZoneH); //--- Magic constant to make kilometer a kilometer
+    private _coef = (0.182 * safeZoneH); //--- Magic constant to make kilometer a kilometer
     _w = _w * _coef;
     _h = _h * _coef;
 
@@ -289,19 +289,19 @@ BIS_fnc_strategicMapOpen_indexTextureSize = ("textureSize" call bis_fnc_ORBATGet
 
 BIS_fnc_strategicMapOpen_draw = {
     scriptName "bis_fnc_strategicMapOpen - Draw";
-    _map = _this select 0;
-    _mapSize = BIS_fnc_strategicMapOpen_mapSize / 2;
-    _display = ctrlParent _map;
-    _time = diag_tickTime;
+    private _map = _this select 0;
+    private _mapSize = BIS_fnc_strategicMapOpen_mapSize / 2;
+    private _display = ctrlParent _map;
+    private _time = diag_tickTime;
 
     //_tooltip = (ctrlParent _map) displayCtrl 2350;
     //_tooltip ctrlSetFade 1;
     //_tooltip ctrlCommit 0;
 
-    _mousePos = _map ctrlMapScreenToWorld BIS_fnc_strategicMapOpen_mousePos;
+    private _mousePos = _map ctrlMapScreenToWorld BIS_fnc_strategicMapOpen_mousePos;
     //_mouseLimit = BIS_fnc_strategicMapOpen_mapSize / 3400;
-    _mouseLimit = 2.5 / safeZoneH;
-    _selected = [];
+    private _mouseLimit = 2.5 / safeZoneH;
+    private _selected = [];
 
     //--- Cross grid
     _map drawRectangle [
@@ -320,12 +320,12 @@ BIS_fnc_strategicMapOpen_draw = {
 
     //--- ORBAT groups
     {
-        _class = _x select 0;
-        _iconParams = +(_x select 2);
-        _classParams = +(_x select 3);
+        // private _class = _x select 0;
+        private _iconParams = +(_x select 2);
+        private _classParams = +(_x select 3);
 
-        _pos = _iconParams select 2;
-        _iconSize = _iconParams select 3;
+        // private _pos = _iconParams select 2;
+        private _iconSize = _iconParams select 3;
 
         if (((_iconParams select 2) distance _mousePos) < (_mouseLimit * _iconSize)) then {
             _iconParams set [3,(_iconParams select 3) * 1.2];
@@ -333,17 +333,17 @@ BIS_fnc_strategicMapOpen_draw = {
             _selected = _x;
         };
 
-        _textureSize = _classParams select BIS_fnc_strategicMapOpen_indexTextureSize;
-        _iconSizeParams = +_iconParams;
+        private _textureSize = _classParams select BIS_fnc_strategicMapOpen_indexTextureSize;
+        private _iconSizeParams = +_iconParams;
         _iconParams set [3,(_iconParams select 3) * _textureSize];
         _iconParams set [4,(_iconParams select 4) * _textureSize];
 
         _map drawIcon _iconParams;
 
         //--- Draw size texture
-        _size = _classParams select 5;
+        private _size = _classParams select 5;
         if (_size >= 0) then {
-            _sizeTexture = _classParams select BIS_fnc_strategicMapOpen_indexSizeTexture;
+            private _sizeTexture = _classParams select BIS_fnc_strategicMapOpen_indexSizeTexture;
             _iconSizeParams set [0,_sizeTexture];
             _map drawIcon _iconSizeParams;
         };
@@ -351,14 +351,14 @@ BIS_fnc_strategicMapOpen_draw = {
     } forEach BIS_fnc_strategicMapOpen_ORBAT;
 
     //--- Clouds
-    _cloudSpeed = sin _time * (1138 + 2000 * BIS_fnc_strategicMapOpen_overcast);
+    private _cloudSpeed = sin _time * (1138 + 2000 * BIS_fnc_strategicMapOpen_overcast);
     {
-        _texture = _x select 0;
-        _posX = _x select 1;
-        _posY = _x select 2;
-        _dir = _x select 3;
-        _size = _x select 4;
-        _color = _x select 5;
+        private _texture = _x select 0;
+        private _posX = _x select 1;
+        private _posY = _x select 2;
+        private _dir = _x select 3;
+        private _size = _x select 4;
+        private _color = _x select 5;
 
         _map drawIcon [
             _texture,
@@ -376,14 +376,14 @@ BIS_fnc_strategicMapOpen_draw = {
     } forEach BIS_fnc_strategicMapOpen_clouds;
 
     //--- Missions
-    _textureAnimPhase = abs(6 - floor (_time * 16) % 12);
+    private _textureAnimPhase = abs(6 - floor (_time * 16) % 12);
     {
-        _pos = _x select 0;
-        _title = _x select 2;
-        _size = (_x select 3) * 32;
-        _dir = 0;
-        _alpha = 0.75;
-        _texture = format [BIS_fnc_strategicMapOpen_missionIcon,_textureAnimPhase,_forEachindex + 1];
+        private _pos = _x select 0;
+        private _title = _x select 2;
+        private _size = (_x select 3) * 32;
+        private _dir = 0;
+        private _alpha = 0.75;
+        private _texture = format [BIS_fnc_strategicMapOpen_missionIcon,_textureAnimPhase,_forEachindex + 1];
 
         //--- Icon is under cursor
         if ((_pos distance _mousePos) < (_mouseLimit * _size)) then {
@@ -393,14 +393,14 @@ BIS_fnc_strategicMapOpen_draw = {
         };
 
         //--- Outside of the screen area
-        _mappos = _map ctrlMapWorldToScreen _pos;
-        _mapposX = _mappos select 0;
-        _mapposY = _mappos select 1;
+        private _mappos = _map ctrlMapWorldToScreen _pos;
+        private _mapposX = _mappos select 0;
+        private _mapposY = _mappos select 1;
 
-        _borderLeft = safeZoneX;
-        _borderRight = safeZoneX + safeZoneW;
-        _borderTop = safeZoneY;
-        _borderBottom = safeZoneY + safeZoneH;
+        private _borderLeft = safeZoneX;
+        private _borderRight = safeZoneX + safeZoneW;
+        private _borderTop = safeZoneY;
+        private _borderBottom = safeZoneY + safeZoneH;
 
         if (
             _mapposX < _borderLeft || _mapposX > _borderRight
@@ -412,11 +412,11 @@ BIS_fnc_strategicMapOpen_draw = {
             _mapposY = _mapposY max safeZoneY min (safeZoneY + safeZoneH);
             _title = "";
 
-            _offset = (_size / 1200);
-            _offsetDefX = _offset;
-            _offsetDefY = _offset * 4/3;
-            _offsetX = 0;
-            _offsetY = 0;
+            private _offset = (_size / 1200);
+            private _offsetDefX = _offset;
+            private _offsetDefY = _offset * 4/3;
+            private _offsetX = 0;
+            private _offsetY = 0;
             _dir = -([[0.5,0.5],_mappos] call bis_fnc_dirto) - 90;
 
             switch (true) do {
@@ -476,8 +476,8 @@ BIS_fnc_strategicMapOpen_draw = {
 
             //--- ORBAT
             case 4: {
-                _class = _selected select 0;
-                _classParams = _selected select 3;
+                // private _class = _selected select 0;
+                private _classParams = _selected select 3;
 
                 [_classParams,_display,BIS_fnc_strategicMapOpen_mousePos] call bis_fnc_ORBATTooltip;
             };
@@ -507,13 +507,13 @@ BIS_fnc_strategicMapOpen_mouse = {
 #define DIK_NUMPAD5         0x4C
 
 BIS_fnc_strategicMapOpen_keyDown = {
-    _display = _this select 0;
-    _key = _this select 1;
+    private _display = _this select 0;
+    private _key = _this select 1;
 
     //--- H
     switch _key do {
         case DIK_H: {
-            _fade = ceil ctrlFade (_display displayCtrl 2);
+            private _fade = ceil ctrlFade (_display displayCtrl 2);
             _fade = (_fade + 1) % 2;
             {
                 (_display displayCtrl _x) ctrlSetFade _fade;
@@ -547,20 +547,20 @@ if (_isNight) then {
 //--- Measure
 [_display] spawn {
     disableSerialization;
-    _display = _this select 0;
-    _showMiles = false;
+    private _display = _this select 0;
+    private _showMiles = false;
 
-    _map = _display displayCtrl 51;
+    private _map = _display displayCtrl 51;
     waitUntil {ctrlMapAnimDone _map};
 
-    _xStart = (_map ctrlMapWorldToScreen [0,0,0]) select 0;
-    _xEnd = (_map ctrlMapWorldToScreen [1000,0,0]) select 0;
-    _w1km = abs (_xstart - _xEnd);
-    _w1m = _w1km * 1.60934;
+    private _xStart = (_map ctrlMapWorldToScreen [0,0,0]) select 0;
+    private _xEnd = (_map ctrlMapWorldToScreen [1000,0,0]) select 0;
+    private _w1km = abs (_xstart - _xEnd);
+    private _w1m = _w1km * 1.60934;
     if !(_showMiles) then {_w1m = 0.01};
-    _h = 0.01;
+    private _h = 0.01;
 
-    _measure = _display displayCtrl 2301;
+    private _measure = _display displayCtrl 2301;
     _measure ctrlSetPosition [
         safeZoneX + 0.02125,
         safeZoneY + safeZoneH - 3.5 * 0.04,
@@ -571,10 +571,10 @@ if (_isNight) then {
     _measure ctrlCommit 0;
     _measure ctrlEnable false;
 
-    _colors = ["#(argb,8,8,3)color(0,0,0,1)","\A3\Ui_f\data\GUI\Rsc\RscDisplayStrategicMap\measure_ca.paa"];
-    _kmSegment = _w1km / 5;
+    private _colors = ["#(argb,8,8,3)color(0,0,0,1)","\A3\Ui_f\data\GUI\Rsc\RscDisplayStrategicMap\measure_ca.paa"];
+    private _kmSegment = _w1km / 5;
     for "_i" from 0 to 4 do {
-        _km = _display displayCtrl (1200 + _i);
+        private _km = _display displayCtrl (1200 + _i);
         _km ctrlSetText (_colors select (_i % 2));
         _km ctrlSetPosition [
             _w1m + _kmSegment * _i,
@@ -585,7 +585,7 @@ if (_isNight) then {
         _km ctrlCommit 0;
     };
 
-    _text_0 = _display displayCtrl 1002;
+    private _text_0 = _display displayCtrl 1002;
     _text_0 ctrlSetPosition [
         _w1m - _w1km,
         _h * 3,
@@ -593,7 +593,7 @@ if (_isNight) then {
         _h * 2
     ];
     _text_0 ctrlCommit 0;
-    _text_km = _display displayCtrl 1004;
+    private _text_km = _display displayCtrl 1004;
     _text_km ctrlSetPosition [
         _w1m - _w1km + (safeZoneH / 30),
         _h * 3,
@@ -603,7 +603,7 @@ if (_isNight) then {
     _text_km ctrlCommit 0;
 
     if (_showMiles) then {
-        _m0 = _display displayCtrl 1205;
+        private _m0 = _display displayCtrl 1205;
         _m0 ctrlSetText "#(argb,8,8,3)color(1,1,1,1)";
         _m0 ctrlSetPosition [
             0,
@@ -612,7 +612,7 @@ if (_isNight) then {
             _h
         ];
         _m0 ctrlCommit 0;
-        _text_m = _display displayCtrl 1003;
+        private _text_m = _display displayCtrl 1003;
         _text_m ctrlSetPosition [
             0,
             _h * 3,

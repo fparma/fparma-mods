@@ -19,7 +19,7 @@ private _fnc_addHeadline = {
 private _fnc_addEntry = {
     params ["_text","_data"];
     private _index = _ctrl lbAdd _text;
-    _ctrl lbSetData [_index,if !(_data isEqualType "") then {str _data} else {_data}];
+    _ctrl lbSetData [_index, if (_data isEqualType "") then {_data} else {str _data}];
     _index
 };
 

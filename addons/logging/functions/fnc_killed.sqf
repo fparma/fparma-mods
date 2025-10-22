@@ -13,7 +13,7 @@ private _keepChecking = true;
 private _lvl = 0;
 
 // died directly by player gunfire
-if (_unit != _killer && {_killerPlayer} && {(vehicle _killer) isKindOf "CAManBase"}) then {
+if (_unit != _killer && _killerPlayer && {(vehicle _killer) isKindOf "CAManBase"}) then {
     private _wep = currentWeapon _killer;
     private _text = format ["Killed by %1, MAYBE using: %2, pos: %3 dist: %4, killer dir: %5",
         name _killer,
@@ -42,7 +42,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
 
     // killed by vehicle, use effectiveCommander like vanilla does
     if ((!isNull _killer) && {!((vehicle _killer) isKindOf "CAManBase")}) then {
-        private _text = format ["Killed by vehicle: %1", getText (configFile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
+        private _text = format ["Killed by vehicle: %1", getText (configOf _killer >> "displayName")];
         private _plrCrew = (fullCrew _killer) select {
                 _x params ["_obj", "_role"];
                 (_role != "cargo" && {_obj call EFUNC(common,isPlayer)})
@@ -52,7 +52,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
             };
 
         _killer = effectiveCommander _killer;
-        if (count _plrCrew > 0) then {
+        if (_plrCrew isNotEqualTo []) then {
             _lvl = [0, 2] select (_sideGrp == side group _killer);
             _text = _text + format [", crew: (%1)", _plrCrew joinString (', ')];
         };
@@ -62,7 +62,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
     // killed by AI
     if (_unit != _killer && {!(_killer call EFUNC(common,isPlayer))}) then {
         _lvl = 0;
-        _msg pushBack format ["Killed by AI(%1)", getText (configFile >> "CfgVehicles" >> (typeOf _killer) >> "displayName")];
+        _msg pushBack format ["Killed by AI(%1)", getText (configOf _killer >> "displayName")];
     };
 
     // still "suicide". get nearby player drivers
@@ -70,7 +70,7 @@ if (_keepChecking && (_unit == _killer || {!_killerPlayer}))  then {
         private _nearbyDrivers = (nearestObjects [getPosATL _unit, ["LandVehicle", "Air"], 20])
             select {(driver _x) call EFUNC(common,isPlayer)};
 
-        if (count _nearbyDrivers > 0) then {
+        if (_nearbyDrivers isNotEqualTo []) then {
             private _withDist = _nearbyDrivers apply {[_x, _x distance _unit]};
             private _sorted = [_withDist, 1] call CBA_fnc_sortNestedArray;
 

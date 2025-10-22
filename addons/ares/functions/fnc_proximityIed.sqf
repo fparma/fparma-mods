@@ -41,7 +41,7 @@ private _onAct = {
             ("M_Titan_AT" createVehicle [_pos select 0, _pos select 1, (_pos select 2) + 0.1]) setVelocity [0, 0, -50];
             [2.5, 2, 25] remoteExecCall ["addCamShake", allPlayers select {alive _x && (_x distance _pos) < 50}];
 
-            _crater = createVehicle ["CraterLong_small", _pos, [], 0, "NONE"];
+            private _crater = createVehicle ["CraterLong_small", _pos, [], 0, "NONE"];
             [{
                 deleteVehicle _this;
             }, _crater, 300] call CBA_fnc_waitAndExecute;

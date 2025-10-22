@@ -30,12 +30,12 @@ if !([ace_player, QGVAR(axe)] call ace_common_fnc_hasItem) exitWith {};
     if (((getPosASL ace_player) distance _setPosition) <= 5) exitWith {};
 
     private _fncStatement = {
-        params ["", "_player", "_attachedTree"];
+        params ["", "", "_attachedTree"];
         [_player, _attachedTree] call FUNC(cutDownTree);
     };
 
     private _fncCondition = {
-        params ["_helper", "_player", "_attachedTree"];
+        params ["_helper", "", "_attachedTree"];
 
         if (!([_player, _attachedTree, ["isNotSwimming"]] call ace_common_fnc_canInteractWith)) exitWith {false};
 

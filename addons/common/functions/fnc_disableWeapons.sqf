@@ -23,6 +23,7 @@
 
 #include "script_component.hpp"
 #define CAN_FIRE ((ace_player getVariable [QGVAR(disableWeaponsReasons), []]) isEqualTo [])
+#define CANT_FIRE ((ace_player getVariable [QGVAR(disableWeaponsReasons), []]) isNotEqualTo [])
 
 params [["_disableWeapons", false], ["_reason", ""]];
 if (!hasInterface) exitWith {};
@@ -43,11 +44,11 @@ if (isNil QGVAR(weaponsEvtId)) then {
       deleteVehicle _obj;
     }] call CBA_fnc_addEventHandler;
 
-    GVAR(weaponsEvtId) = [ace_player, "DefaultAction", {!CAN_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
+    GVAR(weaponsEvtId) = [ace_player, "DefaultAction", {CANT_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
     ["unit", {
         params ["_new", "_old"];
         [_old, "DefaultAction", GVAR(weaponsEvtId)] call ace_common_fnc_removeActionEventHandler;
-        GVAR(weaponsEvtId) = [_new, "DefaultAction", {!CAN_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
+        GVAR(weaponsEvtId) = [_new, "DefaultAction", {CANT_FIRE}, {}] call ace_common_fnc_addActionEventHandler;
     }] call CBA_fnc_addPlayerEventHandler;
 };
 

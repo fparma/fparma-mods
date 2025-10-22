@@ -9,7 +9,7 @@
 #include "script_component.hpp"
 
 private _insertChildren = {
-    params ["_target", "_player", "_params"];
+    params ["", "", "_params"];
     _params params ["_setOveral", "_setObject"];
 
     // Add children to this action

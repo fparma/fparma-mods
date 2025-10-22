@@ -63,7 +63,7 @@ private _newGroups = [];
 
         {
             _type = _x;
-            _amount = _backpackCargo#1#_forEachIndex;
+            private _amount = _backpackCargo#1#_forEachIndex;
             _veh addBackpackCargoGlobal [_type, _amount];
         } forEach _backpackCargo#0;
 
@@ -71,7 +71,7 @@ private _newGroups = [];
             private _array = _x;
             {
                 _type = _x;
-                _amount = _array#1#_forEachIndex;
+                private _amount = _array#1#_forEachIndex;
                 _veh addItemCargoGlobal [_type, _amount];
             } forEach (_array#0);
         } forEach [_itemCargo, _magazineCargo, _weaponCargo];
@@ -124,7 +124,7 @@ private _newGroups = [];
         _wp setWaypointTimeout _timeout;
         _wp setWaypointVisible _visible;
     } forEach _waypoints;
-    private _leader = leader _group;
+    // private _leader = leader _group;
 
     _group setCombatMode _combatMode;
     _group setCombatBehaviour _behaviour;
