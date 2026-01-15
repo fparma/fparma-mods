@@ -313,6 +313,8 @@ enum
 #define CT_ITEMSLOT         103
 #define CT_CHECKBOX         77
 #define CT_VEHICLE_DIRECTION 105
+#define CT_WEBBROWSER       106
+#define CT_EXTENSION        107
 
 // Static styles
 #define ST_POS            0x0F
@@ -408,6 +410,8 @@ enum
 #define IDC_RESTART       5
 #define IDC_USER_BUTTON   6
 #define IDC_EXIT_TO_MAIN  7
+#define IDC_EXIT_QUIT     8
+#define IDC_USER_BUTTON2  9
 
 // my own control window for tests
 #define IDC_MY_FIRST_LISTBOX    110
@@ -1022,6 +1026,9 @@ enum
 #define IDC_MAIN_QUICKPLAY          154
 #define IDC_MAIN_UNIT               155
 
+#define IDC_MAIN_INFO_BRANCH		156
+#define IDC_MAIN_BRANCH_NAME		160
+
 #define IDC_MAIN_CARDAS_CUDL        199 // muj vlastni cudl
 
 #define IDC_MAIN_VIDEOCONTROL       3335
@@ -1378,6 +1385,7 @@ enum
 #define IDC_OPTIONS_PP_DOF_SLIDER            1317
 #define IDC_OPTIONS_PP_DOF_VALUE             1318
 #define IDC_OPTIONS_PP_CAUSTICS              1319
+#define IDC_OPTIONS_PP_HAZE                  1329
 #define IDC_OPTIONS_PP_SHARPEN_SLIDER        1320
 #define IDC_OPTIONS_PP_SHARPEN_VALUE         1321
 #define IDC_OPTIONS_PP_COLOR_CORRECTIONS     1322
@@ -1413,6 +1421,7 @@ enum
 #define IDC_OPTIONS_WIND_INFLUENCE_DYN_RTD  149
 #define IDC_OPTIONS_AUTO_TRIM_RTD           150
 #define IDC_OPTIONS_STRESS_DAMAGE_RTD       151
+#define IDC_OPTIONS_WEBBROWSER				152
 
 #define IDC_PARTICLES_EFFECTS         143
 #define IDC_OPTIONS_DYNAMIC_LIGHTS    144
@@ -1673,8 +1682,8 @@ enum
 #define IDC_MULTI_FULL_FILTER         151
 #define IDC_MULTI_TYPE_FILTER         152
 #define IDC_MP_NEXT_SESSION           153
-#define IDC_MULTI_BATTLEYE_FILTER     154
-#define IDC_MULTI_EXPANSIONS_FILTER   155
+
+
 #define IDC_MULTI_FAVORITE_COLUMN     156
 #define IDC_MULTI_FAVORITE_ICON       157
 #define IDC_MULTI_SERVER_COUNT        158
@@ -1696,7 +1705,7 @@ enum
 #define IDC_MP_QUICK_BEST_SERVER      112
 #define IDC_MP_QUICK_FIND_SERVER      113
 #define IDC_MP_QUICK_SHOW_SERVERS     114
-#define IDC_MP_QUICK_SHOW_SERVERS     114
+
 #define IDC_MP_QUICK_MODE_TITLE       115
 #define IDC_MP_QUICK_MODE_PICTURE     116
 #define IDC_MP_QUICK_MODE_DESCRIPTION 117
@@ -3133,7 +3142,7 @@ enum
 
 
 //A3 credits
-#define ONBUTTONCLICK_START_CREDITS "0 = _this spawn (uiNamespace getVariable 'bis_fnc_credits');"
+#define ONBUTTONCLICK_START_CREDITS "0 = _this spawn (uinamespace getvariable 'bis_fnc_credits');"
 
 
 // Hitzone types
