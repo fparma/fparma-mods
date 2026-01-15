@@ -1,19 +1,21 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
+    push:
+        branches:
+            - master
+    pull_request:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Setup HEMTT
-        uses: arma-actions/hemtt@v1
-      - name: Run HEMTT build
-        run: |
-            hemtt check -p -e
-            hemtt release
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - name: Setup HEMTT
+              uses: arma-actions/hemtt@v1
+            - name: Run HEMTT check
+              run: |
+                  hemtt release
+            - name: Run HEMTT build
+              run: |
+                  hemtt release
