@@ -15,5 +15,5 @@ jobs:
         uses: arma-actions/hemtt@v1
       - name: Run HEMTT build
         run: |
-            hemtt check --pedantic
+            hemtt check --pedantic -e
             hemtt release

@@ -22,7 +22,7 @@
 #include "script_component.hpp"
 if !(isServer) exitWith {};
 params [
-    ["_group", [], ["", objNull, grpNull]],
+    ["_group", [], ["", objNull, grpNull, []]],
     ["_id", "", [""]],
     ["_init", {}, [{}]],
     ["_params",[], [[]]]

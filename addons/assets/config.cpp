@@ -4,8 +4,7 @@ class CfgPatches {
     class ADDON {
         units[] = {
             QGVAR(PortableBoat),
-            QGVAR(PortableBoatBackpack),
-            "FPA_scissors"
+            QGVAR(PortableBoatBackpack)
         };
         weapons[] = {"FPA_scissors"};
         requiredVersion = REQUIRED_VERSION;
