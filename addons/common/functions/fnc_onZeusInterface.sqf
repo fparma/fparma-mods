@@ -4,7 +4,7 @@
 */
 
 #include "script_component.hpp"
-#include "\a3\ui_f\hpp\defineDIKCodes.inc"
+#include "\A3\Ui_f\hpp\defineDIKCodes.inc"
 #include "\A3\ui_f_curator\ui\defineResinclDesign.inc"
 
 #define IDD_CTRL_ACRE 777550

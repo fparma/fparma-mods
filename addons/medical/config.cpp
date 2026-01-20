@@ -8,6 +8,7 @@ class CfgPatches {
         requiredAddons[] = {"fpa_main", "ace_medical_treatment", "ace_zeus"};
         author = "diwako";
         authorUrl = "";
+        VERSION_CONFIG;
     };
 };
 
