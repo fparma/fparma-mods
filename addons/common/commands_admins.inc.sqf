@@ -111,5 +111,5 @@
         } else {
             [QGVAR(chatMessage), [profileName, "Chat slow mode has been disabled!", "", "", true]] call CBA_fnc_globalEvent;
         };
-    }, "Puts ALL of chat into slow mode. Any number > 0 will enable slow mode. Number is in seconds. Setting the number to 0 will disable slow mode. <#fp.slowmode 0/1>"] call FUNC(registerChatCommand);
+    }, "Puts side/global chat into slow mode. Any number > 0 will enable slow mode. Number is in seconds. Setting the number to 0 will disable slow mode. <#fp.slowmode 0/1>"] call FUNC(registerChatCommand);
 } forEach ["sm", "slowmode"];
