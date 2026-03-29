@@ -44,6 +44,7 @@ if (isServer) then {
     [QGVAR(createZeus), {call FUNC(createZeus)}] call CBA_fnc_addEventHandler;
 
     missionNamespace setVariable [QGVAR(allowChatMessages), true, true];
+    missionNamespace setVariable [QGVAR(chatSlowMode), 0, true];
 };
 
 if (isDedicated) then {

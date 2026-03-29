@@ -4,6 +4,8 @@
 
 if (!hasInterface) exitWith {};
 
+GVAR(allowNextMessageTime) = -1;
+
 [missionNamespace, "arsenalOpened", {
     disableSerialization;
     params [["_display", displayNull]];
