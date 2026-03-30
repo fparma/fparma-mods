@@ -89,3 +89,27 @@
         [QGVAR(chatMessage), [profileName, format ["Side/Global chat has been %1!", ["unlocked", "locked"] select _disable], "", "", true]] call CBA_fnc_globalEvent;
     }, "Disable/enable all player chat messages in global and side chat. 0 enable weapons, 1 disable weapons. <#fp.chatlock 0/1>"] call FUNC(registerChatCommand);
 } forEach ["cl", "chatlock"];
+
+{
+    [_x, {
+        params [["_str", ""]];
+        if (_str isEqualTo "") exitWith {
+            systemChat "You need to provide some number in seconds...";
+        };
+        private _number = parseNumber _str;
+        if (isNil "_number") exitWith {
+            systemChat format ["'%1' is not a valid number, chief!", _str];
+            playSound "3DEN_notificationWarning";
+        };
+
+        _number = (round _number) max 0;
+        missionNamespace setVariable [QGVAR(chatSlowMode), _number, true];
+        missionNamespace setVariable [QGVAR(allowNextMessageTime), -1, true];
+
+        if (_number > 0) then {
+            [QGVAR(chatMessage), [profileName, format ["Chat has been put into slow mode! Currently %1 seconds", _number], "", "", true]] call CBA_fnc_globalEvent;
+        } else {
+            [QGVAR(chatMessage), [profileName, "Chat slow mode has been disabled!", "", "", true]] call CBA_fnc_globalEvent;
+        };
+    }, "Puts side/global chat into slow mode. Any number > 0 will enable slow mode. Number is in seconds. Setting the number to 0 will disable slow mode. <#fp.slowmode 0/1>"] call FUNC(registerChatCommand);
+} forEach ["sm", "slowmode"];
