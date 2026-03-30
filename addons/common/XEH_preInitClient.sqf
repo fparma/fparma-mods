@@ -13,15 +13,6 @@ if (!hasInterface) exitWith {};
     ''
 ] call CBA_fnc_addKeybind;
 
-[
-    QGVAR(hideChatHint),
-    "CHECKBOX",
-    ["Hide chat hint", "Man I do not wanna see that giant box when i am shit posting!"],
-    [FP_SETTINGS, "General"],
-    false,
-    false
-] call CBA_fnc_addSetting;
-
 GVAR(lastMessageFrom) = "";
 [QGVAR(chatMessage), {
     params ["_sender", "_msg", "_type", "_receiver", ["_ping", true]];

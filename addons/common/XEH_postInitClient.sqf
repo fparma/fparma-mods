@@ -121,3 +121,7 @@ if (GVAR(arsenalAddAcreTab)) then {
 };
 
 [] call FUNC(initViewDistance);
+
+[{!(isNull player)}, {
+    player setVariable ["diwako_dui_nametags_customInfo", GVAR(sanitizedDuiExtraInfo), true];
+}, []] call CBA_fnc_waitUntilAndExecute;
